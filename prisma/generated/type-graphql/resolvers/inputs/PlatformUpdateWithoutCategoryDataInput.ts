@@ -7,7 +7,7 @@ import { ProductUpdateManyWithoutPlatformInput } from "../inputs/ProductUpdateMa
   isAbstract: true,
   description: undefined,
 })
-export class PlatformUpdateWithoutCategoriesDataInput {
+export class PlatformUpdateWithoutCategoryDataInput {
   @TypeGraphQL.Field(_type => String, {
     nullable: true,
     description: undefined
@@ -54,7 +54,7 @@ export class PlatformUpdateWithoutCategoriesDataInput {
     nullable: true,
     description: undefined
   })
-  typeSlug?: string | null;
+  type?: string | null;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true,

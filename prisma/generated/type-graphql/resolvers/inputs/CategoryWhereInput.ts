@@ -21,7 +21,7 @@ export class CategoryWhereInput {
     nullable: true,
     description: undefined
   })
-  name?: StringFilter | null;
+  title?: StringFilter | null;
 
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true,
@@ -65,11 +65,11 @@ export class CategoryWhereInput {
   })
   products?: CategoriesOnProductsFilter | null;
 
-  @TypeGraphQL.Field(_type => StringFilter, {
+  @TypeGraphQL.Field(_type => NullableStringFilter, {
     nullable: true,
     description: undefined
   })
-  platformId?: StringFilter | null;
+  platformId?: NullableStringFilter | null;
 
   @TypeGraphQL.Field(_type => [CategoryWhereInput], {
     nullable: true,

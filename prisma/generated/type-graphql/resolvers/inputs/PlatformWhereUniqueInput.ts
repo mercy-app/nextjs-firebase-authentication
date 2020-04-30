@@ -15,5 +15,5 @@ export class PlatformWhereUniqueInput {
     nullable: true,
     description: undefined
   })
-  typeSlug?: string | null;
+  type?: string | null;
 }

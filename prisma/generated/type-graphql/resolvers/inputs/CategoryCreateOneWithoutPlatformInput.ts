@@ -6,16 +6,16 @@ import { CategoryWhereUniqueInput } from "../inputs/CategoryWhereUniqueInput";
   isAbstract: true,
   description: undefined,
 })
-export class CategoryCreateManyWithoutPlatformInput {
-  @TypeGraphQL.Field(_type => [CategoryCreateWithoutPlatformInput], {
+export class CategoryCreateOneWithoutPlatformInput {
+  @TypeGraphQL.Field(_type => CategoryCreateWithoutPlatformInput, {
     nullable: true,
     description: undefined
   })
-  create?: CategoryCreateWithoutPlatformInput[] | null;
+  create?: CategoryCreateWithoutPlatformInput | null;
 
-  @TypeGraphQL.Field(_type => [CategoryWhereUniqueInput], {
+  @TypeGraphQL.Field(_type => CategoryWhereUniqueInput, {
     nullable: true,
     description: undefined
   })
-  connect?: CategoryWhereUniqueInput[] | null;
+  connect?: CategoryWhereUniqueInput | null;
 }

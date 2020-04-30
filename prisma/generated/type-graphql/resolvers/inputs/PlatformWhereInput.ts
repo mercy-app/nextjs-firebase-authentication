@@ -1,5 +1,5 @@
 import * as TypeGraphQL from "type-graphql";
-import { CategoryFilter } from "../inputs/CategoryFilter";
+import { CategoryWhereInput } from "../inputs/CategoryWhereInput";
 import { CompanyFilter } from "../inputs/CompanyFilter";
 import { CountryWhereInput } from "../inputs/CountryWhereInput";
 import { NullableStringFilter } from "../inputs/NullableStringFilter";
@@ -57,7 +57,7 @@ export class PlatformWhereInput {
     nullable: true,
     description: undefined
   })
-  typeSlug?: StringFilter | null;
+  type?: StringFilter | null;
 
   @TypeGraphQL.Field(_type => NullableStringFilter, {
     nullable: true,
@@ -70,12 +70,6 @@ export class PlatformWhereInput {
     description: undefined
   })
   products?: ProductFilter | null;
-
-  @TypeGraphQL.Field(_type => CategoryFilter, {
-    nullable: true,
-    description: undefined
-  })
-  categories?: CategoryFilter | null;
 
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true,
@@ -112,6 +106,12 @@ export class PlatformWhereInput {
     description: undefined
   })
   NOT?: PlatformWhereInput[] | null;
+
+  @TypeGraphQL.Field(_type => CategoryWhereInput, {
+    nullable: true,
+    description: undefined
+  })
+  category?: CategoryWhereInput | null;
 
   @TypeGraphQL.Field(_type => CountryWhereInput, {
     nullable: true,

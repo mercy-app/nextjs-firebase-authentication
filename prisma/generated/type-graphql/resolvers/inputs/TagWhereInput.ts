@@ -18,7 +18,7 @@ export class TagWhereInput {
     nullable: true,
     description: undefined
   })
-  name?: StringFilter | null;
+  title?: StringFilter | null;
 
   @TypeGraphQL.Field(_type => TagsOnPostsFilter, {
     nullable: true,

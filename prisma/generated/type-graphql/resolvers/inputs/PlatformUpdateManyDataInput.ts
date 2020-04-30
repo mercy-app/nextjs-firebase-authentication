@@ -51,7 +51,7 @@ export class PlatformUpdateManyDataInput {
     nullable: true,
     description: undefined
   })
-  typeSlug?: string | null;
+  type?: string | null;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true,

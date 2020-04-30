@@ -17,7 +17,7 @@ export class Tag {
     nullable: false,
     description: undefined,
   })
-  name!: string;
+  title!: string;
 
   posts?: TagsOnPosts[] | null;
 

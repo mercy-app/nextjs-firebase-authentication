@@ -15,7 +15,7 @@ export class CategoryUpdateManyDataInput {
     nullable: true,
     description: undefined
   })
-  name?: string | null;
+  title?: string | null;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true,

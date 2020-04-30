@@ -4,7 +4,6 @@ import { Company } from "../../../models/Company";
 import { Country } from "../../../models/Country";
 import { Platform } from "../../../models/Platform";
 import { Product } from "../../../models/Product";
-import { PlatformCategoriesArgs } from "./args/PlatformCategoriesArgs";
 import { PlatformCompanyArgs } from "./args/PlatformCompanyArgs";
 import { PlatformProductsArgs } from "./args/PlatformProductsArgs";
 
@@ -22,16 +21,16 @@ export class PlatformRelationsResolver {
     }).products(args);
   }
 
-  @TypeGraphQL.FieldResolver(_type => [Category], {
-    nullable: true,
+  @TypeGraphQL.FieldResolver(_type => Category, {
+    nullable: false,
     description: undefined,
   })
-  async categories(@TypeGraphQL.Root() platform: Platform, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: PlatformCategoriesArgs): Promise<Category[] | null> {
+  async category(@TypeGraphQL.Root() platform: Platform, @TypeGraphQL.Ctx() ctx: any): Promise<Category> {
     return ctx.prisma.platform.findOne({
       where: {
         id: platform.id,
       },
-    }).categories(args);
+    }).category({});
   }
 
   @TypeGraphQL.FieldResolver(_type => Country, {

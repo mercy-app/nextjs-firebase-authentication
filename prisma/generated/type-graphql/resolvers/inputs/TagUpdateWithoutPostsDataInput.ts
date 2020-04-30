@@ -16,7 +16,7 @@ export class TagUpdateWithoutPostsDataInput {
     nullable: true,
     description: undefined
   })
-  name?: string | null;
+  title?: string | null;
 
   @TypeGraphQL.Field(_type => TagsOnProductsUpdateManyWithoutTagInput, {
     nullable: true,

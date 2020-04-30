@@ -20,7 +20,7 @@ export class CategoryScalarWhereInput {
     nullable: true,
     description: undefined
   })
-  name?: StringFilter | null;
+  title?: StringFilter | null;
 
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true,
@@ -64,11 +64,11 @@ export class CategoryScalarWhereInput {
   })
   products?: CategoriesOnProductsFilter | null;
 
-  @TypeGraphQL.Field(_type => StringFilter, {
+  @TypeGraphQL.Field(_type => NullableStringFilter, {
     nullable: true,
     description: undefined
   })
-  platformId?: StringFilter | null;
+  platformId?: NullableStringFilter | null;
 
   @TypeGraphQL.Field(_type => [CategoryScalarWhereInput], {
     nullable: true,

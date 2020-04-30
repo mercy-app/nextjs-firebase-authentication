@@ -19,7 +19,7 @@ export class CategoryCreateWithoutPlatformInput {
     nullable: false,
     description: undefined
   })
-  name!: string;
+  title!: string;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false,

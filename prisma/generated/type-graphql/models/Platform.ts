@@ -55,7 +55,7 @@ export class Platform {
     nullable: false,
     description: undefined,
   })
-  typeSlug!: string;
+  type!: string;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true,
@@ -65,7 +65,7 @@ export class Platform {
 
   products?: Product[] | null;
 
-  categories?: Category[] | null;
+  category?: Category;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false,

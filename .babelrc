@@ -19,6 +19,7 @@
           "@validation": "./src/validation",
           "@constants": "./src/constants",
           "@context": "./src/context",
+          "@prismaTypes": "./prisma/generated/type-graphql",
           "@queries": "./src/queries",
           "@data": "./src/data",
           "@typeDefs": "./src/types",

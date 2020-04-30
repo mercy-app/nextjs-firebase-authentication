@@ -52,7 +52,7 @@ export class PlatformOrderByInput {
     nullable: true,
     description: undefined
   })
-  typeSlug?: keyof typeof OrderByArg | null;
+  type?: keyof typeof OrderByArg | null;
 
   @TypeGraphQL.Field(_type => OrderByArg, {
     nullable: true,

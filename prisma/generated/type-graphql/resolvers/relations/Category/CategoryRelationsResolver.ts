@@ -58,10 +58,10 @@ export class CategoryRelationsResolver {
   }
 
   @TypeGraphQL.FieldResolver(_type => Platform, {
-    nullable: false,
+    nullable: true,
     description: undefined,
   })
-  async platform(@TypeGraphQL.Root() category: Category, @TypeGraphQL.Ctx() ctx: any): Promise<Platform> {
+  async platform(@TypeGraphQL.Root() category: Category, @TypeGraphQL.Ctx() ctx: any): Promise<Platform | null> {
     return ctx.prisma.category.findOne({
       where: {
         id: category.id,

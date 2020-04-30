@@ -1,41 +1,60 @@
 import { Resolver, Query, Arg, ID, Mutation } from 'type-graphql';
-
+import { Category, CategoryCreateInput } from '@prismaTypes'
 import { isAuthenticated } from '@api/middleware/resolver/isAuthenticated';
-import { Category } from '@prismaTypes'
-// import loadCategories from '../../data/category.data';
-// import Category from './category.type';
-// import AddCategoryInput from './category.input_type';
-// import search from '../../helpers/search';
+
+const { PrismaClient } = require('@prisma/client');
+
+const prisma = new PrismaClient();
+
 @Resolver()
 export default class CategoryResolver {
-    //   private readonly categoriesCollection: Category[] = loadCategories();
-
     @Query(returns => [Category], { description: 'Get all the categories' })
     async categories(
         @Arg('type', { nullable: true }) type?: string,
         @Arg('searchBy', { defaultValue: '' }) searchBy?: string
     ): Promise<Category[]> {
-        let categories = this.categoriesCollection;
+        const categories = await prisma.category.findMany({
+            where: {
+                name: {
+                    startsWith: searchBy,
+                },
+                type
+            }
+        })
+        return categories
+    }
 
-        if (type) {
-            categories = await categories.filter(category => category.type === type);
-        }
-        return await search(categories, ['name'], searchBy);
+    @Query(() => [Category], { description: 'Get all the categories by type' })
+    async categoriesByType(
+        @Arg('type', type => String) type: string
+    ): Promise<Category[]> {
+        const categories = await prisma.category.findMany({
+            where: {
+                type
+            }
+        })
+        return categories
     }
 
     @Query(returns => Category)
     async category(
         @Arg('id', type => ID) id: string
     ): Promise<Category | undefined> {
-        return await this.categoriesCollection.find(category => category.id === id);
+        const category = await prisma.category.findOne({
+            where: {
+                id
+            }
+        })
+        return category
     }
 
+    // TODO: add super admin permission
     @Mutation(() => Category, { description: 'Create Category' })
     async createCategory(
-        @Arg('category') category: AddCategoryInput
+        @Arg('category') category: CategoryCreateInput
     ): Promise<Category> {
-        console.log(category, 'category');
+        const newCategory = await prisma.category.create(category)
 
-        return await category;
+        return newCategory;
     }
 }

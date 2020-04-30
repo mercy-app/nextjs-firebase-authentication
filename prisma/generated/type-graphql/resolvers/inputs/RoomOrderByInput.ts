@@ -22,7 +22,7 @@ export class RoomOrderByInput {
     nullable: true,
     description: undefined
   })
-  name?: keyof typeof OrderByArg | null;
+  title?: keyof typeof OrderByArg | null;
 
   @TypeGraphQL.Field(_type => OrderByArg, {
     nullable: true,

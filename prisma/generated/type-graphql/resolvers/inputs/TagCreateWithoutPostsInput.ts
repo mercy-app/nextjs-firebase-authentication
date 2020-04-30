@@ -16,7 +16,7 @@ export class TagCreateWithoutPostsInput {
     nullable: false,
     description: undefined
   })
-  name!: string;
+  title!: string;
 
   @TypeGraphQL.Field(_type => TagsOnProductsCreateManyWithoutTagInput, {
     nullable: true,

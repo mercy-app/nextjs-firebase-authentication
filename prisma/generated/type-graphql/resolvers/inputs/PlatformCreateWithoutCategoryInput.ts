@@ -7,7 +7,7 @@ import { ProductCreateManyWithoutPlatformInput } from "../inputs/ProductCreateMa
   isAbstract: true,
   description: undefined,
 })
-export class PlatformCreateWithoutCategoriesInput {
+export class PlatformCreateWithoutCategoryInput {
   @TypeGraphQL.Field(_type => String, {
     nullable: true,
     description: undefined
@@ -54,7 +54,7 @@ export class PlatformCreateWithoutCategoriesInput {
     nullable: false,
     description: undefined
   })
-  typeSlug!: string;
+  type!: string;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true,

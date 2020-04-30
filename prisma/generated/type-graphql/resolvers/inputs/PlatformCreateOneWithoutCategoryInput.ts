@@ -1,17 +1,17 @@
 import * as TypeGraphQL from "type-graphql";
-import { PlatformCreateWithoutCategoriesInput } from "../inputs/PlatformCreateWithoutCategoriesInput";
+import { PlatformCreateWithoutCategoryInput } from "../inputs/PlatformCreateWithoutCategoryInput";
 import { PlatformWhereUniqueInput } from "../inputs/PlatformWhereUniqueInput";
 
 @TypeGraphQL.InputType({
   isAbstract: true,
   description: undefined,
 })
-export class PlatformCreateOneWithoutCategoriesInput {
-  @TypeGraphQL.Field(_type => PlatformCreateWithoutCategoriesInput, {
+export class PlatformCreateOneWithoutCategoryInput {
+  @TypeGraphQL.Field(_type => PlatformCreateWithoutCategoryInput, {
     nullable: true,
     description: undefined
   })
-  create?: PlatformCreateWithoutCategoriesInput | null;
+  create?: PlatformCreateWithoutCategoryInput | null;
 
   @TypeGraphQL.Field(_type => PlatformWhereUniqueInput, {
     nullable: true,

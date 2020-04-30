@@ -1,5 +1,5 @@
 import * as TypeGraphQL from "type-graphql";
-import { CategoryCreateManyWithoutPlatformInput } from "../inputs/CategoryCreateManyWithoutPlatformInput";
+import { CategoryCreateOneWithoutPlatformInput } from "../inputs/CategoryCreateOneWithoutPlatformInput";
 import { CompanyCreateManyWithoutPlatformInput } from "../inputs/CompanyCreateManyWithoutPlatformInput";
 import { CountryCreateOneWithoutPlatformInput } from "../inputs/CountryCreateOneWithoutPlatformInput";
 
@@ -54,7 +54,7 @@ export class PlatformCreateWithoutProductsInput {
     nullable: false,
     description: undefined
   })
-  typeSlug!: string;
+  type!: string;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true,
@@ -68,11 +68,11 @@ export class PlatformCreateWithoutProductsInput {
   })
   platformType!: string;
 
-  @TypeGraphQL.Field(_type => CategoryCreateManyWithoutPlatformInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => CategoryCreateOneWithoutPlatformInput, {
+    nullable: false,
     description: undefined
   })
-  categories?: CategoryCreateManyWithoutPlatformInput | null;
+  category!: CategoryCreateOneWithoutPlatformInput;
 
   @TypeGraphQL.Field(_type => CountryCreateOneWithoutPlatformInput, {
     nullable: false,

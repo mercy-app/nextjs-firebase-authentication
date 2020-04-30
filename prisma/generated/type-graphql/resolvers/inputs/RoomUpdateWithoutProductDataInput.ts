@@ -22,7 +22,7 @@ export class RoomUpdateWithoutProductDataInput {
     nullable: true,
     description: undefined
   })
-  name?: string | null;
+  title?: string | null;
 
   @TypeGraphQL.Field(_type => BookingUpdateManyWithoutRoomInput, {
     nullable: true,

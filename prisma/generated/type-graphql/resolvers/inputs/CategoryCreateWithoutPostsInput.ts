@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import { CategoriesOnProductsCreateManyWithoutCategoryInput } from "../inputs/CategoriesOnProductsCreateManyWithoutCategoryInput";
 import { CategoryCreateManyWithoutParentInput } from "../inputs/CategoryCreateManyWithoutParentInput";
 import { CategoryCreateOneWithoutChildrenInput } from "../inputs/CategoryCreateOneWithoutChildrenInput";
-import { PlatformCreateOneWithoutCategoriesInput } from "../inputs/PlatformCreateOneWithoutCategoriesInput";
+import { PlatformCreateOneWithoutCategoryInput } from "../inputs/PlatformCreateOneWithoutCategoryInput";
 
 @TypeGraphQL.InputType({
   isAbstract: true,
@@ -19,7 +19,7 @@ export class CategoryCreateWithoutPostsInput {
     nullable: false,
     description: undefined
   })
-  name!: string;
+  title!: string;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false,
@@ -57,9 +57,9 @@ export class CategoryCreateWithoutPostsInput {
   })
   products?: CategoriesOnProductsCreateManyWithoutCategoryInput | null;
 
-  @TypeGraphQL.Field(_type => PlatformCreateOneWithoutCategoriesInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => PlatformCreateOneWithoutCategoryInput, {
+    nullable: true,
     description: undefined
   })
-  platform!: PlatformCreateOneWithoutCategoriesInput;
+  platform?: PlatformCreateOneWithoutCategoryInput | null;
 }

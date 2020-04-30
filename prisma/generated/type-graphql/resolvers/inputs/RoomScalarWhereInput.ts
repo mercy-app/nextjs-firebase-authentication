@@ -24,7 +24,7 @@ export class RoomScalarWhereInput {
     nullable: true,
     description: undefined
   })
-  name?: StringFilter | null;
+  title?: StringFilter | null;
 
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true,

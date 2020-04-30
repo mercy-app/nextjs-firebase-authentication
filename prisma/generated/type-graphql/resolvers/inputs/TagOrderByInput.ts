@@ -16,5 +16,5 @@ export class TagOrderByInput {
     nullable: true,
     description: undefined
   })
-  name?: keyof typeof OrderByArg | null;
+  title?: keyof typeof OrderByArg | null;
 }

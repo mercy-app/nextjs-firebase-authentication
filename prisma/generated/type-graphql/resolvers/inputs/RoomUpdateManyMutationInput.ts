@@ -21,5 +21,5 @@ export class RoomUpdateManyMutationInput {
     nullable: true,
     description: undefined
   })
-  name?: string | null;
+  title?: string | null;
 }

@@ -22,7 +22,7 @@ export class RoomCreateWithoutProductInput {
     nullable: false,
     description: undefined
   })
-  name!: string;
+  title!: string;
 
   @TypeGraphQL.Field(_type => BookingCreateManyWithoutRoomInput, {
     nullable: true,

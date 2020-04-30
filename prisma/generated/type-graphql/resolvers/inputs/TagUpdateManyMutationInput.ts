@@ -15,5 +15,5 @@ export class TagUpdateManyMutationInput {
     nullable: true,
     description: undefined
   })
-  name?: string | null;
+  title?: string | null;
 }

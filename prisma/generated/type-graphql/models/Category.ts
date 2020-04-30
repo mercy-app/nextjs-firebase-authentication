@@ -18,7 +18,7 @@ export class Category {
     nullable: false,
     description: undefined,
   })
-  name!: string;
+  title!: string;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false,
@@ -53,10 +53,10 @@ export class Category {
   products?: CategoriesOnProducts[] | null;
 
   @TypeGraphQL.Field(_type => String, {
-    nullable: false,
+    nullable: true,
     description: undefined,
   })
-  platformId!: string;
+  platformId?: string | null;
 
-  platform?: Platform;
+  platform?: Platform | null;
 }

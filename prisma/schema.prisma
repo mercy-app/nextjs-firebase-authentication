@@ -165,7 +165,7 @@ model Product {
 
 model Category {
   id         String                 @default(cuid()) @id
-  name       String
+  title      String
   slug       String                 @unique
   type       String
   icon       String
@@ -174,13 +174,13 @@ model Category {
   children   Category[]             @relation("ParentCategories")
   posts      CategoriesOnPosts[]
   products   CategoriesOnProducts[]
-  platformId String
-  platform   Platform               @relation(fields: [platformId], references: [id])
+  platformId String?
+  platform   Platform?              @relation(fields: [platformId], references: [id])
 }
 
 model Tag {
   id       String           @default(cuid()) @id
-  name     String
+  title    String
   posts    TagsOnPosts[]
   products TagsOnProducts[]
 }
@@ -240,26 +240,26 @@ enum PlatformType {
 }
 
 model Platform {
-  id           String     @default(cuid()) @id
+  id           String    @default(cuid()) @id
   title        String
   link         String
   label        String
   icon         String
   intlId       String
   bannerImg    String
-  typeSlug     String     @unique
+  type         String    @unique
   content      String?
   products     Product[]
-  categories   Category[]
+  category     Category
   platformType String
   countryId    String
-  country      Country    @relation(fields: [countryId], references: [id])
+  country      Country   @relation(fields: [countryId], references: [id])
 }
 
 model Room {
   id        String    @default(cuid()) @id
   capacity  Int
-  name      String
+  title     String
   productId String
   product   Product   @relation(fields: [productId], references: [id])
   bookings  Booking[]
