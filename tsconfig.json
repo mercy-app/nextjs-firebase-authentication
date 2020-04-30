@@ -37,7 +37,8 @@
       "@queries/*": ["./src/queries/*"],
       "@data/*": ["./src/data/*"],
       "@typeDefs/*": ["./src/types/*"],
-      "@generated/*": ["./src/generated/*"]
+      "@generated/*": ["./src/generated/*"],
+      "@prismaTypes": ["./prisma/generated/type-graphql"]
     }
   },
   "exclude": ["node_modules"],

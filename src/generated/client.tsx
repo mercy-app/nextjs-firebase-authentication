@@ -11,6 +11,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** The javascript `Date` as string. Type represents date and time as the ISO Date string. */
   DateTime: any;
 };
 
@@ -819,7 +820,7 @@ export const GetBookDocument = gql`
  * __useGetBookQuery__
  *
  * To run a query within a React component, call `useGetBookQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetBookQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * When your component renders, `useGetBookQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
@@ -853,7 +854,7 @@ export const GetOnlineChapterDocument = gql`
  * __useGetOnlineChapterQuery__
  *
  * To run a query within a React component, call `useGetOnlineChapterQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetOnlineChapterQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * When your component renders, `useGetOnlineChapterQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
@@ -917,7 +918,7 @@ export const GetDiscountedPriceDocument = gql`
  * __useGetDiscountedPriceQuery__
  *
  * To run a query within a React component, call `useGetDiscountedPriceQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetDiscountedPriceQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * When your component renders, `useGetDiscountedPriceQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
@@ -988,7 +989,7 @@ export const GetCoursesDocument = gql`
  * __useGetCoursesQuery__
  *
  * To run a query within a React component, call `useGetCoursesQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetCoursesQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * When your component renders, `useGetCoursesQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
@@ -1080,7 +1081,7 @@ export const GetCourseDocument = gql`
  * __useGetCourseQuery__
  *
  * To run a query within a React component, call `useGetCourseQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetCourseQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * When your component renders, `useGetCourseQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
@@ -1267,7 +1268,7 @@ export const PartnerVisitorsDocument = gql`
  * __usePartnerVisitorsQuery__
  *
  * To run a query within a React component, call `usePartnerVisitorsQuery` and pass it any options that fit your needs.
- * When your component renders, `usePartnerVisitorsQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * When your component renders, `usePartnerVisitorsQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
@@ -1312,7 +1313,7 @@ export const PartnerSalesDocument = gql`
  * __usePartnerSalesQuery__
  *
  * To run a query within a React component, call `usePartnerSalesQuery` and pass it any options that fit your needs.
- * When your component renders, `usePartnerSalesQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * When your component renders, `usePartnerSalesQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
@@ -1347,7 +1348,7 @@ export const PartnerPaymentsDocument = gql`
  * __usePartnerPaymentsQuery__
  *
  * To run a query within a React component, call `usePartnerPaymentsQuery` and pass it any options that fit your needs.
- * When your component renders, `usePartnerPaymentsQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * When your component renders, `usePartnerPaymentsQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
@@ -1608,7 +1609,7 @@ export const GetStorefrontCourseDocument = gql`
  * __useGetStorefrontCourseQuery__
  *
  * To run a query within a React component, call `useGetStorefrontCourseQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetStorefrontCourseQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * When your component renders, `useGetStorefrontCourseQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
@@ -1645,7 +1646,7 @@ export const GetStorefrontCoursesDocument = gql`
  * __useGetStorefrontCoursesQuery__
  *
  * To run a query within a React component, call `useGetStorefrontCoursesQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetStorefrontCoursesQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * When your component renders, `useGetStorefrontCoursesQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
@@ -1721,7 +1722,7 @@ export const GetUpgradeableCoursesDocument = gql`
  * __useGetUpgradeableCoursesQuery__
  *
  * To run a query within a React component, call `useGetUpgradeableCoursesQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetUpgradeableCoursesQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * When your component renders, `useGetUpgradeableCoursesQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
@@ -1757,7 +1758,7 @@ export const GetMeDocument = gql`
  * __useGetMeQuery__
  *
  * To run a query within a React component, call `useGetMeQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetMeQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * When your component renders, `useGetMeQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
