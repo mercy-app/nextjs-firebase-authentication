@@ -23,7 +23,10 @@
           "@queries": "./src/queries",
           "@data": "./src/data",
           "@typeDefs": "./src/types",
-          "@generated": "./src/generated"
+          "@generated": "./src/generated",
+          "@shopApp": "./apps/shop",
+          "@adminApp": "./apps/admin"
+
         }
       }
     ],
