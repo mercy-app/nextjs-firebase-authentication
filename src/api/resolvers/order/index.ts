@@ -1,7 +1,7 @@
 import { Resolver, Query, Arg, Int, Mutation, ID } from "type-graphql";
+// import Order from "./order.type";
 import { Order } from '@prismaTypes/models/Order'
-import { OrderCreateInput } from '@prismaTypes/resolvers/inputs/OrderCreateInput'
-
+import AddOrderInput from './order.input'
 const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
@@ -70,7 +70,7 @@ export default class OrderResolver {
 
 
     @Mutation(() => Order, { description: 'Add an Order' })
-    async addOrder(@Arg('orderInput') orderInput: OrderCreateInput): Promise<Order> {
+    async addOrder(@Arg('orderInput') orderInput: AddOrderInput): Promise<Order> {
         const order = await prisma.order.create(orderInput)
         return order;
     }

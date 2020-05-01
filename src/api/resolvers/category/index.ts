@@ -1,7 +1,7 @@
 import { Resolver, Query, Arg, ID, Mutation } from 'type-graphql';
+// import Category from './category.type';
 import { Category } from '@prismaTypes/models/Category'
-import { CategoryCreateInput } from '@prismaTypes/resolvers/inputs/CategoryCreateInput'
-
+import AddCategoryInput from './category.input_type';
 import { isAuthenticated } from '@api/middleware/resolver/isAuthenticated';
 
 const { PrismaClient } = require('@prisma/client');
@@ -53,7 +53,7 @@ export default class CategoryResolver {
     // TODO: add super admin permission
     @Mutation(() => Category, { description: 'Create Category' })
     async createCategory(
-        @Arg('category') category: CategoryCreateInput
+        @Arg('category') category: AddCategoryInput
     ): Promise<Category> {
         const newCategory = await prisma.category.create(category)
 

@@ -15,6 +15,63 @@ export type Scalars = {
   DateTime: any;
 };
 
+/** New Category Data */
+export type AddCategoryInput = {
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  value?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+  creation_date?: Maybe<Scalars['DateTime']>;
+};
+
+/** New coupon data */
+export type AddCouponInput = {
+  id: Scalars['ID'];
+  title: Scalars['String'];
+  number_of_coupon: Scalars['Int'];
+  discount_in_percent: Scalars['Int'];
+  category: Scalars['String'];
+  products?: Maybe<Array<AddProductInput>>;
+  code: Scalars['String'];
+  minimum_amount?: Maybe<Scalars['Int']>;
+  status?: Maybe<Scalars['String']>;
+  expiration_date?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  creation_date: Scalars['DateTime'];
+};
+
+/** New recipe data */
+export type AddProductInput = {
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  slug: Scalars['String'];
+  image: Scalars['String'];
+  type: Scalars['String'];
+  unit?: Maybe<Scalars['String']>;
+  categories?: Maybe<Array<AddCategoryInput>>;
+  price: Scalars['Int'];
+  salePrice?: Maybe<Scalars['Float']>;
+  discountInPercent?: Maybe<Scalars['Int']>;
+  per_unit?: Maybe<Scalars['Int']>;
+  quantity: Scalars['Int'];
+  description?: Maybe<Scalars['String']>;
+  creation_date: Scalars['DateTime'];
+};
+
+/** New staff data */
+export type AddStaffInput = {
+  id: Scalars['ID'];
+  first_name: Scalars['String'];
+  last_name: Scalars['String'];
+  contact_number: Scalars['String'];
+  email: Scalars['String'];
+  role: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
+  creation_date: Scalars['DateTime'];
+};
+
 export type BookChapter = {
    __typename?: 'BookChapter';
   label: Scalars['String'];
@@ -59,6 +116,28 @@ export type BookSection = {
   url: Scalars['String'];
 };
 
+export type Category = {
+   __typename?: 'Category';
+  id: Scalars['String'];
+  title: Scalars['String'];
+  slug: Scalars['String'];
+  type: Scalars['String'];
+  icon: Scalars['String'];
+};
+
+export type Coupon = {
+   __typename?: 'Coupon';
+  id: Scalars['String'];
+  title: Scalars['String'];
+  code: Scalars['String'];
+  discountInPercent: Scalars['Int'];
+  numberOfCoupon: Scalars['Int'];
+  numberOfUnusedCoupon: Scalars['Int'];
+  status: Scalars['String'];
+  expirationDate: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+};
+
 export type Curriculum = {
    __typename?: 'Curriculum';
   label: Scalars['String'];
@@ -89,7 +168,7 @@ export type Customer = {
    __typename?: 'Customer';
   id: Scalars['String'];
   userId: Scalars['String'];
-  companyId: Scalars['String'];
+  companyId?: Maybe<Scalars['String']>;
   totalOrder: Scalars['Int'];
   totalOrderAmount: Scalars['Int'];
 };
@@ -143,6 +222,16 @@ export type Mutation = {
   promoteToPartner: Scalars['Boolean'];
   partnerTrackVisitor: Scalars['Boolean'];
   communityJoin: Scalars['Boolean'];
+  createCoupon: Coupon;
+  applyCoupon: Coupon;
+  /** Create Category */
+  createProduct: Product;
+  /** Create Category */
+  createCategory: Category;
+  /** Add an Order */
+  addOrder: Order;
+  /** Create Staff */
+  createStaff: Staff;
 };
 
 
@@ -235,6 +324,36 @@ export type MutationCommunityJoinArgs = {
   email: Scalars['String'];
 };
 
+
+export type MutationCreateCouponArgs = {
+  coupon: AddCouponInput;
+};
+
+
+export type MutationApplyCouponArgs = {
+  code: Scalars['String'];
+};
+
+
+export type MutationCreateProductArgs = {
+  product: AddProductInput;
+};
+
+
+export type MutationCreateCategoryArgs = {
+  category: AddCategoryInput;
+};
+
+
+export type MutationAddOrderArgs = {
+  orderInput: OrderInput;
+};
+
+
+export type MutationCreateStaffArgs = {
+  staff: AddStaffInput;
+};
+
 export type Onboarding = {
    __typename?: 'Onboarding';
   label: Scalars['String'];
@@ -252,6 +371,33 @@ export type OnboardingItem = {
   url: Scalars['String'];
   description: Scalars['String'];
   secondaryUrl?: Maybe<Scalars['String']>;
+};
+
+export type Order = {
+   __typename?: 'Order';
+  id: Scalars['String'];
+  status: Status;
+  amount: Scalars['Float'];
+  deliveryTime: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  paymentMethod: Scalars['String'];
+  deliveryAddress: Scalars['String'];
+  contactNumber: Scalars['String'];
+  subtotal: Scalars['Float'];
+  discount: Scalars['Float'];
+  deliveryFee: Scalars['Float'];
+  userId: Scalars['String'];
+};
+
+export type OrderInput = {
+  id: Scalars['ID'];
+  address: Scalars['String'];
+  contact: Scalars['String'];
+  payment: Scalars['String'];
+  schedule: Scalars['String'];
+  quantity: Scalars['Float'];
+  price: Scalars['Float'];
+  products: Array<ProductSearchInput>;
 };
 
 export type PageInfo = {
@@ -287,6 +433,53 @@ export type PaypalOrderId = {
   orderId?: Maybe<Scalars['String']>;
 };
 
+export type Product = {
+   __typename?: 'Product';
+  id: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  published: Scalars['Boolean'];
+  title: Scalars['String'];
+  companyId?: Maybe<Scalars['String']>;
+  price?: Maybe<Scalars['Float']>;
+  platformId?: Maybe<Scalars['String']>;
+  slug: Scalars['String'];
+  unit?: Maybe<Scalars['String']>;
+  salePrice?: Maybe<Scalars['Float']>;
+  discountInPercent?: Maybe<Scalars['Int']>;
+  description?: Maybe<Scalars['String']>;
+  type: Scalars['String'];
+  image: Scalars['String'];
+};
+
+export type ProductsConnection = {
+   __typename?: 'ProductsConnection';
+  items: Array<Product>;
+  totalCount: Scalars['Int'];
+  hasMore: Scalars['Boolean'];
+};
+
+export type ProductSearchInput = {
+  id?: Maybe<Scalars['Float']>;
+  type: ProductType;
+  category?: Maybe<Scalars['String']>;
+  offset?: Maybe<Scalars['Float']>;
+  limit?: Maybe<Scalars['Float']>;
+};
+
+/** The basic product types */
+export enum ProductType {
+  Book = 'BOOK',
+  Bags = 'BAGS',
+  Grocery = 'GROCERY',
+  Medicine = 'MEDICINE',
+  Food = 'FOOD',
+  Cloth = 'CLOTH',
+  Clothing = 'CLOTHING',
+  Furniture = 'FURNITURE',
+  Makeup = 'MAKEUP'
+}
+
 export type Query = {
    __typename?: 'Query';
   me: User;
@@ -302,6 +495,26 @@ export type Query = {
   partnerVisitors: Array<VisitorByDay>;
   partnerSales: PartnerSaleConnection;
   partnerPayments: Array<PartnerPayment>;
+  /** Get All Coupons */
+  coupons: Array<Coupon>;
+  /** Get all the Coupons */
+  allCoupons: Array<Coupon>;
+  /** Get all the products */
+  products: ProductsConnection;
+  product: Product;
+  /** Get all the categories */
+  categories: Array<Category>;
+  /** Get all the categories by type */
+  categoriesByType: Array<Category>;
+  category: Category;
+  /** Get all the Orders */
+  orders: Array<Order>;
+  /** Get single order */
+  order: Order;
+  /** Get all user Orders */
+  userOrders: Array<Order>;
+  staffs: Array<Staff>;
+  staff: Staff;
   customers: Array<Customer>;
   customer: Customer;
 };
@@ -358,6 +571,73 @@ export type QueryPartnerSalesArgs = {
 };
 
 
+export type QueryCouponsArgs = {
+  searchBy?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryProductsArgs = {
+  category: Scalars['String'];
+  searchText: Scalars['String'];
+  type: Scalars['String'];
+  sortByPrice: Scalars['String'];
+  offset: Scalars['Float'];
+  limit: Scalars['Float'];
+};
+
+
+export type QueryProductArgs = {
+  slug: Scalars['String'];
+};
+
+
+export type QueryCategoriesArgs = {
+  searchBy?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryCategoriesByTypeArgs = {
+  type: Scalars['String'];
+};
+
+
+export type QueryCategoryArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QueryOrdersArgs = {
+  searchText?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  status?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryOrderArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QueryUserOrdersArgs = {
+  limit?: Maybe<Scalars['Int']>;
+  text?: Maybe<Scalars['String']>;
+  user: Scalars['Int'];
+};
+
+
+export type QueryStaffsArgs = {
+  searchBy?: Maybe<Scalars['String']>;
+  role?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryStaffArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type QueryCustomersArgs = {
   limit?: Maybe<Scalars['Int']>;
   sortBy?: Maybe<Scalars['String']>;
@@ -373,6 +653,21 @@ export type SessionToken = {
    __typename?: 'SessionToken';
   token: Scalars['String'];
 };
+
+export type Staff = {
+   __typename?: 'Staff';
+  id: Scalars['String'];
+  userId: Scalars['String'];
+  companyId: Scalars['String'];
+  role: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+};
+
+export enum Status {
+  Pending = 'PENDING',
+  Paid = 'PAID',
+  Completed = 'COMPLETED'
+}
 
 export type StorefrontBundle = {
    __typename?: 'StorefrontBundle';

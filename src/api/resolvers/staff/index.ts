@@ -1,16 +1,16 @@
 import { Resolver, Query, Arg, ID, Mutation } from 'type-graphql';
 import { Staff } from '@prismaTypes/models/Staff'
-import { StaffCreateInput } from '@prismaTypes/resolvers/inputs/StaffCreateInput'
-// import Stuff from './stuff.type';
+
+// import Staff from './staff.type';
 // import loadStuffs from '../../data/stuff.data';
-// import AddStuffInput from './stuff.input_type';
+import AddStaffInput from './staff.input_type';
 // import search from '../../helpers/search';
 
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 @Resolver()
-export default class StuffResolver {
+export default class StaffResolver {
 
     @Query(() => [Staff])
     async staffs(
@@ -40,7 +40,7 @@ export default class StuffResolver {
     }
 
     @Mutation(() => Staff, { description: 'Create Staff' })
-    async createStuff(@Arg('staff') staff: StaffCreateInput): Promise<Staff> {
+    async createStaff(@Arg('staff') staff: AddStaffInput): Promise<Staff> {
         const newStaff = await prisma.staff.create(staff)
         return newStaff;
     }

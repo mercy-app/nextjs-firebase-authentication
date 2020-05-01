@@ -2,10 +2,9 @@ import { Resolver, Query, Arg, Args, Mutation } from 'type-graphql';
 // import loadProducts from '../../data/product.data';
 // import Product from './product.type';
 import { Product } from '@prismaTypes/models/Product'
-import { ProductCreateInput } from '@prismaTypes/resolvers/inputs/ProductCreateInput'
 import Products from './products.type';
 import GetProductsArgs from './product.args_type';
-// import AddProductInput from './product.input_type';
+import AddProductInput from './product.input_type';
 // import search from '../../helpers/search';
 // import shuffle from '../../helpers/shuffle';
 // import { sortByHighestNumber, sortByLowestNumber } from '../../helpers/sorts';
@@ -19,8 +18,14 @@ export default class ProductResolver {
 
     @Query(returns => Products, { description: 'Get all the products' })
     async products(
-        @Args()
-        { limit, offset, sortByPrice, type, searchText, category }: GetProductsArgs
+        @Arg('limit') limit: number,
+        @Arg('offset') offset: number,
+        @Arg('sortByPrice') sortByPrice?: string,
+        @Arg('type') type?: string,
+        @Arg('searchText') searchText?: string,
+        @Arg('category') category?: string,
+        // @Args()
+        // { limit, offset, sortByPrice, type, searchText, category }: GetProductsArgs
     ): Promise<Products> {
         const orderBy = sortByPrice === "highestToLowest" ? "desc" : "asc"
         const products = await prisma.product.findMany({
@@ -64,7 +69,7 @@ export default class ProductResolver {
 
     @Mutation(() => Product, { description: 'Create Category' })
     async createProduct(
-        @Arg('product') product: ProductCreateInput
+        @Arg('product') product: AddProductInput
     ): Promise<Product> {
 
         const newProduct = await prisma.product.create(product)

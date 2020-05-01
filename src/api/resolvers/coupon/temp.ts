@@ -5,7 +5,8 @@ import { Resolver, Mutation, Arg, Query } from 'type-graphql';
 // import search from '../../helpers/search';
 
 import { Coupon } from '@prismaTypes/models/Coupon'
-import { CouponCreateInput } from '@prismaTypes/resolvers/inputs/CouponCreateInput'
+// import Coupon from './coupon.type';
+import AddCouponInput from './coupon.input_type';
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
@@ -30,7 +31,7 @@ export default class CouponResolver {
 
     @Mutation(returns => Coupon)
     async createCoupon(
-        @Arg('coupon') coupon: CouponCreateInput
+        @Arg('coupon') coupon: AddCouponInput
     ): Promise<Coupon | undefined> {
         const newCoupon = await prisma.coupon.create(coupon)
 
