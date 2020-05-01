@@ -1,6 +1,10 @@
 import React from 'react';
-import { Plus, Minus } from 'assets/icons/plus-minus';
-import { CounterBox, CounterButton, CounterValue } from './Counter.style';
+import { Plus, Minus } from '@shopApp/assets/icons/plus-minus';
+import {
+  CounterBox,
+  CounterButton,
+  CounterValue,
+} from './Counter.style';
 interface Props {
   onDecrement: (e: Event) => void;
   onIncrement: (e: Event) => void;

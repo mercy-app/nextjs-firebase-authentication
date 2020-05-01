@@ -9,7 +9,7 @@ import {
 } from './OrderCard.style';
 import { FormattedMessage } from 'react-intl';
 
-import { CURRENCY } from 'helper/constant';
+import { CURRENCY } from '@shopApp/helper/constant';
 
 type OrderCardProps = {
   orderId?: any;
@@ -36,8 +36,8 @@ const OrderCard: React.FC<OrderCardProps> = ({
         <OrderListHeader>
           <TrackID>
             <FormattedMessage
-              id='intlOrderCardTitleText'
-              defaultMessage='Order'
+              id="intlOrderCardTitleText"
+              defaultMessage="Order"
             />
             <span>#{orderId}</span>
           </TrackID>
@@ -47,22 +47,22 @@ const OrderCard: React.FC<OrderCardProps> = ({
         <OrderMetas>
           <Meta>
             <FormattedMessage
-              id='intlOrderCardDateText'
-              defaultMessage='Order Date'
+              id="intlOrderCardDateText"
+              defaultMessage="Order Date"
             />
             : <span>{date}</span>
           </Meta>
           <Meta>
             <FormattedMessage
-              id='deliveryTimeText'
-              defaultMessage='Delivery Time'
+              id="deliveryTimeText"
+              defaultMessage="Delivery Time"
             />
             : <span>{deliveryTime}</span>
           </Meta>
-          <Meta className='price'>
+          <Meta className="price">
             <FormattedMessage
-              id='intlOrderCardTotalText'
-              defaultMessage='Total Price'
+              id="intlOrderCardTotalText"
+              defaultMessage="Total Price"
             />
             :
             <span>

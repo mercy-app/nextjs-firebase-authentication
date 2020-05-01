@@ -1,7 +1,7 @@
 import React from 'react';
 import { themeGet } from '@styled-system/theme-get';
 import Carousel from 'react-multi-carousel';
-import Image from 'components/Image/Image';
+import Image from '@shopApp/components/Image/Image';
 import styled from 'styled-components';
 
 const SingleItem = styled.li`
@@ -26,24 +26,24 @@ const responsive = {
   desktop: {
     breakpoint: {
       max: 3000,
-      min: 1024
+      min: 1024,
     },
-    items: 1
+    items: 1,
   },
   mobile: {
     breakpoint: {
       max: 464,
-      min: 0
+      min: 0,
     },
-    items: 1
+    items: 1,
   },
   tablet: {
     breakpoint: {
       max: 1024,
-      min: 200
+      min: 200,
     },
-    items: 1
-  }
+    items: 1,
+  },
 };
 
 const CarouselWithCustomDots = ({
@@ -52,20 +52,22 @@ const CarouselWithCustomDots = ({
   title,
   ...rest
 }: any) => {
-  const children = items.slice(0, 6).map((item: any, index: number) => (
-    <Image
-      url={item.url}
-      key={index}
-      alt={title}
-      style={{
-        minWidth: 'auto',
-        height: 'auto',
-        position: 'relative',
-        margin: 'auto'
-      }}
-      className="product-image"
-    />
-  ));
+  const children = items
+    .slice(0, 6)
+    .map((item: any, index: number) => (
+      <Image
+        url={item.url}
+        key={index}
+        alt={title}
+        style={{
+          minWidth: 'auto',
+          height: 'auto',
+          position: 'relative',
+          margin: 'auto',
+        }}
+        className="product-image"
+      />
+    ));
   const images = items.map((item: any, index: number) => (
     <Image
       url={item.url}
@@ -78,7 +80,7 @@ const CarouselWithCustomDots = ({
     index,
     onClick,
     active,
-    carouselState: { currentSlide, deviceType }
+    carouselState: { currentSlide, deviceType },
   }: any) => {
     return (
       <SingleItem

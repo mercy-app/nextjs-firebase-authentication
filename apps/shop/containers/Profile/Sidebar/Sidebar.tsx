@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Router from 'next/router';
-import { AuthContext } from 'contexts/auth/auth.context';
+import { AuthContext } from '@shopApp/contexts/auth/auth.context';
 import {
   SidebarWrapper,
   SidebarTop,
@@ -39,16 +39,27 @@ const SidebarCategory: React.FC<{}> = () => {
       <SidebarWrapper>
         <SidebarTop>
           {sidebarTopMenu.map((item, index) => (
-            <SidebarMenu href={item.link} key={index} intlId={item.intlId} />
+            <SidebarMenu
+              href={item.link}
+              key={index}
+              intlId={item.intlId}
+            />
           ))}
         </SidebarTop>
 
         <SidebarBottom>
           {sidebarBottomMenu.map((item, index) => (
-            <SidebarMenu href={item.link} key={index} intlId={item.intlId} />
+            <SidebarMenu
+              href={item.link}
+              key={index}
+              intlId={item.intlId}
+            />
           ))}
-          <LogoutButton type='button' onClick={handleLogout}>
-            <FormattedMessage id='navlinkLogout' defaultMessage='Logout' />
+          <LogoutButton type="button" onClick={handleLogout}>
+            <FormattedMessage
+              id="navlinkLogout"
+              defaultMessage="Logout"
+            />
           </LogoutButton>
         </SidebarBottom>
       </SidebarWrapper>

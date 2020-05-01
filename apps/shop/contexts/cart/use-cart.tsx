@@ -1,6 +1,6 @@
 import React, { useReducer, useContext, createContext } from 'react';
 import { reducer, cartItemsTotalPrice } from './cart.reducer';
-import { useStorage } from 'helper/use-storage';
+import { useStorage } from '@shopApp/helper/use-storage';
 const CartContext = createContext({} as any);
 const INITIAL_STATE = {
   isOpen: false,
@@ -44,7 +44,8 @@ const useCartActions = (initialCart = INITIAL_STATE) => {
   const getItemHandler = (id) => {
     return state.items?.find((item) => item.id === id);
   };
-  const getCartItemsPrice = () => cartItemsTotalPrice(state.items).toFixed(2);
+  const getCartItemsPrice = () =>
+    cartItemsTotalPrice(state.items).toFixed(2);
   const getCartItemsTotalPrice = () =>
     cartItemsTotalPrice(state.items, state.coupon).toFixed(2);
 
@@ -96,7 +97,10 @@ export const CartProvider = ({ children }) => {
     getCartItemsPrice,
     getDiscount,
   } = useCartActions();
-  const { rehydrated, error } = useStorage(state, rehydrateLocalState);
+  const { rehydrated, error } = useStorage(
+    state,
+    rehydrateLocalState
+  );
 
   return (
     <CartContext.Provider

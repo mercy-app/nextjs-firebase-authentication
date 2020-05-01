@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { openModal, closeModal } from '@redq/reuse-modal';
-import { DrawerProvider } from 'contexts/drawer/drawer.provider';
+import { DrawerProvider } from '@shopApp/contexts/drawer/drawer.provider';
 import MobileDrawer from './MobileDrawer';
 import {
   MobileHeaderWrapper,
@@ -12,16 +12,19 @@ import {
   SearchModalWrapper,
   SearchModalClose,
 } from './Header.style';
-import SearchBox from 'components/SearchBox/SearchBox';
-import { SearchContext } from 'contexts/search/search.context';
-import { HeaderContext } from 'contexts/header/header.context';
-import LogoImage from 'image/logo.svg';
+import SearchBox from '@shopApp/components/SearchBox/SearchBox';
+import { SearchContext } from '@shopApp/contexts/search/search.context';
+import { HeaderContext } from '@shopApp/contexts/header/header.context';
+import LogoImage from '@shopApp/image/logo.svg';
 
-import { SearchIcon, LongArrowLeft } from 'components/AllSvgIcon';
-import Logo from 'components/Logo/Logo';
+import {
+  SearchIcon,
+  LongArrowLeft,
+} from '@shopApp/components/AllSvgIcon';
+import Logo from '@shopApp/components/Logo/Logo';
 import LanguageSwitcher from './Menu/LanguageSwitcher/LanguageSwitcher';
 import { isCategoryPage } from '../is-home-page';
-import useDimensions from 'helper/useComponentSize';
+import useDimensions from '@shopApp/helper/useComponentSize';
 
 type MobileHeaderProps = {
   className?: string;
@@ -59,15 +62,15 @@ const SearchModal: React.FC<SearchModalProps> = ({
   };
   return (
     <SearchModalWrapper>
-      <SearchModalClose type='submit' onClick={() => closeModal()}>
+      <SearchModalClose type="submit" onClick={() => closeModal()}>
         <LongArrowLeft />
       </SearchModalClose>
       <SearchBox
-        className='header-modal-search'
+        className="header-modal-search"
         bordered={false}
         inputStyle={{ height: 35 }}
-        buttonText=''
-        placeholder='Search'
+        buttonText=""
+        placeholder="Search"
         handleSearch={handleSearchInput}
         value={text}
         onClick={handleClickSearchButton}
@@ -77,7 +80,10 @@ const SearchModal: React.FC<SearchModalProps> = ({
   );
 };
 
-const MobileHeader: React.FC<MobileHeaderProps> = ({ className, pathname }) => {
+const MobileHeader: React.FC<MobileHeaderProps> = ({
+  className,
+  pathname,
+}) => {
   const { state, dispatch } = useContext(SearchContext);
 
   const [mobileHeaderRef, dimensions] = useDimensions();
@@ -126,13 +132,16 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ className, pathname }) => {
   return (
     <DrawerProvider>
       <MobileHeaderWrapper>
-        <MobileHeaderInnerWrapper className={className} ref={mobileHeaderRef}>
+        <MobileHeaderInnerWrapper
+          className={className}
+          ref={mobileHeaderRef}
+        >
           <DrawerWrapper>
             <MobileDrawer />
           </DrawerWrapper>
 
           <LogoWrapper>
-            <Logo imageUrl={LogoImage} alt='shop logo' />
+            <Logo imageUrl={LogoImage} alt="shop logo" />
           </LogoWrapper>
 
           <LanguageSwitcher />
@@ -140,7 +149,7 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ className, pathname }) => {
           {isHomePage ? (
             <SearchWrapper
               onClick={handleSearchModal}
-              className='searchIconWrapper'
+              className="searchIconWrapper"
             >
               <SearchIcon />
             </SearchWrapper>

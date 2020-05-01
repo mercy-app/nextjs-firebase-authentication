@@ -8,12 +8,12 @@ import {
 } from 'react-stripe-elements';
 import { useMutation } from '@apollo/react-hooks';
 import { closeModal } from '@redq/reuse-modal';
-import { GET_PAYMENT } from 'graphql/mutation/order';
+import { GET_PAYMENT } from '@shopApp/graphql/mutation/order';
 import StripeFormWrapper, {
   Heading,
   FieldWrapper,
 } from './StripePaymentForm.style';
-import { ProfileContext } from 'contexts/profile/profile.context';
+import { ProfileContext } from '@shopApp/contexts/profile/profile.context';
 type StripeFormProps = ReactStripeElements.InjectedStripeProps & {
   getToken: any;
   buttonText: string;
@@ -53,7 +53,9 @@ const StripePaymentForm = ({ item: { price, buttonText } }: Item) => {
   const [getPayment] = useMutation(GET_PAYMENT);
   const sendTokenToServer = async (token: any) => {
     const payment_info = await getPayment({
-      variables: { paymentInput: JSON.stringify({ token, amount: price }) },
+      variables: {
+        paymentInput: JSON.stringify({ token, amount: price }),
+      },
     });
     console.log(payment_info, 'payment_info');
   };
@@ -64,7 +66,7 @@ const StripePaymentForm = ({ item: { price, buttonText } }: Item) => {
         <div className="example">
           <Elements>
             <StripeForm
-              getToken={token => sendTokenToServer(token)}
+              getToken={(token) => sendTokenToServer(token)}
               buttonText={buttonText}
             />
           </Elements>

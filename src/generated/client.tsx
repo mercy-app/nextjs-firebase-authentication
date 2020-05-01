@@ -85,6 +85,15 @@ export type CurriculumSection = {
   items: Array<CurriculumItem>;
 };
 
+export type Customer = {
+   __typename?: 'Customer';
+  id: Scalars['String'];
+  userId: Scalars['String'];
+  companyId: Scalars['String'];
+  totalOrder: Scalars['Int'];
+  totalOrderAmount: Scalars['Int'];
+};
+
 
 export type Discount = {
    __typename?: 'Discount';
@@ -293,6 +302,8 @@ export type Query = {
   partnerVisitors: Array<VisitorByDay>;
   partnerSales: PartnerSaleConnection;
   partnerPayments: Array<PartnerPayment>;
+  customers: Array<Customer>;
+  customer: Customer;
 };
 
 
@@ -344,6 +355,18 @@ export type QueryPartnerVisitorsArgs = {
 export type QueryPartnerSalesArgs = {
   limit: Scalars['Float'];
   offset: Scalars['Float'];
+};
+
+
+export type QueryCustomersArgs = {
+  limit?: Maybe<Scalars['Int']>;
+  sortBy?: Maybe<Scalars['String']>;
+  searchBy?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryCustomerArgs = {
+  id: Scalars['ID'];
 };
 
 export type SessionToken = {

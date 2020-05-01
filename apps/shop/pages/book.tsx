@@ -1,26 +1,26 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { Modal } from '@redq/reuse-modal';
-import { withApollo } from 'helper/apollo';
-import { SEO } from 'components/seo';
-import StoreNav from 'components/StoreNav/StoreNav';
-import Carousel from 'components/Carousel/Carousel';
-import Banner from 'containers/Banner/Banner';
-import Sidebar from 'containers/Sidebar/Sidebar';
-import Products from 'containers/Products/ProductsBook';
-import CartPopUp from 'containers/Cart/CartPopUp';
+import { withApollo } from '@shopApp/helper/apollo';
+import { SEO } from '@shopApp/components/seo';
+import StoreNav from '@shopApp/components/StoreNav/StoreNav';
+import Carousel from '@shopApp/components/Carousel/Carousel';
+import Banner from '@shopApp/containers/Banner/Banner';
+import Sidebar from '@shopApp/containers/Sidebar/Sidebar';
+import Products from '@shopApp/containers/Products/ProductsBook';
+import CartPopUp from '@shopApp/containers/Cart/CartPopUp';
 import {
   MainContentArea,
   SidebarSection,
   ContentSection,
   OfferSection,
   MobileCarouselDropdown,
-} from 'styled/pages.style';
+} from '@shopApp/styled/pages.style';
 // Static Data Import Here
-import OFFERS from 'data/offers';
-import BannerImg from 'image/books.png';
+import OFFERS from '@shopApp/data/offers';
+import BannerImg from '@shopApp/image/books.png';
 
-import storeType from 'constants/storeType';
+import storeType from '@shopApp/constants/storeType';
 
 const PAGE_TYPE = 'book';
 
@@ -38,11 +38,11 @@ function HomePage({ deviceType }) {
 
   return (
     <>
-      <SEO title='Book - PickBazar' description='Book Details' />
+      <SEO title="Book - PickBazar" description="Book Details" />
       <Modal>
         <Banner
-          intlTitleId='booksTitle'
-          intlDescriptionId='booksSubTitle'
+          intlTitleId="booksTitle"
+          intlDescriptionId="booksSubTitle"
           imageUrl={BannerImg}
         />
 

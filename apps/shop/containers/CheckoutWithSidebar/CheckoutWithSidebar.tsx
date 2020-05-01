@@ -1,20 +1,20 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Router from 'next/router';
 import Link from 'next/link';
-import Button from 'components/Button/Button';
-import RadioCard from 'components/RadioCard/RadioCard';
-import RadioGroup from 'components/RadioGroup/RadioGroup';
-import PaymentGroup from 'components/PaymentGroup/PaymentGroup';
-import Loader from 'components/Loader/Loader';
+import Button from '@shopApp/components/Button/Button';
+import RadioCard from '@shopApp/components/RadioCard/RadioCard';
+import RadioGroup from '@shopApp/components/RadioGroup/RadioGroup';
+import PaymentGroup from '@shopApp/components/PaymentGroup/PaymentGroup';
+import Loader from '@shopApp/components/Loader/Loader';
 import UpdateAddress from './Update/UpdateAddress';
 import UpdateContact from './Update/UpdateContact';
 import StripePaymentForm from '../Payment/StripePaymentForm';
-import { DELETE_ADDRESS } from 'graphql/mutation/address';
-import { DELETE_CARD } from 'graphql/mutation/card';
-import { DELETE_CONTACT } from 'graphql/mutation/contact';
-import { CURRENCY } from 'helper/constant';
+import { DELETE_ADDRESS } from '@shopApp/graphql/mutation/address';
+import { DELETE_CARD } from '@shopApp/graphql/mutation/card';
+import { DELETE_CONTACT } from '@shopApp/graphql/mutation/contact';
+import { CURRENCY } from '@shopApp/helper/constant';
 import { openModal } from '@redq/reuse-modal';
-import { Product } from 'interfaces';
+import { Product } from '@shopApp/interfaces';
 import { useMutation } from '@apollo/react-hooks';
 import { Scrollbars } from 'react-custom-scrollbars';
 import CheckoutWrapper, {
@@ -51,16 +51,16 @@ import CheckoutWrapper, {
   NoProductMsg,
 } from './CheckoutWithSidebar.style';
 
-import { Plus } from 'components/AllSvgIcon';
+import { Plus } from '@shopApp/components/AllSvgIcon';
 
 import Sticky from 'react-stickynode';
-import { HeaderContext } from 'contexts/header/header.context';
+import { HeaderContext } from '@shopApp/contexts/header/header.context';
 
-import { ProfileContext } from 'contexts/profile/profile.context';
+import { ProfileContext } from '@shopApp/contexts/profile/profile.context';
 import { FormattedMessage } from 'react-intl';
-import { useCart } from 'contexts/cart/use-cart';
-import { APPLY_COUPON } from 'graphql/mutation/coupon';
-import { useLocale } from 'contexts/language/language.provider';
+import { useCart } from '@shopApp/contexts/cart/use-cart';
+import { APPLY_COUPON } from '@shopApp/graphql/mutation/coupon';
+import { useLocale } from '@shopApp/contexts/language/language.provider';
 
 // The type of props Checkout Form receives
 interface MyFormProps {
@@ -90,7 +90,10 @@ const OrderItem: React.FC<CartItemProps> = ({ product }) => {
   );
 };
 
-const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
+const CheckoutWithSidebar: React.FC<MyFormProps> = ({
+  token,
+  deviceType,
+}) => {
   const [hasCoupon, setHasCoupon] = useState(false);
   const [couponCode, setCouponCode] = useState('');
   const [couponError, setError] = useState('');
@@ -119,7 +122,9 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
   const { headerState } = useContext<any>(HeaderContext);
 
   const totalHeight =
-    headerState?.desktopHeight > 0 ? headerState.desktopHeight + 30 : 76 + 30;
+    headerState?.desktopHeight > 0
+      ? headerState.desktopHeight + 30
+      : 76 + 30;
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -164,9 +169,14 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
     });
   };
 
-  const handleEditDelete = async (item: any, type: string, name: string) => {
+  const handleEditDelete = async (
+    item: any,
+    type: string,
+    name: string
+  ) => {
     if (type === 'edit') {
-      const modalComponent = name === 'address' ? UpdateAddress : UpdateContact;
+      const modalComponent =
+        name === 'address' ? UpdateAddress : UpdateContact;
       handleModal(modalComponent, item);
     } else {
       switch (name) {
@@ -218,8 +228,8 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
             <InformationBox>
               <Heading>
                 <FormattedMessage
-                  id='checkoutDeliveryAddress'
-                  defaultMessage='Delivery Address'
+                  id="checkoutDeliveryAddress"
+                  defaultMessage="Delivery Address"
                 />
               </Heading>
               <ButtonGroup>
@@ -231,7 +241,7 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                       key={item.id}
                       title={item.name}
                       content={item.info}
-                      name='address'
+                      name="address"
                       checked={item.type === 'primary'}
                       onChange={() =>
                         dispatch({
@@ -239,7 +249,9 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                           payload: item.id.toString(),
                         })
                       }
-                      onEdit={() => handleEditDelete(item, 'edit', 'address')}
+                      onEdit={() =>
+                        handleEditDelete(item, 'edit', 'address')
+                      }
                       onDelete={() =>
                         handleEditDelete(item, 'delete', 'address')
                       }
@@ -247,17 +259,20 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                   )}
                   secondaryComponent={
                     <Button
-                      className='addButton'
-                      title='Add New'
-                      icon={<Plus width='10px' />}
-                      iconPosition='left'
-                      colors='primary'
-                      size='small'
-                      variant='textButton'
-                      type='button'
-                      intlButtonId='addNew'
+                      className="addButton"
+                      title="Add New"
+                      icon={<Plus width="10px" />}
+                      iconPosition="left"
+                      colors="primary"
+                      size="small"
+                      variant="textButton"
+                      type="button"
+                      intlButtonId="addNew"
                       onClick={() =>
-                        handleModal(UpdateAddress, 'add-address-modal')
+                        handleModal(
+                          UpdateAddress,
+                          'add-address-modal'
+                        )
                       }
                     />
                   }
@@ -270,8 +285,8 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
               <DeliverySchedule>
                 <Heading>
                   <FormattedMessage
-                    id='deliverySchedule'
-                    defaultMessage='Select Your Delivery Schedule'
+                    id="deliverySchedule"
+                    defaultMessage="Select Your Delivery Schedule"
                   />
                 </Heading>
                 <RadioGroup
@@ -282,7 +297,7 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                       key={item.id}
                       title={item.title}
                       content={item.time_slot}
-                      name='schedule'
+                      name="schedule"
                       checked={item.type === 'primary'}
                       withActionButtons={false}
                       onChange={() =>
@@ -301,8 +316,8 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
             <InformationBox>
               <Heading>
                 <FormattedMessage
-                  id='contactNumberText'
-                  defaultMessage='Select Your Contact Number'
+                  id="contactNumberText"
+                  defaultMessage="Select Your Contact Number"
                 />
               </Heading>
               <ButtonGroup>
@@ -321,8 +336,10 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                           payload: item.id.toString(),
                         })
                       }
-                      name='contact'
-                      onEdit={() => handleEditDelete(item, 'edit', 'contact')}
+                      name="contact"
+                      onEdit={() =>
+                        handleEditDelete(item, 'edit', 'contact')
+                      }
                       onDelete={() =>
                         handleEditDelete(item, 'delete', 'contact')
                       }
@@ -330,16 +347,19 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                   )}
                   secondaryComponent={
                     <Button
-                      title='Add Contact'
-                      icon={<Plus width='10px' />}
-                      iconPosition='left'
-                      colors='primary'
-                      size='small'
-                      variant='outlined'
-                      type='button'
-                      intlButtonId='addContactBtn'
+                      title="Add Contact"
+                      icon={<Plus width="10px" />}
+                      iconPosition="left"
+                      colors="primary"
+                      size="small"
+                      variant="outlined"
+                      type="button"
+                      intlButtonId="addContactBtn"
                       onClick={() =>
-                        handleModal(UpdateContact, 'add-contact-modal')
+                        handleModal(
+                          UpdateContact,
+                          'add-contact-modal'
+                        )
                       }
                     />
                   }
@@ -349,17 +369,17 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
             {/* PaymentOption */}
 
             <InformationBox
-              className='paymentBox'
+              className="paymentBox"
               style={{ paddingBottom: 30 }}
             >
               <Heading>
                 <FormattedMessage
-                  id='selectPaymentText'
-                  defaultMessage='Select Payment Option'
+                  id="selectPaymentText"
+                  defaultMessage="Select Payment Option"
                 />
               </Heading>
               <PaymentGroup
-                name='payment'
+                name="payment"
                 deviceType={deviceType}
                 items={card}
                 onEditDeleteField={(item: any, type: string) =>
@@ -384,7 +404,7 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
               {coupon ? (
                 <CouponBoxWrapper>
                   <CouponCode>
-                    <FormattedMessage id='couponApplied' />
+                    <FormattedMessage id="couponApplied" />
                     <span>{coupon.code}</span>
 
                     <RemoveCoupon
@@ -394,17 +414,19 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                         setHasCoupon(false);
                       }}
                     >
-                      <FormattedMessage id='removeCoupon' />
+                      <FormattedMessage id="removeCoupon" />
                     </RemoveCoupon>
                   </CouponCode>
                 </CouponBoxWrapper>
               ) : (
                 <CouponBoxWrapper>
                   {!hasCoupon ? (
-                    <HaveCoupon onClick={() => setHasCoupon((prev) => !prev)}>
+                    <HaveCoupon
+                      onClick={() => setHasCoupon((prev) => !prev)}
+                    >
                       <FormattedMessage
-                        id='specialCode'
-                        defaultMessage='Have a special code?'
+                        id="specialCode"
+                        defaultMessage="Have a special code?"
                       />
                     </HaveCoupon>
                   ) : (
@@ -413,19 +435,19 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                         <Input
                           onUpdate={handleOnUpdate}
                           value={couponCode}
-                          intlPlaceholderId='couponPlaceholder'
+                          intlPlaceholderId="couponPlaceholder"
                         />
                         <Button
                           onClick={handleApplyCoupon}
-                          title='Apply'
-                          intlButtonId='voucherApply'
+                          title="Apply"
+                          intlButtonId="voucherApply"
                         />
                       </CouponInputBox>
 
                       {couponError && (
                         <ErrorMsg>
                           <FormattedMessage
-                            id='couponError'
+                            id="couponError"
                             defaultMessage={couponError}
                           />
                         </ErrorMsg>
@@ -437,14 +459,14 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
 
               <TermConditionText>
                 <FormattedMessage
-                  id='termAndConditionHelper'
-                  defaultMessage='By making this purchase you agree to our'
+                  id="termAndConditionHelper"
+                  defaultMessage="By making this purchase you agree to our"
                 />
-                <Link href='#'>
+                <Link href="#">
                   <TermConditionLink>
                     <FormattedMessage
-                      id='termAndCondition'
-                      defaultMessage='terms and conditions.'
+                      id="termAndCondition"
+                      defaultMessage="terms and conditions."
                     />
                   </TermConditionLink>
                 </Link>
@@ -454,10 +476,10 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
               <CheckoutSubmit>
                 <Button
                   onClick={handleSubmit}
-                  type='button'
+                  type="button"
                   disabled={!isValid}
-                  title='Proceed to Checkout'
-                  intlButtonId='proceesCheckout'
+                  title="Proceed to Checkout"
+                  intlButtonId="proceesCheckout"
                   loader={<Loader />}
                   isLoading={loading}
                 />
@@ -470,8 +492,8 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
               <OrderInfo>
                 <Title>
                   <FormattedMessage
-                    id='cartTitle'
-                    defaultMessage='Your Order'
+                    id="cartTitle"
+                    defaultMessage="Your Order"
                   />
                 </Title>
 
@@ -479,14 +501,18 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                   universal
                   autoHide
                   autoHeight
-                  autoHeightMax='390px'
+                  autoHeightMax="390px"
                   renderView={(props) => (
                     <div
                       {...props}
                       style={{
                         ...props.style,
-                        marginLeft: isRtl ? props.style.marginRight : 0,
-                        marginRight: isRtl ? 0 : props.style.marginRight,
+                        marginLeft: isRtl
+                          ? props.style.marginRight
+                          : 0,
+                        marginRight: isRtl
+                          ? 0
+                          : props.style.marginRight,
                         paddingLeft: isRtl ? 15 : 0,
                         paddingRight: isRtl ? 0 : 15,
                       }}
@@ -496,13 +522,16 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                   <ItemsWrapper>
                     {cartItemsCount > 0 ? (
                       items.map((item) => (
-                        <OrderItem key={`cartItem-${item.id}`} product={item} />
+                        <OrderItem
+                          key={`cartItem-${item.id}`}
+                          product={item}
+                        />
                       ))
                     ) : (
                       <NoProductMsg>
                         <FormattedMessage
-                          id='noProductFound'
-                          defaultMessage='No products found'
+                          id="noProductFound"
+                          defaultMessage="No products found"
                         />
                       </NoProductMsg>
                     )}
@@ -513,8 +542,8 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                   <TextWrapper>
                     <Text>
                       <FormattedMessage
-                        id='subTotal'
-                        defaultMessage='Subtotal'
+                        id="subTotal"
+                        defaultMessage="Subtotal"
                       />
                     </Text>
                     <Text>
@@ -526,8 +555,8 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                   <TextWrapper>
                     <Text>
                       <FormattedMessage
-                        id='intlOrderDetailsDelivery'
-                        defaultMessage='Delivery Fee'
+                        id="intlOrderDetailsDelivery"
+                        defaultMessage="Delivery Fee"
                       />
                     </Text>
                     <Text>{CURRENCY}0.00</Text>
@@ -536,8 +565,8 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                   <TextWrapper>
                     <Text>
                       <FormattedMessage
-                        id='discountText'
-                        defaultMessage='Discount'
+                        id="discountText"
+                        defaultMessage="Discount"
                       />
                     </Text>
                     <Text>
@@ -548,12 +577,15 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
 
                   <TextWrapper style={{ marginTop: 20 }}>
                     <Bold>
-                      <FormattedMessage id='totalText' defaultMessage='Total' />{' '}
+                      <FormattedMessage
+                        id="totalText"
+                        defaultMessage="Total"
+                      />{' '}
                       <Small>
                         (
                         <FormattedMessage
-                          id='vatText'
-                          defaultMessage='Incl. VAT'
+                          id="vatText"
+                          defaultMessage="Incl. VAT"
                         />
                         )
                       </Small>

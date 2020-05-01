@@ -1,23 +1,23 @@
 import React from 'react';
 import App from 'next/app';
 import { ThemeProvider } from 'styled-components';
-import { theme } from 'theme';
-import { AuthProvider } from 'contexts/auth/auth.provider';
-import { StickyProvider } from 'contexts/app/app.provider';
-import { SearchProvider } from 'contexts/search/search.provider';
-import { HeaderProvider } from 'contexts/header/header.provider';
-import { LanguageProvider } from 'contexts/language/language.provider';
+import { theme } from '@shopApp/theme';
+import { AuthProvider } from '@shopApp/contexts/auth/auth.provider';
+import { StickyProvider } from '@shopApp/contexts/app/app.provider';
+import { SearchProvider } from '@shopApp/contexts/search/search.provider';
+import { HeaderProvider } from '@shopApp/contexts/header/header.provider';
+import { LanguageProvider } from '@shopApp/contexts/language/language.provider';
 
-import AppLayout from 'containers/LayoutContainer/AppLayout';
-import { useDeviceType } from 'helper/useDeviceType';
-import { CartProvider } from 'contexts/cart/use-cart';
+import AppLayout from '@shopApp/containers/LayoutContainer/AppLayout';
+import { useDeviceType } from '@shopApp/helper/useDeviceType';
+import { CartProvider } from '@shopApp/contexts/cart/use-cart';
 // Language translation files
-import localEn from 'data/translation/en.json';
-import localAr from 'data/translation/ar.json';
-import localEs from 'data/translation/es.json';
-import localDe from 'data/translation/de.json';
-import localCn from 'data/translation/zh.json';
-import localIl from 'data/translation/he.json';
+import localEn from '@shopApp/data/translation/en.json';
+import localAr from '@shopApp/data/translation/ar.json';
+import localEs from '@shopApp/data/translation/es.json';
+import localDe from '@shopApp/data/translation/de.json';
+import localCn from '@shopApp/data/translation/zh.json';
+import localIl from '@shopApp/data/translation/he.json';
 
 // External CSS import here
 import 'rc-drawer/assets/index.css';
@@ -26,8 +26,8 @@ import 'rc-collapse/assets/index.css';
 import 'react-multi-carousel/lib/styles.css';
 import 'components/MultiCarousel/MultiCarousel.style.css';
 import '@redq/reuse-modal/lib/index.css';
-import { GlobalStyle } from 'styled/global.style';
-import { parseCookies } from 'helper/parse-cookies';
+import { GlobalStyle } from '@shopApp/styled/global.style';
+import { parseCookies } from '@shopApp/helper/parse-cookies';
 
 // Language translation Config
 const messages = {
@@ -57,7 +57,10 @@ export default function ExtendedApp({
                 <AuthProvider>
                   <>
                     <AppLayout deviceType={deviceType}>
-                      <Component {...pageProps} deviceType={deviceType} />
+                      <Component
+                        {...pageProps}
+                        deviceType={deviceType}
+                      />
                     </AppLayout>
                     <GlobalStyle />
                   </>
@@ -74,7 +77,9 @@ export default function ExtendedApp({
 ExtendedApp.getInitialProps = async (appContext) => {
   const appProps = await App.getInitialProps(appContext);
   const { req, query } = appContext.ctx;
-  const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
+  const userAgent = req
+    ? req.headers['user-agent']
+    : navigator.userAgent;
   const { locale } = parseCookies(req);
   return { ...appProps, userAgent, query, locale };
 };

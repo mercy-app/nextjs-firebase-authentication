@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import Sticky from 'react-stickynode';
 import Header from './Header/Header';
-import { useStickyState } from 'contexts/app/app.provider';
+import { useStickyState } from '@shopApp/contexts/app/app.provider';
 import { LayoutWrapper } from './Layout.style';
 import { isCategoryPage } from './is-home-page';
 const MobileHeader = dynamic(() => import('./Header/MobileHeader'), {

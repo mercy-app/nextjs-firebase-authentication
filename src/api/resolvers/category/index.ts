@@ -1,5 +1,7 @@
 import { Resolver, Query, Arg, ID, Mutation } from 'type-graphql';
-import { Category, CategoryCreateInput } from '@prismaTypes'
+import { Category } from '@prismaTypes/models/Category'
+import { CategoryCreateInput } from '@prismaTypes/resolvers/inputs/CategoryCreateInput'
+
 import { isAuthenticated } from '@api/middleware/resolver/isAuthenticated';
 
 const { PrismaClient } = require('@prisma/client');

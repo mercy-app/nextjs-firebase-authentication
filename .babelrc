@@ -26,7 +26,6 @@
           "@generated": "./src/generated",
           "@shopApp": "./apps/shop",
           "@adminApp": "./apps/admin"
-
         }
       }
     ],

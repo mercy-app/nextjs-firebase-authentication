@@ -2,12 +2,12 @@ import React from 'react';
 import { NextPage } from 'next';
 import { useQuery } from '@apollo/react-hooks';
 import { Modal } from '@redq/reuse-modal';
-import { withApollo } from 'helper/apollo';
-import { SEO } from 'components/seo';
-import Checkout from 'containers/CheckoutWithSidebar/CheckoutWithSidebar';
-import { GET_LOGGED_IN_CUSTOMER } from 'graphql/query/customer.query';
+import { withApollo } from '@shopApp/helper/apollo';
+import { SEO } from '@shopApp/components/seo';
+import Checkout from '@shopApp/containers/CheckoutWithSidebar/CheckoutWithSidebar';
+import { GET_LOGGED_IN_CUSTOMER } from '@shopApp/graphql/query/customer.query';
 
-import { ProfileProvider } from 'contexts/profile/profile.provider';
+import { ProfileProvider } from '@shopApp/contexts/profile/profile.provider';
 
 type Props = {
   deviceType: {
@@ -27,8 +27,8 @@ const CheckoutPage: NextPage<Props> = ({ deviceType }) => {
   return (
     <>
       <SEO
-        title='Checkout Alternative - PickBazar'
-        description='Checkout Details'
+        title="Checkout Alternative - PickBazar"
+        description="Checkout Details"
       />
       <ProfileProvider initData={data.me}>
         <Modal>

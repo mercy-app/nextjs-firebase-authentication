@@ -12,11 +12,11 @@ import {
   Input,
   Divider,
 } from './SignInOutForm.style';
-import { Facebook, Google } from 'components/AllSvgIcon';
-import { AuthContext } from 'contexts/auth/auth.context';
+import { Facebook, Google } from '@shopApp/components/AllSvgIcon';
+import { AuthContext } from '@shopApp/contexts/auth/auth.context';
 import { FormattedMessage } from 'react-intl';
 import { closeModal } from '@redq/reuse-modal';
-import Image from 'components/Image/Image';
+import Image from '@shopApp/components/Image/Image';
 import PickBazar from '../../image/PickBazar.png';
 
 export default function SignInModal() {
@@ -52,23 +52,26 @@ export default function SignInModal() {
         </LogoWrapper> */}
 
         <Heading>
-          <FormattedMessage id='welcomeBack' defaultMessage='Welcome Back' />
+          <FormattedMessage
+            id="welcomeBack"
+            defaultMessage="Welcome Back"
+          />
         </Heading>
 
         <SubHeading>
           <FormattedMessage
-            id='loginText'
-            defaultMessage='Login with your email &amp; password'
+            id="loginText"
+            defaultMessage="Login with your email &amp; password"
           />
         </SubHeading>
         <form onSubmit={loginCallback}>
           <FormattedMessage
-            id='emailAddressPlaceholder'
-            defaultMessage='Email Address.'
+            id="emailAddressPlaceholder"
+            defaultMessage="Email Address."
           >
             {(placeholder) => (
               <Input
-                type='email'
+                type="email"
                 placeholder={placeholder}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -78,13 +81,13 @@ export default function SignInModal() {
           </FormattedMessage>
 
           <FormattedMessage
-            id='passwordPlaceholder'
-            defaultMessage='Password (min 6 characters)'
+            id="passwordPlaceholder"
+            defaultMessage="Password (min 6 characters)"
             values={{ minCharacter: 6 }}
           >
             {(placeholder) => (
               <Input
-                type='password'
+                type="password"
                 placeholder={placeholder}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -96,25 +99,25 @@ export default function SignInModal() {
           <Button
             fullwidth
             title={'Continue'}
-            intlButtonId='continueBtn'
-            type='submit'
+            intlButtonId="continueBtn"
+            type="submit"
             style={{ color: '#fff' }}
           />
         </form>
         <Divider>
           <span>
-            <FormattedMessage id='orText' defaultMessage='or' />
+            <FormattedMessage id="orText" defaultMessage="or" />
           </span>
         </Divider>
 
         <Button
           fullwidth
           title={'Continue with Facebook'}
-          className='facebook'
+          className="facebook"
           icon={<Facebook />}
-          iconPosition='left'
+          iconPosition="left"
           iconStyle={{ color: '#ffffff', marginRight: 5 }}
-          intlButtonId='continueFacebookBtn'
+          intlButtonId="continueFacebookBtn"
           onClick={loginCallback}
           style={{ color: '#fff' }}
         />
@@ -122,22 +125,25 @@ export default function SignInModal() {
         <Button
           fullwidth
           title={'Continue with Google'}
-          className='google'
+          className="google"
           icon={<Google />}
-          iconPosition='left'
+          iconPosition="left"
           iconStyle={{ color: '#ffffff', marginRight: 5 }}
-          intlButtonId='continueGoogleBtn'
+          intlButtonId="continueGoogleBtn"
           onClick={loginCallback}
           style={{ color: '#fff' }}
         />
 
         <Offer style={{ padding: '20px 0' }}>
           <FormattedMessage
-            id='dontHaveAccount'
+            id="dontHaveAccount"
             defaultMessage="Don't have any account?"
           />{' '}
           <LinkButton onClick={toggleSignUpForm}>
-            <FormattedMessage id='signUpBtnText' defaultMessage='Sign Up' />
+            <FormattedMessage
+              id="signUpBtnText"
+              defaultMessage="Sign Up"
+            />
           </LinkButton>
         </Offer>
       </Container>
@@ -145,11 +151,14 @@ export default function SignInModal() {
       <OfferSection>
         <Offer>
           <FormattedMessage
-            id='forgotPasswordText'
-            defaultMessage='Forgot your password?'
+            id="forgotPasswordText"
+            defaultMessage="Forgot your password?"
           />{' '}
           <LinkButton onClick={toggleForgotPassForm}>
-            <FormattedMessage id='resetText' defaultMessage='Reset It' />
+            <FormattedMessage
+              id="resetText"
+              defaultMessage="Reset It"
+            />
           </LinkButton>
         </Offer>
       </OfferSection>

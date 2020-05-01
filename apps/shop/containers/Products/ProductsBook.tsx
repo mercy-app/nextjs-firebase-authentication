@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import gql from 'graphql-tag';
-import ProductCard from 'components/ProductCard/ProductCardBook';
+import ProductCard from '@shopApp/components/ProductCard/ProductCardBook';
 import {
   ProductsRow,
   ProductsCol,
@@ -10,13 +10,13 @@ import {
   LoaderItem,
   ProductCardWrapper,
 } from './Products.style';
-import { CURRENCY } from 'helper/constant';
+import { CURRENCY } from '@shopApp/helper/constant';
 import { useQuery } from '@apollo/react-hooks';
-import Button from 'components/Button/Button';
-import Loader from 'components/Loader/Loader';
-import Placeholder from 'components/Placeholder/Placeholder';
+import Button from '@shopApp/components/Button/Button';
+import Loader from '@shopApp/components/Loader/Loader';
+import Placeholder from '@shopApp/components/Placeholder/Placeholder';
 import Fade from 'react-reveal/Fade';
-import NoResultFound from 'components/NoResult/NoResult';
+import NoResultFound from '@shopApp/components/NoResult/NoResult';
 
 const GET_PRODUCTS = gql`
   query getProducts(
@@ -115,7 +115,10 @@ export const Products: React.FC<ProductsProps> = ({
         return {
           products: {
             __typename: prev.products.__typename,
-            items: [...prev.products.items, ...fetchMoreResult.products.items],
+            items: [
+              ...prev.products.items,
+              ...fetchMoreResult.products.items,
+            ],
             hasMore: fetchMoreResult.products.hasMore,
           },
         };
@@ -127,7 +130,10 @@ export const Products: React.FC<ProductsProps> = ({
     <>
       <ProductsRow style={{ margin: 0 }}>
         {data.products.items.map((item: any, index: number) => (
-          <ProductsCol key={index} style={{ paddingLeft: 0, paddingRight: 1 }}>
+          <ProductsCol
+            key={index}
+            style={{ paddingLeft: 0, paddingRight: 1 }}
+          >
             <ProductCardWrapper>
               <Fade
                 duration={800}
@@ -141,7 +147,10 @@ export const Products: React.FC<ProductsProps> = ({
                   data={item}
                   deviceType={deviceType}
                   onClick={() =>
-                    router.push('/product/[slug]', `/product/${item.slug}`)
+                    router.push(
+                      '/product/[slug]',
+                      `/product/${item.slug}`
+                    )
                   }
                 />
               </Fade>
@@ -153,11 +162,11 @@ export const Products: React.FC<ProductsProps> = ({
         <ButtonWrapper>
           <Button
             onClick={handleLoadMore}
-            title='Load More'
-            size='small'
+            title="Load More"
+            size="small"
             isLoading={loadingMore}
-            intlButtonId='loadMoreBtn'
-            loader={<Loader color='#009E7F' />}
+            intlButtonId="loadMoreBtn"
+            loader={<Loader color="#009E7F" />}
             style={{
               minWidth: 135,
               backgroundColor: '#ffffff',

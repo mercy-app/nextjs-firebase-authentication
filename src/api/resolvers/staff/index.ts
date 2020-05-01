@@ -1,5 +1,6 @@
 import { Resolver, Query, Arg, ID, Mutation } from 'type-graphql';
-import { Staff, StaffCreateInput } from '@prismaTypes'
+import { Staff } from '@prismaTypes/models/Staff'
+import { StaffCreateInput } from '@prismaTypes/resolvers/inputs/StaffCreateInput'
 // import Stuff from './stuff.type';
 // import loadStuffs from '../../data/stuff.data';
 // import AddStuffInput from './stuff.input_type';

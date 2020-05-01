@@ -1,17 +1,17 @@
 import React from 'react';
 import { NextPage } from 'next';
-import { SEO } from 'components/seo';
+import { SEO } from '@shopApp/components/seo';
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
-import ProductDetails from 'containers/ProductDetails/ProductDetails';
-import ProductDetailsBook from 'containers/ProductDetailsBook/ProductDetailsBook';
+import ProductDetails from '@shopApp/containers/ProductDetails/ProductDetails';
+import ProductDetailsBook from '@shopApp/containers/ProductDetailsBook/ProductDetailsBook';
 import { Modal } from '@redq/reuse-modal';
 import ProductSingleWrapper, {
   ProductSingleContainer,
-} from 'styled/product-single.style';
-import CartPopUp from 'containers/Cart/CartPopUp';
-import { withApollo } from 'helper/apollo';
-import { GET_PRODUCT_DETAILS } from 'graphql/query/product.query';
+} from '@shopApp/styled/product-single.style';
+import CartPopUp from '@shopApp/containers/Cart/CartPopUp';
+import { withApollo } from '@shopApp/helper/apollo';
+import { GET_PRODUCT_DETAILS } from '@shopApp/graphql/query/product.query';
 
 type Props = {
   deviceType?: {
@@ -40,13 +40,19 @@ const ProductPage: NextPage<Props> = ({ deviceType }) => {
   switch (data.product.type) {
     case 'BOOK': {
       content = (
-        <ProductDetailsBook product={data.product} deviceType={deviceType} />
+        <ProductDetailsBook
+          product={data.product}
+          deviceType={deviceType}
+        />
       );
       break;
     }
     default: {
       content = (
-        <ProductDetails product={data.product} deviceType={deviceType} />
+        <ProductDetails
+          product={data.product}
+          deviceType={deviceType}
+        />
       );
     }
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'components/Image/Image';
+import Image from '@shopApp/components/Image/Image';
 import Button from '../Button/Button';
 import { CartIcon } from '../AllSvgIcon';
 import {
@@ -9,9 +9,9 @@ import {
   SaleTag,
   DiscountPercent,
 } from './ProductCard.style';
-import { useCart } from 'contexts/cart/use-cart';
-import { Counter } from 'components/Counter/Counter';
-import { cartAnimation } from 'helper/cart-animation';
+import { useCart } from '@shopApp/contexts/cart/use-cart';
+import { Counter } from '@shopApp/components/Counter/Counter';
+import { cartAnimation } from '@shopApp/helper/cart-animation';
 
 type ProductCardProps = {
   title: string;

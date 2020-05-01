@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
-import Inputs from 'components/Input/Input';
+import Inputs from '@shopApp/components/Input/Input';
 
 const CheckoutWrapper = styled.div`
   width: 100%;
@@ -396,7 +396,8 @@ export const ItemsWrapper = styled.div`
 `;
 
 export const CalculationWrapper = styled.div`
-  border-top: 1px solid ${themeGet('colors.lightDarkColor', '#e6e6e6')};
+  border-top: 1px solid
+    ${themeGet('colors.lightDarkColor', '#e6e6e6')};
   padding: 20px 15px 0;
   margin-top: 20px;
 `;

@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'components/Image/Image';
+import Image from '@shopApp/components/Image/Image';
 import {
   BookCardWrapper,
   BookImageWrapper,
@@ -26,11 +26,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
   onClick,
 }) => {
   return (
-    <ProductCardWrapper onClick={onClick} className='furniture-card'>
+    <ProductCardWrapper onClick={onClick} className="furniture-card">
       <ProductImageWrapper>
         <Image
           url={image}
-          className='product-image'
+          className="product-image"
           style={{ position: 'relative' }}
           alt={title}
         />

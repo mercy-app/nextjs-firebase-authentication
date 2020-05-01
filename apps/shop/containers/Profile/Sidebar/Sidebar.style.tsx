@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
-import NavLink from 'components/NavLink/NavLink';
+import NavLink from '@shopApp/components/NavLink/NavLink';
 
 const SidebarWrapper = styled.div`
   width: 100%;
@@ -77,4 +77,10 @@ const LogoutButton = styled.button`
   margin-bottom: 0;
 `;
 
-export { SidebarWrapper, SidebarTop, SidebarBottom, SidebarMenu, LogoutButton };
+export {
+  SidebarWrapper,
+  SidebarTop,
+  SidebarBottom,
+  SidebarMenu,
+  LogoutButton,
+};

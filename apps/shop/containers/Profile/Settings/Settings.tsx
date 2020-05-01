@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { Col } from 'react-styled-flexboxgrid';
 import { openModal } from '@redq/reuse-modal';
-import RadioCard from 'components/RadioCard/RadioCard';
-import { ProfileContext } from 'contexts/profile/profile.context';
-import { DELETE_ADDRESS } from 'graphql/mutation/address';
-import { DELETE_CARD } from 'graphql/mutation/card';
-import { DELETE_CONTACT } from 'graphql/mutation/contact';
+import RadioCard from '@shopApp/components/RadioCard/RadioCard';
+import { ProfileContext } from '@shopApp/contexts/profile/profile.context';
+import { DELETE_ADDRESS } from '@shopApp/graphql/mutation/address';
+import { DELETE_CARD } from '@shopApp/graphql/mutation/card';
+import { DELETE_CONTACT } from '@shopApp/graphql/mutation/contact';
 import StripePaymentForm from '../../Payment/StripePaymentForm';
 import {
   SettingsForm,
@@ -17,12 +17,12 @@ import {
   Row,
   ButtonGroup,
 } from './Settings.style';
-import RadioGroup from 'components/RadioGroup/RadioGroup';
-import PaymentGroup from 'components/PaymentGroup/PaymentGroup';
+import RadioGroup from '@shopApp/components/RadioGroup/RadioGroup';
+import PaymentGroup from '@shopApp/components/PaymentGroup/PaymentGroup';
 import UpdateAddress from '../../Checkout/Update/UpdateAddress';
 import UpdateContact from '../../Checkout/Update/UpdateContact';
-import Button from 'components/Button/Button';
-import { UPDATE_ME } from 'graphql/mutation/me';
+import Button from '@shopApp/components/Button/Button';
+import { UPDATE_ME } from '@shopApp/graphql/mutation/me';
 import { FormattedMessage } from 'react-intl';
 
 type SettingsContentProps = {
@@ -33,7 +33,9 @@ type SettingsContentProps = {
   };
 };
 
-const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
+const SettingsContent: React.FC<SettingsContentProps> = ({
+  deviceType,
+}) => {
   const { state, dispatch } = useContext(ProfileContext);
   const [updateMeMutation] = useMutation(UPDATE_ME);
   const [deleteContactMutation] = useMutation(DELETE_CONTACT);
@@ -43,7 +45,10 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
   const { address, contact, card } = state;
 
   const handleChange = (value: string, field: string) => {
-    dispatch({ type: 'HANDLE_ON_INPUT_CHANGE', payload: { value, field } });
+    dispatch({
+      type: 'HANDLE_ON_INPUT_CHANGE',
+      payload: { value, field },
+    });
   };
   // Add or edit modal
   const handleModal = (
@@ -66,9 +71,14 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
     });
   };
 
-  const handleEditDelete = async (item: any, type: string, name: string) => {
+  const handleEditDelete = async (
+    item: any,
+    type: string,
+    name: string
+  ) => {
     if (type === 'edit') {
-      const modalComponent = name === 'address' ? UpdateAddress : UpdateContact;
+      const modalComponent =
+        name === 'address' ? UpdateAddress : UpdateContact;
       handleModal(modalComponent, item);
     } else {
       console.log(name, item, type, 'delete');
@@ -121,7 +131,9 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
               type="text"
               label="Name"
               value={state.name}
-              onUpdate={(value: string) => handleChange(value, 'name')}
+              onUpdate={(value: string) =>
+                handleChange(value, 'name')
+              }
               style={{ backgroundColor: '#F7F7F7' }}
               intlInputLabelId="profileNameField"
             />
@@ -132,7 +144,9 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
               type="email"
               label="Email Address"
               value={state.email}
-              onUpdate={(value: string) => handleChange(value, 'email')}
+              onUpdate={(value: string) =>
+                handleChange(value, 'email')
+              }
               style={{ backgroundColor: '#F7F7F7' }}
               intlInputLabelId="profileEmailField"
             />
@@ -175,7 +189,9 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
                         })
                       }
                       name="contact"
-                      onEdit={() => handleEditDelete(item, 'edit', 'contact')}
+                      onEdit={() =>
+                        handleEditDelete(item, 'edit', 'contact')
+                      }
                       onDelete={() =>
                         handleEditDelete(item, 'delete', 'contact')
                       }
@@ -191,7 +207,11 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
                       type="button"
                       intlButtonId="addContactBtn"
                       onClick={() =>
-                        handleModal(UpdateContact, {}, 'add-contact-modal')
+                        handleModal(
+                          UpdateContact,
+                          {},
+                          'add-contact-modal'
+                        )
                       }
                     />
                   }
@@ -201,7 +221,13 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
           </Col>
         </Row>
         <Row>
-          <Col xs={12} sm={12} md={12} lg={12} style={{ position: 'relative' }}>
+          <Col
+            xs={12}
+            sm={12}
+            md={12}
+            lg={12}
+            style={{ position: 'relative' }}
+          >
             <SettingsFormContent>
               <HeadingSection>
                 <Title>
@@ -228,7 +254,9 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
                           payload: item.id.toString(),
                         })
                       }
-                      onEdit={() => handleEditDelete(item, 'edit', 'address')}
+                      onEdit={() =>
+                        handleEditDelete(item, 'edit', 'address')
+                      }
                       onDelete={() =>
                         handleEditDelete(item, 'delete', 'address')
                       }
@@ -244,7 +272,11 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
                       type="button"
                       intlButtonId="addAddressBtn"
                       onClick={() =>
-                        handleModal(UpdateAddress, {}, 'add-address-modal')
+                        handleModal(
+                          UpdateAddress,
+                          {},
+                          'add-address-modal'
+                        )
                       }
                     />
                   }

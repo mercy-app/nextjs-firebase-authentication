@@ -4,11 +4,11 @@ import { openModal, closeModal } from '@redq/reuse-modal';
 import CartItem from './Cart';
 import CartPopupButton, {
   BoxedCartButton,
-} from 'components/CartPopup/CartPopupButton';
-import { CURRENCY } from 'helper/constant';
+} from '@shopApp/components/CartPopup/CartPopupButton';
+import { CURRENCY } from '@shopApp/helper/constant';
 import { CartSlidePopup } from './CartItemCard.style';
 import { FormattedMessage } from 'react-intl';
-import { useCart } from 'contexts/cart/use-cart';
+import { useCart } from '@shopApp/contexts/cart/use-cart';
 
 const CartPopupStyle = createGlobalStyle`
   .cartPopup{
@@ -42,7 +42,12 @@ type CartProps = {
 const CartPopUp: React.FC<CartProps> = ({
   deviceType: { mobile, tablet, desktop },
 }) => {
-  const { isOpen, cartItemsCount, toggleCart, calculatePrice } = useCart();
+  const {
+    isOpen,
+    cartItemsCount,
+    toggleCart,
+    calculatePrice,
+  } = useCart();
 
   const handleModal = () => {
     openModal({
@@ -61,7 +66,10 @@ const CartPopUp: React.FC<CartProps> = ({
       closeOnClickOutside: true,
       component: CartItem,
       closeComponent: () => <div />,
-      componentProps: { onCloseBtnClick: closeModal, scrollbarHeight: 370 },
+      componentProps: {
+        onCloseBtnClick: closeModal,
+        scrollbarHeight: 370,
+      },
     });
   };
 
@@ -73,17 +81,23 @@ const CartPopUp: React.FC<CartProps> = ({
         <>
           <CartPopupStyle />
           <CartPopupButton
-            className='product-cart'
+            className="product-cart"
             itemCount={cartItemsCount}
             itemPostfix={
               cartItemsCount > 1 ? (
-                <FormattedMessage id='cartItems' defaultMessage='items' />
+                <FormattedMessage
+                  id="cartItems"
+                  defaultMessage="items"
+                />
               ) : (
-                <FormattedMessage id='cartItem' defaultMessage='item' />
+                <FormattedMessage
+                  id="cartItem"
+                  defaultMessage="item"
+                />
               )
             }
             price={calculatePrice()}
-            pricePrefix='$'
+            pricePrefix="$"
             onClick={handleModal}
           />
         </>
@@ -91,18 +105,27 @@ const CartPopUp: React.FC<CartProps> = ({
         <>
           <CartSlidePopup className={cartSliderClass}>
             {isOpen && (
-              <CartItem onCloseBtnClick={toggleCart} scrollbarHeight='100vh' />
+              <CartItem
+                onCloseBtnClick={toggleCart}
+                scrollbarHeight="100vh"
+              />
             )}
           </CartSlidePopup>
 
           <BoxedCartButton
-            className='product-cart'
+            className="product-cart"
             itemCount={cartItemsCount}
             itemPostfix={
               cartItemsCount > 1 ? (
-                <FormattedMessage id='cartItems' defaultMessage='items' />
+                <FormattedMessage
+                  id="cartItems"
+                  defaultMessage="items"
+                />
               ) : (
-                <FormattedMessage id='cartItem' defaultMessage='item' />
+                <FormattedMessage
+                  id="cartItem"
+                  defaultMessage="item"
+                />
               )
             }
             price={calculatePrice()}

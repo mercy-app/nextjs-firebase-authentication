@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import Carousel from 'components/Carousel/Carousel';
+import Carousel from '@shopApp/components/Carousel/Carousel';
 import PaymentCard from '../PaymentCard/PaymentCard';
 import { Plus } from '../AllSvgIcon';
 import Button from '../Button/Button';
@@ -8,7 +8,7 @@ import {
   Header,
   PaymentCardList,
   SavedCard,
-  OtherPayOption
+  OtherPayOption,
 } from './PaymentGroup.style';
 
 interface PaymentCardType {
@@ -50,7 +50,7 @@ const PaymentGroup: React.FunctionComponent<PaymentGroupProps> = ({
   name,
   onChange,
   onEditDeleteField,
-  handleAddNewCard
+  handleAddNewCard,
 }) => {
   // RadioGroup State
 
@@ -64,19 +64,22 @@ const PaymentGroup: React.FunctionComponent<PaymentGroupProps> = ({
       <Header>
         {items.length !== 0 && (
           <SavedCard>
-            <FormattedMessage id='savedCardsId' defaultMessage='Saved Cards' />
+            <FormattedMessage
+              id="savedCardsId"
+              defaultMessage="Saved Cards"
+            />
           </SavedCard>
         )}
         <Button
-          title='Add Card'
-          colors='primary'
-          size='small'
-          variant='textButton'
-          type='button'
-          icon={<Plus width='10px' />}
-          iconPosition='left'
+          title="Add Card"
+          colors="primary"
+          size="small"
+          variant="textButton"
+          type="button"
+          icon={<Plus width="10px" />}
+          iconPosition="left"
           onClick={handleAddNewCard}
-          intlButtonId='addCardBtn'
+          intlButtonId="addCardBtn"
         />
       </Header>
       <PaymentCardList>
@@ -96,20 +99,21 @@ const PaymentGroup: React.FunctionComponent<PaymentGroupProps> = ({
         />
       </PaymentCardList>
 
-      {items.mobileWallet === true || items.cashOnDelivery === true ? (
+      {items.mobileWallet === true ||
+      items.cashOnDelivery === true ? (
         <OtherPayOption>
           {/* Mobile Wallet */}
           {items.mobileWallet === true ? (
             <label
-              htmlFor='mobile-wallet'
-              key='${name}-mobile-wa'
-              className='other-pay-radio'
+              htmlFor="mobile-wallet"
+              key="${name}-mobile-wa"
+              className="other-pay-radio"
             >
               <input
-                type='radio'
-                id='mobile-wallet'
+                type="radio"
+                id="mobile-wallet"
                 name={name}
-                value='mobile-wallet'
+                value="mobile-wallet"
                 onChange={handleChange}
               />
               <span>Mobile Wallet</span>
@@ -121,15 +125,15 @@ const PaymentGroup: React.FunctionComponent<PaymentGroupProps> = ({
           {/* Cash On Delivery */}
           {items.cashOnDelivery === true ? (
             <label
-              htmlFor='cash-on-delivery'
-              key='${name}-cash'
-              className='other-pay-radio cash-on-delivery'
+              htmlFor="cash-on-delivery"
+              key="${name}-cash"
+              className="other-pay-radio cash-on-delivery"
             >
               <input
-                type='radio'
-                id='cash-on-delivery'
+                type="radio"
+                id="cash-on-delivery"
                 name={name}
-                value='cash-on-delivery'
+                value="cash-on-delivery"
                 onChange={handleChange}
               />
               <span>Cash On Delivery</span>

@@ -1,10 +1,13 @@
 import React from 'react';
 import { NextPage } from 'next';
-import { SEO } from 'components/seo';
-import Order from 'containers/Profile/Order/Order';
-import { PageWrapper, SidebarSection } from 'containers/Profile/Profile.style';
-import Sidebar from 'containers/Profile/Sidebar/Sidebar';
-import { withApollo } from 'helper/apollo';
+import { SEO } from '@shopApp/components/seo';
+import Order from '@shopApp/containers/Profile/Order/Order';
+import {
+  PageWrapper,
+  SidebarSection,
+} from '@shopApp/containers/Profile/Profile.style';
+import Sidebar from '@shopApp/containers/Profile/Sidebar/Sidebar';
+import { withApollo } from '@shopApp/helper/apollo';
 import { Modal } from '@redq/reuse-modal';
 
 type Props = {
@@ -17,7 +20,7 @@ type Props = {
 const OrderPage: NextPage<Props> = ({ deviceType }) => {
   return (
     <>
-      <SEO title='Order - PickBazar' description='Order Details' />
+      <SEO title="Order - PickBazar" description="Order Details" />
       <Modal>
         <PageWrapper>
           {deviceType.desktop && (

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Counter } from 'components/Counter/Counter';
-import { CURRENCY } from 'helper/constant';
-import { CloseIcon } from 'assets/icons/close';
+import { Counter } from '@shopApp/components/Counter/Counter';
+import { CURRENCY } from '@shopApp/helper/constant';
+import { CloseIcon } from '@shopApp/assets/icons/close';
 import {
   ItemBox,
   Image,
@@ -35,7 +35,7 @@ export const CartItem: React.FC<Props> = ({
         value={quantity}
         onDecrement={onDecrement}
         onIncrement={onIncrement}
-        variant='lightVertical'
+        variant="lightVertical"
       />
       <Image src={image} />
       <Information>

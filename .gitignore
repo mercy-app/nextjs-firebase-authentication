@@ -13,3 +13,5 @@ yarn-error.log*
 firebaseServiceAccountKey.json
 
 src/data/courses
+prisma/migrations
+prisma/generated

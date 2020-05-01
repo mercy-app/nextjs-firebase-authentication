@@ -1,10 +1,14 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import NoResultSvg from './no-result.svg';
-import { NoResultWrapper, ImageWrapper, ButtonWrapper } from './NoResult.style';
+import {
+  NoResultWrapper,
+  ImageWrapper,
+  ButtonWrapper,
+} from './NoResult.style';
 import Button from '../Button/Button';
-import { ArrowPrev } from 'components/AllSvgIcon';
-import { SearchContext } from 'contexts/search/search.context';
+import { ArrowPrev } from '@shopApp/components/AllSvgIcon';
+import { SearchContext } from '@shopApp/contexts/search/search.context';
 
 type NoResultFoundProps = {
   id?: string;
@@ -32,7 +36,11 @@ const NoResultFound: React.FC<NoResultFoundProps> = ({ id }) => {
 
       <ButtonWrapper>
         <div onClick={onClickButton}>
-          <Button title="Go Back" iconPosition="left" icon={<ArrowPrev />} />
+          <Button
+            title="Go Back"
+            iconPosition="left"
+            icon={<ArrowPrev />}
+          />
         </div>
       </ButtonWrapper>
     </NoResultWrapper>

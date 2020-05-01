@@ -1,7 +1,7 @@
 import React from 'react';
 import Table from 'rc-table';
 import Collapse, { Panel } from 'rc-collapse';
-import Progress from 'components/ProgressBox/ProgressBox';
+import Progress from '@shopApp/components/ProgressBox/ProgressBox';
 
 import {
   OrderListHeader,
@@ -22,7 +22,7 @@ import {
   OrderTableMobile,
 } from './OrderCard.style';
 
-import { CURRENCY } from 'helper/constant';
+import { CURRENCY } from '@shopApp/helper/constant';
 
 type MobileOrderCardProps = {
   orderId?: any;
@@ -66,7 +66,7 @@ const OrderCard: React.FC<MobileOrderCardProps> = ({
       <Collapse
         accordion={true}
         className={addAllClasses.join(' ')}
-        defaultActiveKey='active'
+        defaultActiveKey="active"
         expandIcon={() => {}}
       >
         {orders.map((order: any) => (
@@ -87,7 +87,7 @@ const OrderCard: React.FC<MobileOrderCardProps> = ({
                   <Meta>
                     Delivery Time: <span>{order.deliveryTime}</span>
                   </Meta>
-                  <Meta className='price'>
+                  <Meta className="price">
                     Total Price:
                     <span>
                       {CURRENCY}
@@ -97,7 +97,7 @@ const OrderCard: React.FC<MobileOrderCardProps> = ({
                 </OrderMetas>
               </CardWrapper>
             }
-            headerClass='accordion-title'
+            headerClass="accordion-title"
             key={order.id}
           >
             <OrderDetail>
@@ -129,7 +129,7 @@ const OrderCard: React.FC<MobileOrderCardProps> = ({
                       {order.deliveryFee}
                     </Price>
                   </PriceRow>
-                  <PriceRow className='grandTotal'>
+                  <PriceRow className="grandTotal">
                     Total
                     <Price>
                       {CURRENCY}
@@ -147,7 +147,7 @@ const OrderCard: React.FC<MobileOrderCardProps> = ({
                 <Table
                   columns={columns}
                   data={order.products}
-                  rowKey={record => record.id}
+                  rowKey={(record) => record.id}
                   components={components}
                   scroll={{ x: 450 }}
                   // scroll={{ y: 250 }}

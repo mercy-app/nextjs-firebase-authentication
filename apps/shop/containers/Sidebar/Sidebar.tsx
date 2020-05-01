@@ -4,15 +4,18 @@ import Link from 'next/link';
 import { useQuery } from '@apollo/react-hooks';
 import Sticky from 'react-stickynode';
 import { Scrollbars } from 'react-custom-scrollbars';
-import Popover from 'components/Popover/Popover';
-import { ArrowDropDown, CategoryIcon } from 'components/AllSvgIcon';
-import { SearchContext } from 'contexts/search/search.context';
-import { useLocale } from 'contexts/language/language.provider';
-import { useStickyState } from 'contexts/app/app.provider';
+import Popover from '@shopApp/components/Popover/Popover';
+import {
+  ArrowDropDown,
+  CategoryIcon,
+} from '@shopApp/components/AllSvgIcon';
+import { SearchContext } from '@shopApp/contexts/search/search.context';
+import { useLocale } from '@shopApp/contexts/language/language.provider';
+import { useStickyState } from '@shopApp/contexts/app/app.provider';
 import {
   SidebarMobileLoader,
   SidebarLoader,
-} from 'components/Placeholder/Placeholder';
+} from '@shopApp/components/Placeholder/Placeholder';
 import { FormattedMessage } from 'react-intl';
 import {
   CategoryWrapper,
@@ -24,11 +27,11 @@ import {
   Loading,
 } from './Sidebar.style';
 
-import { TreeMenu } from 'components/TreeMenu/TreeMenu';
+import { TreeMenu } from '@shopApp/components/TreeMenu/TreeMenu';
 
-import { GET_CATEGORIES } from 'graphql/query/category.query';
+import { GET_CATEGORIES } from '@shopApp/graphql/query/category.query';
 
-import { REQUEST_MEDICINE_PAGE } from 'constants/navigation';
+import { REQUEST_MEDICINE_PAGE } from '@shopApp/constants/navigation';
 
 type SidebarCategoryProps = {
   deviceType: {
@@ -87,13 +90,13 @@ const SidebarCategory: React.FC<SidebarCategoryProps> = ({
               </div>
             </PopoverHandler>
           }
-          className='category-popover'
+          className="category-popover"
           content={
             <>
               {type === 'medicine' && (
                 <Link href={REQUEST_MEDICINE_PAGE}>
                   <RequestMedicine>
-                    <FormattedMessage id='reqMedicine' />
+                    <FormattedMessage id="reqMedicine" />
                   </RequestMedicine>
                 </Link>
               )}
@@ -107,12 +110,17 @@ const SidebarCategory: React.FC<SidebarCategoryProps> = ({
         />
       </PopoverWrapper>
 
-      <SidebarWrapper style={{ paddingTop: type === 'medicine' ? 0 : 45 }}>
-        <Sticky enabled={isSidebarSticky} top={type === 'medicine' ? 89 : 110}>
+      <SidebarWrapper
+        style={{ paddingTop: type === 'medicine' ? 0 : 45 }}
+      >
+        <Sticky
+          enabled={isSidebarSticky}
+          top={type === 'medicine' ? 89 : 110}
+        >
           {type === 'medicine' && (
             <Link href={REQUEST_MEDICINE_PAGE}>
               <RequestMedicine>
-                <FormattedMessage id='reqMedicine' />
+                <FormattedMessage id="reqMedicine" />
               </RequestMedicine>
             </Link>
           )}

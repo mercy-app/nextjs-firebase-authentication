@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
-import Button from 'components/Button/Button';
+import Button from '@shopApp/components/Button/Button';
 import {
   ProductDetailsWrapper,
   ProductPreview,
@@ -39,14 +39,14 @@ import {
   GooglePlus,
   Twitter,
   Linkedin,
-} from 'components/AllSvgIcon';
-import ReadMore from 'components/Truncate/Truncate';
-import { CURRENCY } from 'helper/constant';
-import { Product } from 'interfaces';
-import Products from 'containers/Products/ProductsBook';
+} from '@shopApp/components/AllSvgIcon';
+import ReadMore from '@shopApp/components/Truncate/Truncate';
+import { CURRENCY } from '@shopApp/helper/constant';
+import { Product } from '@shopApp/interfaces';
+import Products from '@shopApp/containers/Products/ProductsBook';
 import { FormattedMessage } from 'react-intl';
-import { useCart } from 'contexts/cart/use-cart';
-import { Counter } from 'components/Counter/Counter';
+import { useCart } from '@shopApp/contexts/cart/use-cart';
+import { Counter } from '@shopApp/components/Counter/Counter';
 
 type ProductDetailsProps = {
   product: Product | any;
@@ -71,7 +71,9 @@ const ProductDetails: React.FunctionComponent<ProductDetailsProps> = ({
     // scrollRef.current.scrollIntoView({ behavior: 'smooth' });
     window.scrollTo({
       top:
-        scrollRef.current.getBoundingClientRect().top + window.pageYOffset - 65,
+        scrollRef.current.getBoundingClientRect().top +
+        window.pageYOffset -
+        65,
       behavior: 'smooth',
     });
   };
@@ -137,30 +139,34 @@ const ProductDetails: React.FunctionComponent<ProductDetailsProps> = ({
             </BookDescription>
             <BookMetaTable>
               {product.meta
-                ? Object.entries(product.meta).map(([item], i, arr): any =>
-                    i !== arr.length - 1 && i !== arr.length - 2 ? (
-                      <BookMetaTableRow key={i}>
-                        <BookMetaItem>
-                          {item.replace(/^[a-z]|[A-Z]/g, function (v, i) {
-                            return i === 0
-                              ? v.toUpperCase()
-                              : ' ' + v.toLowerCase();
-                          })}
-                        </BookMetaItem>
-                        <BookMetaItem>
-                          {item === 'languages'
-                            ? product.meta[item].map(
-                                (lang, i, arr): any =>
-                                  lang.charAt(0).toUpperCase() +
-                                  lang.slice(1) +
-                                  (i !== arr.length - 1 ? ', ' : '')
-                              )
-                            : product.meta[item]}
-                        </BookMetaItem>
-                      </BookMetaTableRow>
-                    ) : (
-                      ''
-                    )
+                ? Object.entries(product.meta).map(
+                    ([item], i, arr): any =>
+                      i !== arr.length - 1 && i !== arr.length - 2 ? (
+                        <BookMetaTableRow key={i}>
+                          <BookMetaItem>
+                            {item.replace(/^[a-z]|[A-Z]/g, function (
+                              v,
+                              i
+                            ) {
+                              return i === 0
+                                ? v.toUpperCase()
+                                : ' ' + v.toLowerCase();
+                            })}
+                          </BookMetaItem>
+                          <BookMetaItem>
+                            {item === 'languages'
+                              ? product.meta[item].map(
+                                  (lang, i, arr): any =>
+                                    lang.charAt(0).toUpperCase() +
+                                    lang.slice(1) +
+                                    (i !== arr.length - 1 ? ', ' : '')
+                                )
+                              : product.meta[item]}
+                          </BookMetaItem>
+                        </BookMetaTableRow>
+                      ) : (
+                        ''
+                      )
                   )
                 : ''}
             </BookMetaTable>
@@ -179,7 +185,9 @@ const ProductDetails: React.FunctionComponent<ProductDetailsProps> = ({
 
               <ProductPrice>
                 {CURRENCY}
-                {product.salePrice ? product.salePrice : product.price}
+                {product.salePrice
+                  ? product.salePrice
+                  : product.price}
               </ProductPrice>
             </ProductPriceWrapper>
 
@@ -257,9 +265,13 @@ const ProductDetails: React.FunctionComponent<ProductDetailsProps> = ({
           />
         </DetailsTitle>
         <AuthorName>
-          {product.author.avatar && product.author.avatar.length !== 0 ? (
+          {product.author.avatar &&
+          product.author.avatar.length !== 0 ? (
             <Avatar>
-              <img src={product.author.avatar} alt={product.author.name} />
+              <img
+                src={product.author.avatar}
+                alt={product.author.name}
+              />
             </Avatar>
           ) : (
             <InkPen />
@@ -274,7 +286,11 @@ const ProductDetails: React.FunctionComponent<ProductDetailsProps> = ({
             product.author.socials.map((item) =>
               item.profileLink.length !== 0 ? (
                 <SocialIcon>
-                  <a key={item.id} href={item.profileLink} target="_blank">
+                  <a
+                    key={item.id}
+                    href={item.profileLink}
+                    target="_blank"
+                  >
                     {item.media === 'facebook' ? (
                       <Facebook color="#3b5999" />
                     ) : item.media === 'twitter' ? (

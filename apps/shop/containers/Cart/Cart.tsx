@@ -18,17 +18,17 @@ import {
   CouponCode,
   ErrorMsg,
 } from './CartItemCard.style';
-import { CloseIcon } from 'components/AllSvgIcon';
-import { ShoppingBagLarge } from 'components/AllSvgIcon';
-import { CURRENCY } from 'helper/constant';
-import { Product } from 'interfaces';
+import { CloseIcon } from '@shopApp/components/AllSvgIcon';
+import { ShoppingBagLarge } from '@shopApp/components/AllSvgIcon';
+import { CURRENCY } from '@shopApp/helper/constant';
+import { Product } from '@shopApp/interfaces';
 import { FormattedMessage } from 'react-intl';
-import { useLocale } from 'contexts/language/language.provider';
-import CouponBox from 'components/CouponBox/CouponBox';
+import { useLocale } from '@shopApp/contexts/language/language.provider';
+import CouponBox from '@shopApp/components/CouponBox/CouponBox';
 
 import { Scrollbars } from 'react-custom-scrollbars';
-import { useCart } from 'contexts/cart/use-cart';
-import { Counter } from 'components/Counter/Counter';
+import { useCart } from '@shopApp/contexts/cart/use-cart';
+import { Counter } from '@shopApp/components/Counter/Counter';
 import { CartItem } from './CartItem/CartItem';
 
 type CartItemProps = {
@@ -102,14 +102,17 @@ const Cart: React.FC<CartPropsType> = ({
     <CartPopupBody className={className} style={style}>
       <PopupHeader>
         <PopupItemCount>
-          <ShoppingBagLarge width='19px' height='24px' />
+          <ShoppingBagLarge width="19px" height="24px" />
           <span>
             {cartItemsCount}
             &nbsp;
             {cartItemsCount > 1 ? (
-              <FormattedMessage id='cartItems' defaultMessage='items' />
+              <FormattedMessage
+                id="cartItems"
+                defaultMessage="items"
+              />
             ) : (
-              <FormattedMessage id='cartItem' defaultMessage='item' />
+              <FormattedMessage id="cartItem" defaultMessage="item" />
             )}
           </span>
         </PopupItemCount>
@@ -149,8 +152,8 @@ const Cart: React.FC<CartPropsType> = ({
           ) : (
             <NoProductMsg>
               <FormattedMessage
-                id='noProductFound'
-                defaultMessage='No products found'
+                id="noProductFound"
+                defaultMessage="No products found"
               />
             </NoProductMsg>
           )}
@@ -164,8 +167,8 @@ const Cart: React.FC<CartPropsType> = ({
               {!displayCoupon ? (
                 <button onClick={toggleCoupon}>
                   <FormattedMessage
-                    id='specialCode'
-                    defaultMessage='Have a special code?'
+                    id="specialCode"
+                    defaultMessage="Have a special code?"
                   />
                 </button>
               ) : (
@@ -175,8 +178,8 @@ const Cart: React.FC<CartPropsType> = ({
                     value={couponText}
                     onClick={handleApplyCoupon}
                     disabled={!couponText.length || !items.length}
-                    buttonTitle='Apply'
-                    intlCouponBoxPlaceholder='couponPlaceholder'
+                    buttonTitle="Apply"
+                    intlCouponBoxPlaceholder="couponPlaceholder"
                     style={{
                       boxShadow: '0 3px 6px rgba(0, 0, 0, 0.06)',
                     }}
@@ -188,8 +191,8 @@ const Cart: React.FC<CartPropsType> = ({
           ) : (
             <CouponCode>
               <FormattedMessage
-                id='couponApplied'
-                defaultMessage='Coupon Applied'
+                id="couponApplied"
+                defaultMessage="Coupon Applied"
               />
               <span>{coupon.code}</span>
             </CouponCode>
@@ -197,13 +200,13 @@ const Cart: React.FC<CartPropsType> = ({
         </PromoCode>
 
         {cartItemsCount !== 0 ? (
-          <Link href='/checkout'>
+          <Link href="/checkout">
             <CheckoutButton onClick={onCloseBtnClick}>
               <>
                 <Title>
                   <FormattedMessage
-                    id='navlinkCheckout'
-                    defaultMessage='Checkout'
+                    id="navlinkCheckout"
+                    defaultMessage="Checkout"
                   />
                 </Title>
                 <PriceBox>
@@ -218,8 +221,8 @@ const Cart: React.FC<CartPropsType> = ({
             <>
               <Title>
                 <FormattedMessage
-                  id='navlinkCheckout'
-                  defaultMessage='Checkout'
+                  id="navlinkCheckout"
+                  defaultMessage="Checkout"
                 />
               </Title>
               <PriceBox>

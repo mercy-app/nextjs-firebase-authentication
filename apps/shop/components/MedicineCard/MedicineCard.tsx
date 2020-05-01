@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'components/Image/Image';
+import Image from '@shopApp/components/Image/Image';
 import Button from '../Button/Button';
 import { PlusOutline } from '../AllSvgIcon';
 import {
@@ -12,8 +12,8 @@ import {
   CartButton,
   Counter,
 } from './MedicineCard.style';
-import { useCart } from 'contexts/cart/use-cart';
-// import { Counter } from 'components/Counter/Counter';
+import { useCart } from '@shopApp/contexts/cart/use-cart';
+// import { Counter } from '@shopApp/components/Counter/Counter';
 
 type ProductCardProps = {
   title: string;
@@ -70,22 +70,22 @@ const ProductCard: React.FC<ProductCardProps> = ({
   // console.log(items, 'product-card');
 
   return (
-    <CardWrapper onClick={onClick} className='medicine-card'>
+    <CardWrapper onClick={onClick} className="medicine-card">
       <ImageWrapper className={isInCart(data?.id) && 'overlay'}>
         <Image
           url={image}
-          className='product-image'
+          className="product-image"
           style={{ position: 'relative' }}
           alt={title}
         />
 
         {!isInCart(data?.id) ? (
           <CartButton
-            iconPosition='left'
-            colors='primary'
-            size='small'
-            variant='outlined'
-            className='cart-button'
+            iconPosition="left"
+            colors="primary"
+            size="small"
+            variant="outlined"
+            className="cart-button"
             icon={<PlusOutline />}
             onClick={handleAddClick}
           />

@@ -12,11 +12,11 @@ import UpgradeResolvers from './upgrade';
 import CouponResolver from './coupon';
 import PartnerResolver from './partner';
 import CommunityResolvers from './community';
-import TempCounponResolver from './coupon/temp';
-import ProductResolver from './product';
-import CategoryResolver from './category'
-import OrderResolver from './order'
-import StaffResolver from './staff'
+// import TempCounponResolver from './coupon/temp';
+// import ProductResolver from './product';
+// import CategoryResolver from './category'
+// import OrderResolver from './order'
+// import StaffResolver from './staff'
 import CustomerResolver from './customer'
 
 export default [
@@ -32,10 +32,10 @@ export default [
   CouponResolver,
   PartnerResolver,
   CommunityResolvers,
-  TempCounponResolver,
-  ProductResolver,
-  CategoryResolver,
-  OrderResolver,
-  StaffResolver,
+  // TempCounponResolver,
+  // ProductResolver,
+  // CategoryResolver,
+  // OrderResolver,
+  // StaffResolver,
   CustomerResolver
 ] as NonEmptyArray<Function>;

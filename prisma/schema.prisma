@@ -13,21 +13,20 @@ generator typegraphql {
 }
 
 model Country {
-  id       String @default(cuid()) @id
-  code     Int    @unique
-  name     String
-  currency String
+  id        String    @default(cuid()) @id
+  code      Int       @unique
+  name      String
+  currency  String
+  companies Company[]
 }
 
 model Staff {
-  user      User     @relation(fields: [userId], references: [id])
+  id        String   @default(cuid()) @id
   userId    String
   company   Company  @relation(fields: [companyId], references: [id])
   companyId String
   role      String
   createdAt DateTime @default(now())
-
-  @@id([companyId, userId])
 }
 
 model Address {
@@ -37,9 +36,8 @@ model Address {
   json      String?
   info      String
   companyId String?
-  company   Company? @relation(fields: [companyId], references: [id])
+  company   Company?
   userId    String?
-  user      User?    @relation(fields: [userId], references: [id])
 }
 
 model Card {
@@ -49,7 +47,6 @@ model Card {
   name          String
   lastFourDigit Int
   userId        String
-  user          User   @relation(fields: [userId], references: [id])
 }
 
 model Contact {
@@ -57,20 +54,17 @@ model Contact {
   type      String
   number    String
   companyId String?
-  company   Company? @relation(fields: [companyId], references: [id])
+  company   Company?
   userId    String?
-  user      User?    @relation(fields: [userId], references: [id])
 }
 
 model Customer {
+  id               String  @default(cuid()) @id
   userId           String
-  user             User    @relation(fields: [userId], references: [id])
   companyId        String
   company          Company @relation(fields: [companyId], references: [id])
   totalOrder       Int
   totalOrderAmount Int
-
-  @@id([companyId, userId])
 }
 
 model ProductsOnCounpon {
@@ -98,33 +92,23 @@ model Coupon {
   products             ProductsOnCounpon[]
 }
 
-model User {
-  id        String    @unique
-  email     String    @unique
-  name      String?
-  posts     Post[]
-  companies Company[]
-  addresses Address[]
-  cards     Card[]
-  contacts  Contact[]
-}
-
 model Company {
   id          String     @default(cuid()) @id
   name        String
   description String
-  address     Address
-  contact     Contact
+  address     Address    @relation(fields: [addressId], references: [id])
+  addressId   String
+  contact     Contact    @relation(fields: [contactId], references: [id])
+  contactId   String
   ownerId     String?
   platformId  String
   platform    Platform   @relation(fields: [platformId], references: [id])
-  owner       User?      @relation(fields: [ownerId], references: [id])
-  countryId   String?
-  country     Country?   @relation(fields: [countryId], references: [id])
+  countryId   String
+  country     Country    @relation(fields: [countryId], references: [id])
   products    Product[]
-  customerId  String?
   staffs      Staff[]
   customers   Customer[]
+  orders      Order[]
 }
 
 model Post {
@@ -134,7 +118,6 @@ model Post {
   published  Boolean
   title      String
   content    String?
-  author     User?               @relation(fields: [authorId], references: [id])
   authorId   String?
   categories CategoriesOnPosts[]
   tags       TagsOnPosts[]
@@ -250,6 +233,7 @@ model Platform {
   type         String    @unique
   content      String?
   products     Product[]
+  companies    Company[]
   category     Category
   platformType String
   countryId    String
@@ -274,6 +258,7 @@ model Booking {
   recurring    String[]
   roomId       String
   room         Room     @relation(fields: [roomId], references: [id])
+  userId       String
 }
 
 enum Status {
@@ -287,8 +272,8 @@ model Order {
   status          Status
   amount          Float
   products        OrderItem[]
-  companyId       String
-  company         Company     @relation(fields: [companyId], references: [id])
+  companyId       String?
+  company         Company?    @relation(fields: [companyId], references: [id])
   deliveryTime    DateTime
   createdAt       DateTime    @default(now())
   paymentMethod   String
@@ -297,6 +282,7 @@ model Order {
   subtotal        Float
   discount        Float
   deliveryFee     Float
+  userId          String
 }
 
 model OrderItem {

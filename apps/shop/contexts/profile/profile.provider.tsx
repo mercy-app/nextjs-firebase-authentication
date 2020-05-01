@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import uuidV4 from 'uuid/v4';
-import schedules from 'containers/Checkout/data';
+import schedules from '@shopApp/containers/Checkout/data';
 import { ProfileContext } from './profile.context';
 
 type Action =
@@ -18,7 +18,10 @@ type Action =
 function reducer(state: any, action: Action): any {
   switch (action.type) {
     case 'HANDLE_ON_INPUT_CHANGE':
-      return { ...state, [action.payload.field]: action.payload.value };
+      return {
+        ...state,
+        [action.payload.field]: action.payload.value,
+      };
     case 'ADD_OR_UPDATE_CONTACT':
       if (action.payload.id) {
         return {
@@ -89,7 +92,9 @@ function reducer(state: any, action: Action): any {
     case 'DELETE_CARD':
       return {
         ...state,
-        card: state.card.filter((item: any) => item.id !== action.payload),
+        card: state.card.filter(
+          (item: any) => item.id !== action.payload
+        ),
       };
     case 'SET_PRIMARY_CONTACT':
       return {
@@ -140,7 +145,10 @@ export const ProfileProvider: React.FunctionComponent<ProfileProviderProps> = ({
   children,
   initData,
 }) => {
-  const [state, dispatch] = useReducer(reducer, { ...initData, schedules });
+  const [state, dispatch] = useReducer(reducer, {
+    ...initData,
+    schedules,
+  });
   // console.log(state, 'profile provider state');
 
   return (

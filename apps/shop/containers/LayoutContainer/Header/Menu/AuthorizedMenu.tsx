@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import NavLink from 'components/NavLink/NavLink';
+import NavLink from '@shopApp/components/NavLink/NavLink';
 
 import {
   PROCEED_TO_CHECKOUT_PAGE,
@@ -8,7 +8,7 @@ import {
   PROFILE_PAGE,
   ORDER_RECEIVED,
   YOUR_ORDER,
-} from 'constants/navigation';
+} from '@shopApp/constants/navigation';
 
 const AUTHORIZED_MENU_ITEMS = [
   {
@@ -48,16 +48,19 @@ export const AuthorizedMenu: React.FC<Props> = ({ onLogout }) => {
       {AUTHORIZED_MENU_ITEMS.map((item, idx) => (
         <NavLink
           key={idx}
-          className='menu-item'
+          className="menu-item"
           href={item.link}
           label={item.label}
           intlId={item.intlId}
         />
       ))}
-      <div className='menu-item' onClick={onLogout}>
+      <div className="menu-item" onClick={onLogout}>
         <a>
           <span>
-            <FormattedMessage id='navlinkLogout' defaultMessage='Logout' />
+            <FormattedMessage
+              id="navlinkLogout"
+              defaultMessage="Logout"
+            />
           </span>
         </a>
       </div>

@@ -1,16 +1,16 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Router from 'next/router';
-import Button from 'components/Button/Button';
-import RadioCard from 'components/RadioCard/RadioCard';
-import RadioGroup from 'components/RadioGroup/RadioGroup';
-import PaymentGroup from 'components/PaymentGroup/PaymentGroup';
-import Loader from 'components/Loader/Loader';
+import Button from '@shopApp/components/Button/Button';
+import RadioCard from '@shopApp/components/RadioCard/RadioCard';
+import RadioGroup from '@shopApp/components/RadioGroup/RadioGroup';
+import PaymentGroup from '@shopApp/components/PaymentGroup/PaymentGroup';
+import Loader from '@shopApp/components/Loader/Loader';
 import UpdateAddress from './Update/UpdateAddress';
 import UpdateContact from './Update/UpdateContact';
 import StripePaymentForm from '../Payment/StripePaymentForm';
-import { DELETE_ADDRESS } from 'graphql/mutation/address';
-import { DELETE_CARD } from 'graphql/mutation/card';
-import { DELETE_CONTACT } from 'graphql/mutation/contact';
+import { DELETE_ADDRESS } from '@shopApp/graphql/mutation/address';
+import { DELETE_CARD } from '@shopApp/graphql/mutation/card';
+import { DELETE_CONTACT } from '@shopApp/graphql/mutation/contact';
 import { openModal } from '@redq/reuse-modal';
 import { useMutation } from '@apollo/react-hooks';
 import CheckoutWrapper, {
@@ -30,11 +30,13 @@ import CheckoutWrapper, {
   ErrorMsg,
 } from './Checkout.style';
 
-import CouponBox, { CouponDisplay } from 'components/CouponBox/CouponBox';
-import { ProfileContext } from 'contexts/profile/profile.context';
+import CouponBox, {
+  CouponDisplay,
+} from '@shopApp/components/CouponBox/CouponBox';
+import { ProfileContext } from '@shopApp/contexts/profile/profile.context';
 import { FormattedMessage } from 'react-intl';
-import { useCart } from 'contexts/cart/use-cart';
-import { APPLY_COUPON } from 'graphql/mutation/coupon';
+import { useCart } from '@shopApp/contexts/cart/use-cart';
+import { APPLY_COUPON } from '@shopApp/graphql/mutation/coupon';
 
 // The type of props Checkout Form receives
 interface MyFormProps {
@@ -108,9 +110,14 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
     });
   };
 
-  const handleEditDelete = async (item: any, type: string, name: string) => {
+  const handleEditDelete = async (
+    item: any,
+    type: string,
+    name: string
+  ) => {
     if (type === 'edit') {
-      const modalComponent = name === 'address' ? UpdateAddress : UpdateContact;
+      const modalComponent =
+        name === 'address' ? UpdateAddress : UpdateContact;
       handleModal(modalComponent, item);
     } else {
       switch (name) {
@@ -160,9 +167,16 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
           <OrderSummary>
             <OrderSummaryItem style={{ marginBottom: 15 }}>
               <OrderLabel>
-                <FormattedMessage id='subTotal' defaultMessage='Subtotal' /> (
-                {cartItemsCount}{' '}
-                <FormattedMessage id='itemsText' defaultMessage='items' />)
+                <FormattedMessage
+                  id="subTotal"
+                  defaultMessage="Subtotal"
+                />{' '}
+                ({cartItemsCount}{' '}
+                <FormattedMessage
+                  id="itemsText"
+                  defaultMessage="items"
+                />
+                )
               </OrderLabel>
               <OrderAmount>$ {calculateSubTotalPrice()}</OrderAmount>
             </OrderSummaryItem>
@@ -170,8 +184,8 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
             <OrderSummaryItem style={{ marginBottom: 30 }}>
               <OrderLabel>
                 <FormattedMessage
-                  id='shippinFeeText'
-                  defaultMessage='Shipping Fee'
+                  id="shippinFeeText"
+                  defaultMessage="Shipping Fee"
                 />
               </OrderLabel>
               <OrderAmount>$ 00</OrderAmount>
@@ -179,16 +193,19 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
 
             <OrderSummaryItem
               style={{ marginBottom: 30 }}
-              className='voucherWrapper'
+              className="voucherWrapper"
             >
               <OrderLabel>
-                <FormattedMessage id='voucherText' defaultMessage='Voucher' />
+                <FormattedMessage
+                  id="voucherText"
+                  defaultMessage="Voucher"
+                />
               </OrderLabel>
               {coupon ? (
                 <CouponDisplay
                   code={coupon.code}
-                  sign='-'
-                  currency='$'
+                  sign="-"
+                  currency="$"
                   price={calculateDiscount()}
                   onClick={(e) => {
                     e.preventDefault();
@@ -199,18 +216,18 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
                 <>
                   <CouponBoxWrapper>
                     <CouponBox
-                      buttonTitle='Apply'
-                      intlCouponBoxPlaceholder='couponPlaceholder'
+                      buttonTitle="Apply"
+                      intlCouponBoxPlaceholder="couponPlaceholder"
                       onClick={handleApplyCoupon}
                       value={couponCode}
                       onUpdate={handleOnUpdate}
                       style={{ maxWidth: 350, height: 50 }}
-                      intlCouponApplyButton='voucherApply'
+                      intlCouponApplyButton="voucherApply"
                     />
                     {couponError && (
                       <ErrorMsg>
                         <FormattedMessage
-                          id='couponError'
+                          id="couponError"
                           defaultMessage={couponError}
                         />
                       </ErrorMsg>
@@ -222,7 +239,10 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
 
             <OrderSummaryItem>
               <OrderLabel>
-                <FormattedMessage id='totalText' defaultMessage='Total' />
+                <FormattedMessage
+                  id="totalText"
+                  defaultMessage="Total"
+                />
               </OrderLabel>
               <OrderAmount>$ {calculatePrice()}</OrderAmount>
             </OrderSummaryItem>
@@ -231,8 +251,8 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
           <DeliverySchedule>
             <Heading>
               <FormattedMessage
-                id='deliverySchedule'
-                defaultMessage='Select Your Delivery Schedule'
+                id="deliverySchedule"
+                defaultMessage="Select Your Delivery Schedule"
               />
             </Heading>
             <RadioGroup
@@ -243,7 +263,7 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
                   key={item.id}
                   title={item.title}
                   content={item.time_slot}
-                  name='schedule'
+                  name="schedule"
                   checked={item.type === 'primary'}
                   withActionButtons={false}
                   onChange={() =>
@@ -260,8 +280,8 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
           <DeliveryAddress>
             <Heading>
               <FormattedMessage
-                id='checkoutDeliveryAddress'
-                defaultMessage='Select Your Delivery Address'
+                id="checkoutDeliveryAddress"
+                defaultMessage="Select Your Delivery Address"
               />
             </Heading>
             <ButtonGroup>
@@ -273,7 +293,7 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
                     key={item.id}
                     title={item.name}
                     content={item.info}
-                    name='address'
+                    name="address"
                     checked={item.type === 'primary'}
                     onChange={() =>
                       dispatch({
@@ -281,19 +301,23 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
                         payload: item.id.toString(),
                       })
                     }
-                    onEdit={() => handleEditDelete(item, 'edit', 'address')}
-                    onDelete={() => handleEditDelete(item, 'delete', 'address')}
+                    onEdit={() =>
+                      handleEditDelete(item, 'edit', 'address')
+                    }
+                    onDelete={() =>
+                      handleEditDelete(item, 'delete', 'address')
+                    }
                   />
                 )}
                 secondaryComponent={
                   <Button
-                    title='Add Address'
-                    iconPosition='right'
-                    colors='primary'
-                    size='small'
-                    variant='outlined'
-                    type='button'
-                    intlButtonId='addAddressBtn'
+                    title="Add Address"
+                    iconPosition="right"
+                    colors="primary"
+                    size="small"
+                    variant="outlined"
+                    type="button"
+                    intlButtonId="addAddressBtn"
                     onClick={() =>
                       handleModal(UpdateAddress, 'add-address-modal')
                     }
@@ -306,8 +330,8 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
           <Contact>
             <Heading>
               <FormattedMessage
-                id='contactNumberText'
-                defaultMessage='Select Your Contact Number'
+                id="contactNumberText"
+                defaultMessage="Select Your Contact Number"
               />
             </Heading>
             <ButtonGroup>
@@ -326,20 +350,24 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
                         payload: item.id.toString(),
                       })
                     }
-                    name='contact'
-                    onEdit={() => handleEditDelete(item, 'edit', 'contact')}
-                    onDelete={() => handleEditDelete(item, 'delete', 'contact')}
+                    name="contact"
+                    onEdit={() =>
+                      handleEditDelete(item, 'edit', 'contact')
+                    }
+                    onDelete={() =>
+                      handleEditDelete(item, 'delete', 'contact')
+                    }
                   />
                 )}
                 secondaryComponent={
                   <Button
-                    title='Add Contact'
-                    iconPosition='right'
-                    colors='primary'
-                    size='small'
-                    variant='outlined'
-                    type='button'
-                    intlButtonId='addContactBtn'
+                    title="Add Contact"
+                    iconPosition="right"
+                    colors="primary"
+                    size="small"
+                    variant="outlined"
+                    type="button"
+                    intlButtonId="addContactBtn"
                     onClick={() =>
                       handleModal(UpdateContact, 'add-contact-modal')
                     }
@@ -352,12 +380,12 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
           <PaymentOption>
             <Heading>
               <FormattedMessage
-                id='selectPaymentText'
-                defaultMessage='Select Payment Option'
+                id="selectPaymentText"
+                defaultMessage="Select Payment Option"
               />
             </Heading>
             <PaymentGroup
-              name='payment'
+              name="payment"
               deviceType={deviceType}
               items={card}
               onEditDeleteField={(item: any, type: string) =>
@@ -382,11 +410,11 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
           <CheckoutSubmit>
             <Button
               onClick={handleSubmit}
-              type='button'
+              type="button"
               disabled={!isValid}
-              title='Proceed to Checkout'
+              title="Proceed to Checkout"
               // size='small'
-              intlButtonId='proceesCheckout'
+              intlButtonId="proceesCheckout"
               loader={<Loader />}
               isLoading={loading}
             />

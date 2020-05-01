@@ -3,9 +3,9 @@ import { NextPage } from 'next';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import { FormattedMessage } from 'react-intl';
-import { SEO } from 'components/seo';
-import CartPopUp from 'containers/Cart/CartPopUp';
-import { withApollo } from 'helper/apollo';
+import { SEO } from '@shopApp/components/seo';
+import CartPopUp from '@shopApp/containers/Cart/CartPopUp';
+import { withApollo } from '@shopApp/helper/apollo';
 import { Modal } from '@redq/reuse-modal';
 
 import {
@@ -13,9 +13,9 @@ import {
   ProductsRow,
   MainContentArea,
   ProductsCol,
-} from 'styled/pages.style';
-import GiftCard from 'components/GiftCard/GiftCard';
-import SiteFooter from 'components/SiteFooter/SiteFooter';
+} from '@shopApp/styled/pages.style';
+import GiftCard from '@shopApp/components/GiftCard/GiftCard';
+import SiteFooter from '@shopApp/components/SiteFooter/SiteFooter';
 
 const GET_COUPON = gql`
   query {
@@ -41,7 +41,7 @@ const GiftCardPage: NextPage<GiftCardProps> = ({ deviceType }) => {
 
   return (
     <Modal>
-      <SEO title='Offer - PickBazar' description='Offer Details' />
+      <SEO title="Offer - PickBazar" description="Offer Details" />
       <OfferPageWrapper>
         <MainContentArea>
           <div style={{ width: '100%' }}>
@@ -49,7 +49,10 @@ const GiftCardPage: NextPage<GiftCardProps> = ({ deviceType }) => {
               {data && data.coupons
                 ? data.coupons.map((coupon) => (
                     <ProductsCol key={coupon.id}>
-                      <GiftCard image={coupon.image} code={coupon.code} />
+                      <GiftCard
+                        image={coupon.image}
+                        code={coupon.code}
+                      />
                     </ProductsCol>
                   ))
                 : null}
@@ -59,10 +62,10 @@ const GiftCardPage: NextPage<GiftCardProps> = ({ deviceType }) => {
 
         <SiteFooter style={{ marginTop: 50 }}>
           <FormattedMessage
-            id='siteFooter'
-            defaultMessage='Pickbazar is a product of'
+            id="siteFooter"
+            defaultMessage="Pickbazar is a product of"
           />
-          &nbsp; <a href='/'>Redq, Inc.</a>
+          &nbsp; <a href="/">Redq, Inc.</a>
         </SiteFooter>
       </OfferPageWrapper>
       <CartPopUp deviceType={deviceType} />

@@ -6,9 +6,9 @@ import { closeModal } from '@redq/reuse-modal';
 import { FormikProps, ErrorMessage, Formik, Form } from 'formik';
 import { useMutation } from '@apollo/react-hooks';
 import MaskedInput from 'react-text-mask';
-import { ProfileContext } from 'contexts/profile/profile.context';
-import Button from 'components/Button/Button';
-import { UPDATE_CONTACT } from 'graphql/mutation/contact';
+import { ProfileContext } from '@shopApp/contexts/profile/profile.context';
+import Button from '@shopApp/components/Button/Button';
+import { UPDATE_CONTACT } from '@shopApp/graphql/mutation/contact';
 import { FieldWrapper, Heading } from './Update.style';
 
 type Props = {
@@ -33,7 +33,10 @@ const CreateOrUpdateContact: React.FC<Props> = ({ item }) => {
   };
   const [addContactMutation] = useMutation(UPDATE_CONTACT);
   const { state, dispatch } = useContext(ProfileContext);
-  const handleSubmit = async (values: FormValues, { setSubmitting }: any) => {
+  const handleSubmit = async (
+    values: FormValues,
+    { setSubmitting }: any
+  ) => {
     await addContactMutation({
       variables: { contactInput: JSON.stringify(values) },
     });
@@ -76,26 +79,26 @@ const CreateOrUpdateContact: React.FC<Props> = ({ item }) => {
                 /\d/,
                 /\d/,
               ]}
-              className='form-control'
-              placeholder='Enter a phone number'
+              className="form-control"
+              placeholder="Enter a phone number"
               guide={false}
-              id='my-input-id'
+              id="my-input-id"
               value={values.number}
               onChange={handleChange}
               onBlur={handleBlur}
-              name='number'
+              name="number"
               render={(ref: any, props: {}) => (
                 <StyledInput ref={ref} {...props} />
               )}
             />
           </FieldWrapper>
-          <ErrorMessage name='number' component={StyledError} />
+          <ErrorMessage name="number" component={StyledError} />
 
           <Button
             disabled={isSubmitting}
-            type='submit'
-            title='Save Contact'
-            size='medium'
+            type="submit"
+            title="Save Contact"
+            size="medium"
             fullwidth={true}
           />
         </Form>

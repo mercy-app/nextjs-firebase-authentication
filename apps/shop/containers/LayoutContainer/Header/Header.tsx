@@ -1,15 +1,15 @@
 import React from 'react';
 import Router, { useRouter } from 'next/router';
 import { openModal } from '@redq/reuse-modal';
-import SearchBox from 'components/SearchBox/SearchBox';
-import { SearchContext } from 'contexts/search/search.context';
-import { AuthContext } from 'contexts/auth/auth.context';
+import SearchBox from '@shopApp/components/SearchBox/SearchBox';
+import { SearchContext } from '@shopApp/contexts/search/search.context';
+import { AuthContext } from '@shopApp/contexts/auth/auth.context';
 import AuthenticationForm from '../../SignInOutForm/Form';
 import { RightMenu } from './Menu/RightMenu/RightMenu';
 import { LeftMenu } from './Menu/LeftMenu/LeftMenu';
 import HeaderWrapper from './Header.style';
-import LogoImage from 'image/logo.svg';
-import UserImage from 'image/user.jpg';
+import LogoImage from '@shopApp/image/logo.svg';
+import UserImage from '@shopApp/image/user.jpg';
 import { isCategoryPage } from '../is-home-page';
 
 type Props = {

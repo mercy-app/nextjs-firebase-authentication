@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import gql from 'graphql-tag';
 import { openModal, closeModal } from '@redq/reuse-modal';
-import ProductCard from 'components/ProductCard/ProductCard';
+import ProductCard from '@shopApp/components/ProductCard/ProductCard';
 import {
   ProductsRow,
   ProductsCol,
@@ -12,13 +12,13 @@ import {
   LoaderItem,
   ProductCardWrapper,
 } from './Products.style';
-import { CURRENCY } from 'helper/constant';
+import { CURRENCY } from '@shopApp/helper/constant';
 import { useQuery } from '@apollo/react-hooks';
-import Button from 'components/Button/Button';
-import Loader from 'components/Loader/Loader';
-import Placeholder from 'components/Placeholder/Placeholder';
+import Button from '@shopApp/components/Button/Button';
+import Loader from '@shopApp/components/Loader/Loader';
+import Placeholder from '@shopApp/components/Placeholder/Placeholder';
 import Fade from 'react-reveal/Fade';
-import NoResultFound from 'components/NoResult/NoResult';
+import NoResultFound from '@shopApp/components/NoResult/NoResult';
 
 const QuickView = dynamic(() => import('../QuickView/QuickView'));
 
@@ -167,7 +167,10 @@ export const Products: React.FC<ProductsProps> = ({
         return {
           products: {
             __typename: prev.products.__typename,
-            items: [...prev.products.items, ...fetchMoreResult.products.items],
+            items: [
+              ...prev.products.items,
+              ...fetchMoreResult.products.items,
+            ],
             hasMore: fetchMoreResult.products.hasMore,
           },
         };
@@ -198,7 +201,11 @@ export const Products: React.FC<ProductsProps> = ({
                   data={item}
                   deviceType={deviceType}
                   onClick={() =>
-                    handleQuickViewModal(item, deviceType, handleModalClose)
+                    handleQuickViewModal(
+                      item,
+                      deviceType,
+                      handleModalClose
+                    )
                   }
                 />
               </Fade>

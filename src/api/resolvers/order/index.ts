@@ -1,5 +1,6 @@
 import { Resolver, Query, Arg, Int, Mutation, ID } from "type-graphql";
-import { Order, OrderCreateInput } from '@prismaTypes'
+import { Order } from '@prismaTypes/models/Order'
+import { OrderCreateInput } from '@prismaTypes/resolvers/inputs/OrderCreateInput'
 
 const { PrismaClient } = require('@prisma/client');
 

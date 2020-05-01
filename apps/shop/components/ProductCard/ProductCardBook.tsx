@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import Image from 'components/Image/Image';
+import Image from '@shopApp/components/Image/Image';
 import {
   BookCardWrapper,
   BookImageWrapper,
@@ -41,11 +41,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
   ...props
 }) => {
   return (
-    <BookCardWrapper onClick={onClick} className='book-card'>
+    <BookCardWrapper onClick={onClick} className="book-card">
       <BookImageWrapper>
         <Image
           url={image}
-          className='product-image'
+          className="product-image"
           style={{ position: 'relative' }}
           alt={title}
         />
@@ -60,7 +60,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <BookInfo>
         <ProductName>{title}</ProductName>
         <AuthorInfo>
-          <FormattedMessage id='intlTextBy' defaultMessage='by' /> {name}
+          <FormattedMessage id="intlTextBy" defaultMessage="by" />{' '}
+          {name}
         </AuthorInfo>
       </BookInfo>
     </BookCardWrapper>

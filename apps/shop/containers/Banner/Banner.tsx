@@ -1,9 +1,9 @@
 import React, { useContext, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { Waypoint } from 'react-waypoint';
-import SearchBox from 'components/SearchBox/SearchBox';
-import { SearchContext } from 'contexts/search/search.context';
-import { useStickyDispatch } from 'contexts/app/app.provider';
+import SearchBox from '@shopApp/components/SearchBox/SearchBox';
+import { SearchContext } from '@shopApp/contexts/search/search.context';
+import { useStickyDispatch } from '@shopApp/contexts/app/app.provider';
 import { FormattedMessage } from 'react-intl';
 import {
   BannerWrapper,
@@ -55,9 +55,10 @@ const Banner: React.FC<BannerProps> = ({
     );
   }
   const useDispatch = useStickyDispatch();
-  const setSticky = useCallback(() => useDispatch({ type: 'SET_STICKY' }), [
-    useDispatch,
-  ]);
+  const setSticky = useCallback(
+    () => useDispatch({ type: 'SET_STICKY' }),
+    [useDispatch]
+  );
   const removeSticky = useCallback(
     () => useDispatch({ type: 'REMOVE_STICKY' }),
     [useDispatch]
@@ -79,14 +80,14 @@ const Banner: React.FC<BannerProps> = ({
         <BannerHeading>
           <FormattedMessage
             id={intlTitleId}
-            defaultMessage='Set Your Title Through Language File'
+            defaultMessage="Set Your Title Through Language File"
             values={{ minute: 90 }}
           />
         </BannerHeading>
         <BannerSubHeading>
           <FormattedMessage
             id={intlDescriptionId}
-            defaultMessage='Set Your Description Through Language File'
+            defaultMessage="Set Your Description Through Language File"
           />
         </BannerSubHeading>
 
@@ -100,7 +101,7 @@ const Banner: React.FC<BannerProps> = ({
           handleSearch={(value: string) => handleSearchInput(value)}
           value={state.text || ''}
           onClick={handleClickSearchButton}
-          className='banner-search'
+          className="banner-search"
           pathname={pathname}
         />
         <Waypoint

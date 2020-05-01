@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import { openModal } from '@redq/reuse-modal';
 import Router from 'next/router';
 import { Scrollbars } from 'react-custom-scrollbars';
-import Drawer from 'components/Drawer/Drawer';
-import Button from 'components/Button/Button';
-import NavLink from 'components/NavLink/NavLink';
-import { CloseIcon } from 'components/AllSvgIcon';
-import { DrawerContext } from 'contexts/drawer/drawer.context';
-import { AuthContext } from 'contexts/auth/auth.context';
+import Drawer from '@shopApp/components/Drawer/Drawer';
+import Button from '@shopApp/components/Button/Button';
+import NavLink from '@shopApp/components/NavLink/NavLink';
+import { CloseIcon } from '@shopApp/components/AllSvgIcon';
+import { DrawerContext } from '@shopApp/contexts/drawer/drawer.context';
+import { AuthContext } from '@shopApp/contexts/auth/auth.context';
 import AuthenticationForm from '../../SignInOutForm/Form';
 import { FormattedMessage } from 'react-intl';
 import {
@@ -23,7 +23,7 @@ import {
   DrawerMenuItem,
   UesrOptionMenu,
 } from './Header.style';
-import UserImage from 'image/user.jpg';
+import UserImage from '@shopApp/image/user.jpg';
 
 import {
   PROCEED_TO_CHECKOUT_PAGE,
@@ -33,7 +33,7 @@ import {
   ORDER_RECEIVED,
   HELP_PAGE,
   OFFER_PAGE,
-} from 'constants/navigation';
+} from '@shopApp/constants/navigation';
 
 const DrawerMenuItems = [
   {
@@ -139,7 +139,7 @@ const MobileDrawer: React.FunctionComponent = () => {
 
   return (
     <Drawer
-      width='316px'
+      width="316px"
       drawerHandler={
         <HamburgerIcon>
           <span />
@@ -161,7 +161,7 @@ const MobileDrawer: React.FunctionComponent = () => {
             {isAuthenticated ? (
               <LoginView>
                 <UserAvatar>
-                  <img src={UserImage} alt='user_avatar' />
+                  <img src={UserImage} alt="user_avatar" />
                 </UserAvatar>
                 <UserDetails>
                   <h3>David Kinderson</h3>
@@ -171,10 +171,10 @@ const MobileDrawer: React.FunctionComponent = () => {
             ) : (
               <LogoutView>
                 <Button
-                  intlButtonId='mobileSignInButtonText'
-                  title='Join In'
-                  size='small'
-                  className='sign_in'
+                  intlButtonId="mobileSignInButtonText"
+                  title="Join In"
+                  size="small"
+                  className="sign_in"
                   // variant="primary"
                   onClick={signInOutForm}
                 />
@@ -190,7 +190,7 @@ const MobileDrawer: React.FunctionComponent = () => {
                   href={item.href}
                   label={item.label}
                   intlId={item.intlLabelId}
-                  className='drawer_menu_item'
+                  className="drawer_menu_item"
                 />
               </DrawerMenuItem>
             ))}
@@ -200,18 +200,21 @@ const MobileDrawer: React.FunctionComponent = () => {
             <UesrOptionMenu>
               <DrawerMenuItem>
                 <NavLink
-                  href='/profile'
-                  label='Your Account Settings'
-                  className='drawer_menu_item'
-                  intlId='navlinkAccountSettings'
+                  href="/profile"
+                  label="Your Account Settings"
+                  className="drawer_menu_item"
+                  intlId="navlinkAccountSettings"
                 />
               </DrawerMenuItem>
               <DrawerMenuItem>
-                <div onClick={handleLogout} className='drawer_menu_item'>
-                  <span className='logoutBtn'>
+                <div
+                  onClick={handleLogout}
+                  className="drawer_menu_item"
+                >
+                  <span className="logoutBtn">
                     <FormattedMessage
-                      id='navlinkLogout'
-                      defaultMessage='Logout'
+                      id="navlinkLogout"
+                      defaultMessage="Logout"
                     />
                   </span>
                 </div>

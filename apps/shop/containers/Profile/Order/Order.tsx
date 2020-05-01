@@ -20,10 +20,14 @@ import {
 import OrderDetails from './SingleOrderDetails/OrderDetails';
 import OrderCard from './OrderCard/OrderCard';
 import OrderCardMobile from './OrderCard/orderCardMobile';
-import useComponentSize from 'helper/useComponentSize';
+import useComponentSize from '@shopApp/helper/useComponentSize';
 import { FormattedMessage } from 'react-intl';
 
-const progressData = ['Order Received', 'Order On The Way', 'Order Delivered'];
+const progressData = [
+  'Order Received',
+  'Order On The Way',
+  'Order Delivered',
+];
 
 const GET_ORDERS = gql`
   query getAllOrders($text: String, $user: Int!, $limit: Int) {
@@ -52,7 +56,7 @@ const GET_ORDERS = gql`
 
 const orderTableColumns = [
   {
-    title: <FormattedMessage id='cartItems' defaultMessage='Items' />,
+    title: <FormattedMessage id="cartItems" defaultMessage="Items" />,
     dataIndex: '',
     key: 'items',
     width: 250,
@@ -75,7 +79,10 @@ const orderTableColumns = [
   },
   {
     title: (
-      <FormattedMessage id='intlTableColTitle2' defaultMessage='Quantity' />
+      <FormattedMessage
+        id="intlTableColTitle2"
+        defaultMessage="Quantity"
+      />
     ),
     dataIndex: 'quantity',
     key: 'quantity',
@@ -83,7 +90,12 @@ const orderTableColumns = [
     width: 100,
   },
   {
-    title: <FormattedMessage id='intlTableColTitle3' defaultMessage='Price' />,
+    title: (
+      <FormattedMessage
+        id="intlTableColTitle3"
+        defaultMessage="Price"
+      />
+    ),
     dataIndex: '',
     key: 'price',
     align: 'right',
@@ -130,7 +142,7 @@ const OrdersContent: React.FC<OrderTableProps> = ({
 
   if (error) return <div>{error.message}</div>;
 
-  const handleClick = order => {
+  const handleClick = (order) => {
     setOrder(order);
     setActive(order.id);
   };
@@ -144,8 +156,8 @@ const OrdersContent: React.FC<OrderTableProps> = ({
           <OrderListWrapper style={{ height: size.height }}>
             <Title style={{ padding: '0 20px' }}>
               <FormattedMessage
-                id='intlOrderPageTitle'
-                defaultMessage='My Order'
+                id="intlOrderPageTitle"
+                defaultMessage="My Order"
               />
             </Title>
 
@@ -154,7 +166,9 @@ const OrdersContent: React.FC<OrderTableProps> = ({
               autoHide
               autoHeight
               autoHeightMin={420}
-              autoHeightMax={isNaN(orderListHeight) ? 500 : orderListHeight}
+              autoHeightMax={
+                isNaN(orderListHeight) ? 500 : orderListHeight
+              }
             >
               <OrderList>
                 {data.orders.length !== 0 ? (
@@ -162,7 +176,9 @@ const OrdersContent: React.FC<OrderTableProps> = ({
                     <OrderCard
                       key={order.id}
                       orderId={order.id}
-                      className={order && order.id === active ? 'active' : ''}
+                      className={
+                        order && order.id === active ? 'active' : ''
+                      }
                       status={progressData[order.status - 1]}
                       date={order.date}
                       deliveryTime={order.deliveryTime}
@@ -175,8 +191,8 @@ const OrdersContent: React.FC<OrderTableProps> = ({
                 ) : (
                   <NoOrderFound>
                     <FormattedMessage
-                      id='intlNoOrderFound'
-                      defaultMessage='No order found'
+                      id="intlNoOrderFound"
+                      defaultMessage="No order found"
                     />
                   </NoOrderFound>
                 )}
@@ -187,8 +203,8 @@ const OrdersContent: React.FC<OrderTableProps> = ({
           <OrderDetailsWrapper ref={targetRef}>
             <Title style={{ padding: '0 20px' }}>
               <FormattedMessage
-                id='orderDetailsText'
-                defaultMessage='Order Details'
+                id="orderDetailsText"
+                defaultMessage="Order Details"
               />
             </Title>
             {order && order.id && (

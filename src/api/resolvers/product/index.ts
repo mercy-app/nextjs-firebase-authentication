@@ -1,7 +1,8 @@
 import { Resolver, Query, Arg, Args, Mutation } from 'type-graphql';
 // import loadProducts from '../../data/product.data';
 // import Product from './product.type';
-import { Product, ProductCreateInput } from '@prismaTypes'
+import { Product } from '@prismaTypes/models/Product'
+import { ProductCreateInput } from '@prismaTypes/resolvers/inputs/ProductCreateInput'
 import Products from './products.type';
 import GetProductsArgs from './product.args_type';
 // import AddProductInput from './product.input_type';

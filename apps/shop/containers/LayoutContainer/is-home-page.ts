@@ -7,7 +7,7 @@ import {
   FURNITURE_PAGE,
   BOOK_PAGE,
   MEDICINE_PAGE,
-} from 'constants/navigation';
+} from '@shopApp/constants/navigation';
 const arr = [
   HOME_PAGE,
   GROCERY_PAGE,

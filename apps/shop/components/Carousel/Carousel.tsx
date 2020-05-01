@@ -3,7 +3,7 @@ import Carousel from 'react-multi-carousel';
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 import { ArrowNext, ArrowPrev } from '../AllSvgIcon';
-import { useLocale } from 'contexts/language/language.provider';
+import { useLocale } from '@shopApp/contexts/language/language.provider';
 
 const ButtonPrev = styled('button')`
   height: 40px;
@@ -178,7 +178,10 @@ export default function CustomCarousel({
         {data.map((item: any, index: number) => {
           if (component) return component(item);
           return (
-            <div style={{ padding: '0 15px', overflow: 'hidden' }} key={index}>
+            <div
+              style={{ padding: '0 15px', overflow: 'hidden' }}
+              key={index}
+            >
               <a
                 href={item.link}
                 style={{ display: 'flex', cursor: 'pointer' }}

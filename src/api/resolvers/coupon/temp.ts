@@ -4,7 +4,8 @@ import { Resolver, Mutation, Arg, Query } from 'type-graphql';
 // import AddCouponInput from './coupon.input_type';
 // import search from '../../helpers/search';
 
-import { Coupon, CouponCreateInput } from '@prismaTypes'
+import { Coupon } from '@prismaTypes/models/Coupon'
+import { CouponCreateInput } from '@prismaTypes/resolvers/inputs/CouponCreateInput'
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 

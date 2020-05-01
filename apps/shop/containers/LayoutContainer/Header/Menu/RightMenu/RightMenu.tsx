@@ -1,11 +1,11 @@
 import React from 'react';
-import NavLink from 'components/NavLink/NavLink';
-import Button from 'components/Button/Button';
-import Popover from 'components/Popover/Popover';
-import { OFFER_PAGE, HELP_PAGE } from 'constants/navigation';
+import NavLink from '@shopApp/components/NavLink/NavLink';
+import Button from '@shopApp/components/Button/Button';
+import Popover from '@shopApp/components/Popover/Popover';
+import { OFFER_PAGE, HELP_PAGE } from '@shopApp/constants/navigation';
 import { AuthorizedMenu } from '../AuthorizedMenu';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
-import { HelpIcon } from 'components/AllSvgIcon';
+import { HelpIcon } from '@shopApp/components/AllSvgIcon';
 import { RightMenuBox } from './RightMenu.style';
 
 type Props = {
@@ -19,7 +19,7 @@ export const RightMenu: React.FC<Props> = ({
   onLogout,
   avatar,
   isAuthenticated,
-  onJoin
+  onJoin,
 }) => {
   return (
     <RightMenuBox>

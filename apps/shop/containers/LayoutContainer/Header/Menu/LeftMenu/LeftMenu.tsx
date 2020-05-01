@@ -6,7 +6,7 @@ import {
   Arrow,
   LeftMenuBox,
 } from './LeftMenu.style';
-import Popover from 'components/Popover/Popover';
+import Popover from '@shopApp/components/Popover/Popover';
 import {
   MenuDown,
   FruitsVegetable,
@@ -16,8 +16,8 @@ import {
   FurnitureIcon,
   BookIcon,
   MedicineIcon,
-} from 'components/AllSvgIcon';
-import NavLink from 'components/NavLink/NavLink';
+} from '@shopApp/components/AllSvgIcon';
+import NavLink from '@shopApp/components/NavLink/NavLink';
 import {
   GROCERY_PAGE,
   CLOTHING,
@@ -26,11 +26,11 @@ import {
   FURNITURE_PAGE,
   BOOK_PAGE,
   MEDICINE_PAGE,
-} from 'constants/navigation';
+} from '@shopApp/constants/navigation';
 import { useRouter } from 'next/router';
 import { FormattedMessage } from 'react-intl';
 
-import Logo from 'components/Logo/Logo';
+import Logo from '@shopApp/components/Logo/Logo';
 const MENU_ITEMS = [
   {
     link: GROCERY_PAGE,
@@ -59,19 +59,19 @@ const MENU_ITEMS = [
   {
     link: FURNITURE_PAGE,
     label: 'Furniture',
-    icon: <FurnitureIcon width='15px' height='13px' />,
+    icon: <FurnitureIcon width="15px" height="13px" />,
     intlId: 'navFurnitureMenu',
   },
   {
     link: BOOK_PAGE,
     label: 'Book',
-    icon: <BookIcon width='15px' height='13px' />,
+    icon: <BookIcon width="15px" height="13px" />,
     intlId: 'navBookMenu',
   },
   {
     link: MEDICINE_PAGE,
     label: 'Medicine',
-    icon: <MedicineIcon width='15px' height='13px' />,
+    icon: <MedicineIcon width="15px" height="13px" />,
     intlId: 'navMedicineMenu',
   },
 ];
@@ -83,11 +83,11 @@ const CategoryMenu = ({ onClick }) => {
         <NavLink
           key={item.link}
           onClick={() => onClick(item)}
-          className='menu-item'
+          className="menu-item"
           href={item.link}
           label={item.label}
           icon={item.icon}
-          iconClass='menu-item-icon'
+          iconClass="menu-item-icon"
           intlId={item.intlId}
         />
       ))}
@@ -101,7 +101,9 @@ type Props = {
 
 export const LeftMenu: React.FC<Props> = ({ logo }) => {
   const { pathname } = useRouter();
-  const initialMenu = MENU_ITEMS.find((item) => item.link === pathname);
+  const initialMenu = MENU_ITEMS.find(
+    (item) => item.link === pathname
+  );
   const [activeMenu, setActiveMenu] = React.useState(
     initialMenu ?? MENU_ITEMS[0]
   );
@@ -116,7 +118,7 @@ export const LeftMenu: React.FC<Props> = ({ logo }) => {
 
       <MainMenu>
         <Popover
-          className='right'
+          className="right"
           handler={
             <SelectedItem>
               <span>

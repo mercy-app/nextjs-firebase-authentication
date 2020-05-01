@@ -16,6 +16,25 @@ import SessionContext from '@context/session';
 import * as ROUTES from '@constants/routes';
 import { PARTNER_TRACK_VISITOR } from '@queries/partner';
 
+import { parseCookies } from '@shopApp/helper/parse-cookies';
+import { LanguageProvider } from '@shopApp/contexts/language/language.provider';
+
+// Language translation files
+import localEn from '@shopApp/data/translation/en.json';
+import localAr from '@shopApp/data/translation/ar.json';
+import localEs from '@shopApp/data/translation/es.json';
+import localDe from '@shopApp/data/translation/de.json';
+import localCn from '@shopApp/data/translation/zh.json';
+import localIl from '@shopApp/data/translation/he.json';
+// Language translation Config
+const messages = {
+  en: localEn,
+  ar: localAr,
+  es: localEs,
+  de: localDe,
+  zh: localCn,
+  he: localIl,
+};
 const TIMEOUT = 400;
 
 const theme = {
@@ -98,9 +117,12 @@ const GlobalStyle = createGlobalStyle`
 class MyApp extends NextApp {
   static async getInitialProps({ Component, ctx }) {
     const isServer = ctx.req || ctx.res;
+    const { locale } = parseCookies(ctx.req);
 
     const { session } = nextCookie(ctx);
-
+    const userAgent = ctx.req
+      ? ctx.req.headers['user-agent']
+      : navigator.userAgent;
     // Redirect server/client-side if not authorized
     if (Component.isAuthorized && !Component.isAuthorized(session)) {
       if (isServer) {
@@ -116,7 +138,7 @@ class MyApp extends NextApp {
       ? await Component.getInitialProps(ctx)
       : {};
 
-    return { pageProps, session };
+    return { pageProps, session, locale, userAgent };
   }
 
   handleGoogleAnalytics = () => {
@@ -171,33 +193,39 @@ class MyApp extends NextApp {
       apollo,
       router,
       err,
+      locale,
     } = this.props;
 
     // workaround https://github.com/zeit/next.js/blob/canary/examples/with-sentry-simple/pages/_app.js
     const modifiedPageProps = { ...pageProps, err };
 
     return (
-      <ThemeProvider theme={theme}>
-        <SessionContext.Provider value={session}>
-          <ApolloProvider client={apollo}>
-            <GlobalStyle />
-            <Head />
-            <PageTransition
-              timeout={TIMEOUT}
-              classNames="page-transition"
-              loadingClassNames="loading-indicator"
-              loadingComponent={<Loader />}
-              loadingDelay={500}
-              loadingTimeout={{
-                enter: TIMEOUT,
-                exit: 0,
-              }}
-            >
-              <Component {...modifiedPageProps} key={router.route} />
-            </PageTransition>
-          </ApolloProvider>
-        </SessionContext.Provider>
-      </ThemeProvider>
+      <LanguageProvider messages={messages} initLocale={locale}>
+        <ThemeProvider theme={theme}>
+          <SessionContext.Provider value={session}>
+            <ApolloProvider client={apollo}>
+              <GlobalStyle />
+              <Head />
+              <PageTransition
+                timeout={TIMEOUT}
+                classNames="page-transition"
+                loadingClassNames="loading-indicator"
+                loadingComponent={<Loader />}
+                loadingDelay={500}
+                loadingTimeout={{
+                  enter: TIMEOUT,
+                  exit: 0,
+                }}
+              >
+                <Component
+                  {...modifiedPageProps}
+                  key={router.route}
+                />
+              </PageTransition>
+            </ApolloProvider>
+          </SessionContext.Provider>
+        </ThemeProvider>
+      </LanguageProvider>
     );
   }
 }

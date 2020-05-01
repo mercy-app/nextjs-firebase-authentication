@@ -1,7 +1,7 @@
 import React from 'react';
 import Router from 'next/router';
 import { closeModal } from '@redq/reuse-modal';
-import Button from 'components/Button/Button';
+import Button from '@shopApp/components/Button/Button';
 import {
   QuickViewWrapper,
   ProductDetailsWrapper,
@@ -23,13 +23,13 @@ import {
   MetaItem,
   ModalClose,
 } from './QuickView.style';
-import { CURRENCY } from 'helper/constant';
-import { CloseIcon, CartIcon } from 'components/AllSvgIcon';
-import ReadMore from 'components/Truncate/Truncate';
-import CarouselWithCustomDots from 'components/MultiCarousel/MultiCarousel';
-import { useLocale } from 'contexts/language/language.provider';
-import { useCart } from 'contexts/cart/use-cart';
-import { Counter } from 'components/Counter/Counter';
+import { CURRENCY } from '@shopApp/helper/constant';
+import { CloseIcon, CartIcon } from '@shopApp/components/AllSvgIcon';
+import ReadMore from '@shopApp/components/Truncate/Truncate';
+import CarouselWithCustomDots from '@shopApp/components/MultiCarousel/MultiCarousel';
+import { useLocale } from '@shopApp/contexts/language/language.provider';
+import { useCart } from '@shopApp/contexts/cart/use-cart';
+import { Counter } from '@shopApp/components/Counter/Counter';
 
 type QuickViewProps = {
   modalProps: any;
@@ -81,13 +81,18 @@ const QuickView: React.FunctionComponent<QuickViewProps> = ({
         <CloseIcon />
       </ModalClose>
       <QuickViewWrapper>
-        <ProductDetailsWrapper className='product-card' dir='ltr'>
+        <ProductDetailsWrapper className="product-card" dir="ltr">
           {!isRtl && (
             <ProductPreview>
-              <CarouselWithCustomDots items={gallery} deviceType={deviceType} />
+              <CarouselWithCustomDots
+                items={gallery}
+                deviceType={deviceType}
+              />
               {!!discountInPercent && (
                 <>
-                  <DiscountPercent>{discountInPercent}%</DiscountPercent>
+                  <DiscountPercent>
+                    {discountInPercent}%
+                  </DiscountPercent>
                 </>
               )}
             </ProductPreview>
@@ -122,13 +127,13 @@ const QuickView: React.FunctionComponent<QuickViewProps> = ({
                 <ProductCartBtn>
                   {!isInCart(id) ? (
                     <Button
-                      title='Cart'
-                      intlButtonId='addCartButton'
-                      iconPosition='left'
-                      colors='primary'
-                      size='small'
-                      variant='outlined'
-                      className='cart-button'
+                      title="Cart"
+                      intlButtonId="addCartButton"
+                      iconPosition="left"
+                      colors="primary"
+                      size="small"
+                      variant="outlined"
+                      className="cart-button"
                       icon={<CartIcon />}
                       onClick={handleAddClick}
                     />
@@ -161,10 +166,15 @@ const QuickView: React.FunctionComponent<QuickViewProps> = ({
 
           {isRtl && (
             <ProductPreview>
-              <CarouselWithCustomDots items={gallery} deviceType={deviceType} />
+              <CarouselWithCustomDots
+                items={gallery}
+                deviceType={deviceType}
+              />
               {!!discountInPercent && (
                 <>
-                  <DiscountPercent>{discountInPercent}%</DiscountPercent>
+                  <DiscountPercent>
+                    {discountInPercent}%
+                  </DiscountPercent>
                 </>
               )}
             </ProductPreview>

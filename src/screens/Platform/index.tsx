@@ -2,13 +2,13 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { Modal } from '@redq/reuse-modal';
 import { withApollo } from 'helper/apollo';
-import { SEO } from 'components/seo';
-import StoreNav from 'components/StoreNav/StoreNav';
-import Carousel from 'components/Carousel/Carousel';
-import Banner from 'containers/Banner';
-import Sidebar from 'containers/Sidebar/Sidebar';
-import Products from 'containers/Products/Products';
-import CartPopUp from 'containers/Cart/CartPopUp';
+import { SEO } from '@shopApp/components/seo';
+import StoreNav from '@shopApp/components/StoreNav/StoreNav';
+import Carousel from '@shopApp/components/Carousel/Carousel';
+import Banner from '@shopApp/containers/Banner';
+import Sidebar from '@shopApp/containers/Sidebar/Sidebar';
+import Products from '@shopApp/containers/Products/Products';
+import CartPopUp from '@shopApp/containers/Cart/CartPopUp';
 import {
   MainContentArea,
   SidebarSection,
@@ -17,10 +17,10 @@ import {
   MobileCarouselDropdown,
 } from 'styled/pages.style';
 // Static Data Import Here
-import OFFERS from 'data/offers';
-import { usePlatform } from 'contexts/platform/platform.provider';
+import OFFERS from '@shopApp/data/offers';
+import { usePlatform } from '@shopApp/contexts/platform/platform.provider';
 import { useQuery } from '@apollo/react-hooks';
-import { GET_PLATFORM } from 'graphql/query/platform.query';
+import { GET_PLATFORM } from '@shopApp/graphql/query/platform.query';
 // import BannerImg from 'image/grocery.png';
 // import storeType from 'constants/storeType';
 

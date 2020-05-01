@@ -1,5 +1,5 @@
 import { Resolver, Query, Arg, ID, Int, Mutation } from "type-graphql";
-import { Customer } from '@prismaTypes'
+import { Customer } from '@prismaTypes/models/Customer'
 
 const { PrismaClient } = require('@prisma/client');
 

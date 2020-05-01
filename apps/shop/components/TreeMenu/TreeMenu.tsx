@@ -1,8 +1,14 @@
 import React from 'react';
-import { usePrevious, useMeasure } from 'helper/hooks';
+import { usePrevious, useMeasure } from '@shopApp/helper/hooks';
 import { useSpring, animated } from 'react-spring';
-import { Frame, Title, Content, Header, IconWrapper } from './TreeMenu.style';
-import * as Icons from 'components/AllSvgIcon';
+import {
+  Frame,
+  Title,
+  Content,
+  Header,
+  IconWrapper,
+} from './TreeMenu.style';
+import * as Icons from '@shopApp/components/AllSvgIcon';
 const Tree = React.memo(
   ({
     children,
@@ -16,14 +22,22 @@ const Tree = React.memo(
     const previous = usePrevious(isOpen);
     const [bind, { height: viewHeight }] = useMeasure();
     const { height, opacity, transform } = useSpring<any>({
-      from: { height: 0, opacity: 0, transform: 'translate3d(20px,0,0)' },
+      from: {
+        height: 0,
+        opacity: 0,
+        transform: 'translate3d(20px,0,0)',
+      },
       to: {
         height: isOpen ? viewHeight : 0,
         opacity: isOpen ? 1 : 0,
         transform: `translate3d(${isOpen ? 0 : 20}px,0,0)`,
       },
     });
-    const Icon = icon ? Icons[icon] : depth === 'child' ? Icons['Minus'] : null;
+    const Icon = icon
+      ? Icons[icon]
+      : depth === 'child'
+      ? Icons['Minus']
+      : null;
     return (
       <Frame depth={depth}>
         <Header open={isOpen} depth={depth}>
@@ -40,7 +54,11 @@ const Tree = React.memo(
             height: isOpen && previous === isOpen ? 'auto' : height,
           }}
         >
-          <animated.div style={{ transform }} {...bind} children={children} />
+          <animated.div
+            style={{ transform }}
+            {...bind}
+            children={children}
+          />
         </Content>
       </Frame>
     );
@@ -67,7 +85,7 @@ export const TreeMenu: React.FC<Props> = ({
             key={subOption.title}
             name={subOption.title}
             icon={subOption.icon}
-            depth='child'
+            depth="child"
             onClick={() => onClick(subOption.slug)}
             isOpen={active === subOption.slug}
           />
@@ -78,11 +96,13 @@ export const TreeMenu: React.FC<Props> = ({
           key={subOption.title}
           name={subOption.title}
           icon={subOption.icon}
-          depth='parent'
+          depth="parent"
           onClick={() => onClick(subOption.slug)}
           isOpen={
             active === subOption.slug ||
-            subOption.children.some((children) => children.slug === active)
+            subOption.children.some(
+              (children) => children.slug === active
+            )
           }
         >
           {handler(subOption.children)}
