@@ -16,6 +16,17 @@ import SessionContext from '@context/session';
 import * as ROUTES from '@constants/routes';
 import { PARTNER_TRACK_VISITOR } from '@queries/partner';
 
+// Shop App contents
+import { theme } from '@shopApp/theme';
+import { AuthProvider } from '@shopApp/contexts/auth/auth.provider';
+import { StickyProvider } from '@shopApp/contexts/app/app.provider';
+import { SearchProvider } from '@shopApp/contexts/search/search.provider';
+import { HeaderProvider } from '@shopApp/contexts/header/header.provider';
+
+import AppLayout from '@shopApp/containers/LayoutContainer/AppLayout';
+import { useDeviceType } from '@shopApp/helper/useDeviceType';
+import { CartProvider } from '@shopApp/contexts/cart/use-cart';
+import { GlobalStyle as ShopGlobalStyle } from '@shopApp/styled/global.style';
 import { parseCookies } from '@shopApp/helper/parse-cookies';
 import { LanguageProvider } from '@shopApp/contexts/language/language.provider';
 
@@ -26,6 +37,7 @@ import localEs from '@shopApp/data/translation/es.json';
 import localDe from '@shopApp/data/translation/de.json';
 import localCn from '@shopApp/data/translation/zh.json';
 import localIl from '@shopApp/data/translation/he.json';
+
 // Language translation Config
 const messages = {
   en: localEn,
@@ -37,12 +49,12 @@ const messages = {
 };
 const TIMEOUT = 400;
 
-const theme = {
-  colors: {
-    primary: '#823eb7',
-    lightGrey: '#f3f3f3',
-  },
-};
+// const theme = {
+//   colors: {
+//     primary: '#823eb7',
+//     lightGrey: '#f3f3f3',
+//   },
+// };
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -118,7 +130,7 @@ class MyApp extends NextApp {
   static async getInitialProps({ Component, ctx }) {
     const isServer = ctx.req || ctx.res;
     const { locale } = parseCookies(ctx.req);
-
+    const { pathname, query } = ctx;
     const { session } = nextCookie(ctx);
     const userAgent = ctx.req
       ? ctx.req.headers['user-agent']
@@ -138,7 +150,7 @@ class MyApp extends NextApp {
       ? await Component.getInitialProps(ctx)
       : {};
 
-    return { pageProps, session, locale, userAgent };
+    return { pageProps, session, locale, userAgent, pathname, query };
   }
 
   handleGoogleAnalytics = () => {
@@ -193,7 +205,9 @@ class MyApp extends NextApp {
       apollo,
       router,
       err,
+      pathname,
       locale,
+      query,
     } = this.props;
 
     // workaround https://github.com/zeit/next.js/blob/canary/examples/with-sentry-simple/pages/_app.js
@@ -217,10 +231,34 @@ class MyApp extends NextApp {
                   exit: 0,
                 }}
               >
-                <Component
-                  {...modifiedPageProps}
-                  key={router.route}
-                />
+                {pathname.includes('platforms') ? (
+                  <CartProvider>
+                    <SearchProvider query={query}>
+                      <HeaderProvider>
+                        <StickyProvider>
+                          <AuthProvider>
+                            <>
+                              <AppLayout
+                                deviceType={{ desktop: true }}
+                              >
+                                <Component
+                                  {...pageProps}
+                                  deviceType={{ desktop: true }}
+                                />
+                              </AppLayout>
+                              <ShopGlobalStyle />
+                            </>
+                          </AuthProvider>
+                        </StickyProvider>
+                      </HeaderProvider>
+                    </SearchProvider>
+                  </CartProvider>
+                ) : (
+                  <Component
+                    {...modifiedPageProps}
+                    key={router.route}
+                  />
+                )}
               </PageTransition>
             </ApolloProvider>
           </SessionContext.Provider>

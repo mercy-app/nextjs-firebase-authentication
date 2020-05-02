@@ -6,6 +6,7 @@ const fs = require('fs');
 const path = require('path');
 
 const withSourceMaps = require('@zeit/next-source-maps')();
+const withOptimizedImages = require('next-optimized-images');
 
 const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
@@ -113,6 +114,18 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 module.exports = withPlugins(
   [
+    [
+      withOptimizedImages,
+      {
+        mozjpeg: {
+          quality: 90,
+        },
+        webp: {
+          preset: 'default',
+          quality: 90,
+        },
+      },
+    ],
     [withLess, lessWithAntdConfig],
     [withMDX],
     [withSourceMaps],
