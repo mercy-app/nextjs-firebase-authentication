@@ -11,10 +11,11 @@ const withOptimizedImages = require('next-optimized-images');
 const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
 });
-
+const withFonts = require('next-fonts');
+const withCSS = require('@zeit/next-css');
 const withPlugins = require('next-compose-plugins');
-const withLess = require('@zeit/next-less');
-const lessToJS = require('less-vars-to-js');
+// const withLess = require('@zeit/next-less');
+// const lessToJS = require('less-vars-to-js');
 const bundleAnalyzer = require('@next/bundle-analyzer');
 
 const nextConfig = {
@@ -56,6 +57,17 @@ const nextConfig = {
     S3_BUCKET: process.env.S3_BUCKET,
   },
   webpack: (config, { isServer }) => {
+    config.module.rules.push({
+      test: /\.(eot|woff|woff2|ttf)$/,
+      use: {
+        loader: 'url-loader',
+        options: {
+          limit: 100000,
+          name: '[name].[ext]',
+        },
+      },
+    });
+
     // Less with Antd
     if (isServer) {
       const antStyles = /antd\/.*?\/style.*?/;
@@ -96,17 +108,17 @@ const nextConfig = {
   },
 };
 
-const lessWithAntdConfig = {
-  lessLoaderOptions: {
-    javascriptEnabled: true,
-    modifyVars: lessToJS(
-      fs.readFileSync(
-        path.resolve(__dirname, './assets/antd-custom.less'),
-        'utf8'
-      )
-    ),
-  },
-};
+// const lessWithAntdConfig = {
+//   lessLoaderOptions: {
+//     javascriptEnabled: true,
+//     modifyVars: lessToJS(
+//       fs.readFileSync(
+//         path.resolve(__dirname, './assets/antd-custom.less'),
+//         'utf8'
+//       )
+//     ),
+//   },
+// };
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -126,10 +138,12 @@ module.exports = withPlugins(
         },
       },
     ],
-    [withLess, lessWithAntdConfig],
+    // [withLess, lessWithAntdConfig],
     [withMDX],
     [withSourceMaps],
     [withBundleAnalyzer],
+    withFonts,
+    withCSS,
   ],
   nextConfig
 );

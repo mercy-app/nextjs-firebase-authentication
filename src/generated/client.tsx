@@ -123,6 +123,8 @@ export type Category = {
   slug: Scalars['String'];
   type: Scalars['String'];
   icon: Scalars['String'];
+  categoryId?: Maybe<Scalars['String']>;
+  platformId?: Maybe<Scalars['String']>;
 };
 
 export type Coupon = {
@@ -168,7 +170,7 @@ export type Customer = {
    __typename?: 'Customer';
   id: Scalars['String'];
   userId: Scalars['String'];
-  companyId?: Maybe<Scalars['String']>;
+  companyId: Scalars['String'];
   totalOrder: Scalars['Int'];
   totalOrderAmount: Scalars['Int'];
 };
@@ -378,6 +380,7 @@ export type Order = {
   id: Scalars['String'];
   status: Status;
   amount: Scalars['Float'];
+  companyId?: Maybe<Scalars['String']>;
   deliveryTime: Scalars['DateTime'];
   createdAt: Scalars['DateTime'];
   paymentMethod: Scalars['String'];
@@ -440,9 +443,9 @@ export type Product = {
   updatedAt: Scalars['DateTime'];
   published: Scalars['Boolean'];
   title: Scalars['String'];
-  companyId?: Maybe<Scalars['String']>;
+  companyId: Scalars['String'];
   price?: Maybe<Scalars['Float']>;
-  platformId?: Maybe<Scalars['String']>;
+  platformId: Scalars['String'];
   slug: Scalars['String'];
   unit?: Maybe<Scalars['String']>;
   salePrice?: Maybe<Scalars['Float']>;

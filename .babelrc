@@ -35,17 +35,12 @@
         "ssr": true
       }
     ],
-    [
-      "inline-import",
-      {
-        "extensions": [".css"]
-      }
-    ],
+
     [
       "import",
       {
         "libraryName": "antd",
-        "style": true
+        "style": "css"
       }
     ],
     "babel-plugin-transform-typescript-metadata",

@@ -30,6 +30,14 @@ import { GlobalStyle as ShopGlobalStyle } from '@shopApp/styled/global.style';
 import { parseCookies } from '@shopApp/helper/parse-cookies';
 import { LanguageProvider } from '@shopApp/contexts/language/language.provider';
 
+// External CSS import here
+import 'rc-drawer/assets/index.css';
+import 'rc-table/assets/index.css';
+import 'rc-collapse/assets/index.css';
+import 'react-multi-carousel/lib/styles.css';
+import '@shopApp/components/MultiCarousel/MultiCarousel.style.css';
+import '@redq/reuse-modal/lib/index.css';
+
 // Language translation files
 import localEn from '@shopApp/data/translation/en.json';
 import localAr from '@shopApp/data/translation/ar.json';
@@ -219,7 +227,6 @@ class MyApp extends NextApp {
           <SessionContext.Provider value={session}>
             <ApolloProvider client={apollo}>
               <GlobalStyle />
-              <Head />
               <PageTransition
                 timeout={TIMEOUT}
                 classNames="page-transition"
@@ -254,10 +261,14 @@ class MyApp extends NextApp {
                     </SearchProvider>
                   </CartProvider>
                 ) : (
-                  <Component
-                    {...modifiedPageProps}
-                    key={router.route}
-                  />
+                  <>
+                    <Head />
+
+                    <Component
+                      {...modifiedPageProps}
+                      key={router.route}
+                    />
+                  </>
                 )}
               </PageTransition>
             </ApolloProvider>
