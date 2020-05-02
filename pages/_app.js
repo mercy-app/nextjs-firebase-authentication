@@ -215,9 +215,10 @@ class MyApp extends NextApp {
       err,
       pathname,
       locale,
+      userAgent,
       query,
     } = this.props;
-
+    const deviceType = useDeviceType(userAgent);
     // workaround https://github.com/zeit/next.js/blob/canary/examples/with-sentry-simple/pages/_app.js
     const modifiedPageProps = { ...pageProps, err };
 
@@ -245,12 +246,10 @@ class MyApp extends NextApp {
                         <StickyProvider>
                           <AuthProvider>
                             <>
-                              <AppLayout
-                                deviceType={{ desktop: true }}
-                              >
+                              <AppLayout deviceType={deviceType}>
                                 <Component
                                   {...pageProps}
-                                  deviceType={{ desktop: true }}
+                                  deviceType={deviceType}
                                 />
                               </AppLayout>
                               <ShopGlobalStyle />
@@ -263,7 +262,6 @@ class MyApp extends NextApp {
                 ) : (
                   <>
                     <Head />
-
                     <Component
                       {...modifiedPageProps}
                       key={router.route}

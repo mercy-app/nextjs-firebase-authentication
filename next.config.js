@@ -57,6 +57,7 @@ const nextConfig = {
     S3_BUCKET: process.env.S3_BUCKET,
   },
   webpack: (config, { isServer }) => {
+    // TIP: this is required for css related files
     config.module.rules.push({
       test: /\.(eot|woff|woff2|ttf)$/,
       use: {

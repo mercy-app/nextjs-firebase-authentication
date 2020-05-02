@@ -13,11 +13,11 @@ generator typegraphql {
 }
 
 model Country {
-  id        String    @default(cuid()) @id
-  code      Int       @unique
-  name      String
-  currency  String
-  companies Company[]
+  id       String     @default(cuid()) @id
+  code     Int        @unique
+  name     String
+  currency String
+  Platform Platform[]
 }
 
 model Staff {
@@ -103,8 +103,6 @@ model Company {
   ownerId     String?
   platformId  String
   platform    Platform   @relation(fields: [platformId], references: [id])
-  countryId   String
-  country     Country    @relation(fields: [countryId], references: [id])
   products    Product[]
   staffs      Staff[]
   customers   Customer[]
@@ -144,6 +142,8 @@ model Product {
   description       String?
   type              String
   image             String
+  ProductsOnCounpon ProductsOnCounpon[]
+  Room              Room[]
 }
 
 model Category {

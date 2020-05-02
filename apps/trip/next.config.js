@@ -24,7 +24,9 @@ const nextConfig = {
             callback();
           }
         },
-        ...(typeof origExternals[0] === 'function' ? [] : origExternals),
+        ...(typeof origExternals[0] === 'function'
+          ? []
+          : origExternals),
       ];
 
       config.module.rules.unshift({
