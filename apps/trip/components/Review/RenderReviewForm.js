@@ -4,15 +4,15 @@ import {
   AntInput,
   AntTextArea,
   AntRate,
-} from 'components/UI/Antd/AntdInputWithFormik';
+} from '@tripApp/components/UI/Antd/AntdInputWithFormik';
 import {
   RadioGroupComp,
   PhotoUploadComponent,
   CheckBoxComp,
 } from './ReviewFormComponent';
-import Row from 'components/UI/Antd/Grid/Row';
-import Col from 'components/UI/Antd/Grid/Col';
-import Button from 'components/UI/Antd/Button/Button';
+import Row from '@tripApp/components/UI/Antd/Grid/Row';
+import Col from '@tripApp/components/UI/Antd/Grid/Col';
+import Button from '@tripApp/components/UI/Antd/Button/Button';
 
 import ReviewFormWrapper, {
   GroupTitle,
@@ -83,11 +83,12 @@ export default function RenderReviewForm({
 
         <FormGroup>
           <GroupTitle>
-            Could You Say a Little More About It? <span>(optional)</span>
+            Could You Say a Little More About It?{' '}
+            <span>(optional)</span>
           </GroupTitle>
           <Description>
-            We'd love your opinion ! Anything you can share will help other
-            travelers choose their perfect hotel . Thanks
+            We'd love your opinion ! Anything you can share will help
+            other travelers choose their perfect hotel . Thanks
           </Description>
         </FormGroup>
         <RadioGroup>
@@ -112,7 +113,9 @@ export default function RenderReviewForm({
           </Row>
           <Row>
             <Col lg={10}>
-              <Label>Does This Hotel offer rooms with great views?</Label>
+              <Label>
+                Does This Hotel offer rooms with great views?
+              </Label>
             </Col>
             <Col lg={14}>
               <Field
@@ -267,7 +270,11 @@ export default function RenderReviewForm({
         />
 
         <div className="submit-container">
-          <Button htmlType="submit" type="primary" className="fill_button">
+          <Button
+            htmlType="submit"
+            type="primary"
+            className="fill_button"
+          >
             Submit Your Review
           </Button>
         </div>

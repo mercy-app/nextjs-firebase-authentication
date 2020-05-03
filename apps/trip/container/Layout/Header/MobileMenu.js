@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
-import Menu from 'components/UI/Antd/Menu/Menu';
-import ActiveLink from 'library/helpers/activeLink';
-import { AuthContext } from 'context/AuthProvider';
+import Menu from '@tripApp/components/UI/Antd/Menu/Menu';
+import ActiveLink from '@tripApp/library/helpers/activeLink';
+import { AuthContext } from '@tripApp/context/AuthProvider';
 import {
   HOME_PAGE,
   LISTING_POSTS_PAGE,
   PRICING_PLAN_PAGE,
   AGENT_ACCOUNT_SETTINGS_PAGE,
-} from 'settings/constant';
+} from '@tripApp/settings/constant';
 
 const MobileMenu = ({ className }) => {
   // auth context

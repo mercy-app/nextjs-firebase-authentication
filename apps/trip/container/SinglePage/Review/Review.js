@@ -1,17 +1,21 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
-import { IoIosStar, IoIosStarOutline, IoIosArrowDown } from 'react-icons/io';
-import Row from 'components/UI/Antd/Grid/Row';
-import CommentCard from 'components/UI/CommentCard/CommentCard';
-import Col from 'components/UI/Antd/Grid/Col';
-import Button from 'components/UI/Antd/Button/Button';
-import Input from 'components/UI/Antd/Input/Input';
-import Checkbox from 'components/UI/Antd/Checkbox/Checkbox';
-import Divider from 'components/UI/Antd/Divider/Divider';
-import Modal from 'components/UI/Antd/Modal/Modal';
-import Heading from 'components/UI/Heading/Heading';
-import Text from 'components/UI/Text/Text';
-import ReviewForm from 'components/Review/ReviewCreateForm';
+import {
+  IoIosStar,
+  IoIosStarOutline,
+  IoIosArrowDown,
+} from 'react-icons/io';
+import Row from '@tripApp/components/UI/Antd/Grid/Row';
+import CommentCard from '@tripApp/components/UI/CommentCard/CommentCard';
+import Col from '@tripApp/components/UI/Antd/Grid/Col';
+import Button from '@tripApp/components/UI/Antd/Button/Button';
+import Input from '@tripApp/components/UI/Antd/Input/Input';
+import Checkbox from '@tripApp/components/UI/Antd/Checkbox/Checkbox';
+import Divider from '@tripApp/components/UI/Antd/Divider/Divider';
+import Modal from '@tripApp/components/UI/Antd/Modal/Modal';
+import Heading from '@tripApp/components/UI/Heading/Heading';
+import Text from '@tripApp/components/UI/Text/Text';
+import ReviewForm from '@tripApp/components/Review/ReviewCreateForm';
 import ReviewWrapper, {
   HeaderSection,
   RatingStatus,
@@ -24,7 +28,7 @@ import ReviewWrapper, {
 import { Element } from 'react-scroll';
 const Search = Input.Search;
 
-const CommentBox = props => {
+const CommentBox = (props) => {
   const { reviews } = props;
   return reviews && reviews.length !== 0
     ? reviews.map((singleReview, i) => {
@@ -38,7 +42,7 @@ const CommentBox = props => {
     : 'No Review Found';
 };
 
-const Review = props => {
+const Review = (props) => {
   const {
     ratingCount,
     reviews,
@@ -69,7 +73,7 @@ const Review = props => {
     setState({ ...state, languageModal: false });
   };
 
-  const onChange = e => {
+  const onChange = (e) => {
     console.log(`checked = ${e.target.checked}`);
   };
 
@@ -91,7 +95,7 @@ const Review = props => {
           <RatingSearch>
             <Search
               placeholder="Search reviews"
-              onSearch={value => console.log(value)}
+              onSearch={(value) => console.log(value)}
             />
             <Button type="primary" onClick={showModal}>
               Write a Review
@@ -101,7 +105,9 @@ const Review = props => {
               onCancel={handleCancel}
               footer={null}
               width="100%"
-              maskStyle={{ backgroundColor: 'rgba(255, 255, 255, 0.9)' }}
+              maskStyle={{
+                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+              }}
               wrapClassName="review_modal"
             >
               <ModalTitle>Write your review here</ModalTitle>
@@ -111,17 +117,28 @@ const Review = props => {
         </HeaderSection>
         <Row gutter={20}>
           <Col sm={12} lg={9}>
-            <Heading content="Traveler Ratings" {...filterHeadingStyle} />
+            <Heading
+              content="Traveler Ratings"
+              {...filterHeadingStyle}
+            />
             <FilterElement>
               <Checkbox onChange={onChange}>
-                <Text content="Exccellent" as="span" {...ratingLabelStyle} />
+                <Text
+                  content="Exccellent"
+                  as="span"
+                  {...ratingLabelStyle}
+                />
                 <RatingWrapper>
                   <IoIosStar />
                   <IoIosStar />
                   <IoIosStar />
                   <IoIosStar />
                   <IoIosStar />
-                  <Text content="172" as="span" {...ratingCountStyle} />
+                  <Text
+                    content="172"
+                    as="span"
+                    {...ratingCountStyle}
+                  />
                 </RatingWrapper>
               </Checkbox>
             </FilterElement>
@@ -129,14 +146,22 @@ const Review = props => {
 
             <FilterElement>
               <Checkbox onChange={onChange}>
-                <Text content="Very Good" as="span" {...ratingLabelStyle} />
+                <Text
+                  content="Very Good"
+                  as="span"
+                  {...ratingLabelStyle}
+                />
                 <RatingWrapper>
                   <IoIosStar />
                   <IoIosStar />
                   <IoIosStar />
                   <IoIosStar />
                   <IoIosStarOutline />
-                  <Text content="92" as="span" {...ratingCountStyle} />
+                  <Text
+                    content="92"
+                    as="span"
+                    {...ratingCountStyle}
+                  />
                 </RatingWrapper>
               </Checkbox>
             </FilterElement>
@@ -144,14 +169,22 @@ const Review = props => {
 
             <FilterElement>
               <Checkbox onChange={onChange}>
-                <Text content="Average" as="span" {...ratingLabelStyle} />
+                <Text
+                  content="Average"
+                  as="span"
+                  {...ratingLabelStyle}
+                />
                 <RatingWrapper>
                   <IoIosStar />
                   <IoIosStar />
                   <IoIosStar />
                   <IoIosStarOutline />
                   <IoIosStarOutline />
-                  <Text content="34" as="span" {...ratingCountStyle} />
+                  <Text
+                    content="34"
+                    as="span"
+                    {...ratingCountStyle}
+                  />
                 </RatingWrapper>
               </Checkbox>
             </FilterElement>
@@ -159,14 +192,22 @@ const Review = props => {
 
             <FilterElement>
               <Checkbox onChange={onChange}>
-                <Text content="Poor" as="span" {...ratingLabelStyle} />
+                <Text
+                  content="Poor"
+                  as="span"
+                  {...ratingLabelStyle}
+                />
                 <RatingWrapper>
                   <IoIosStar />
                   <IoIosStar />
                   <IoIosStarOutline />
                   <IoIosStarOutline />
                   <IoIosStarOutline />
-                  <Text content="11" as="span" {...ratingCountStyle} />
+                  <Text
+                    content="11"
+                    as="span"
+                    {...ratingCountStyle}
+                  />
                 </RatingWrapper>
               </Checkbox>
             </FilterElement>
@@ -174,31 +215,50 @@ const Review = props => {
           </Col>
 
           <Col sm={12} lg={5}>
-            <Heading content="Traveler Type" {...filterHeadingStyle} />
+            <Heading
+              content="Traveler Type"
+              {...filterHeadingStyle}
+            />
             <FilterElement>
               <Checkbox onChange={onChange}>
-                <Text content="Families" as="span" {...ratingLabelStyle} />
+                <Text
+                  content="Families"
+                  as="span"
+                  {...ratingLabelStyle}
+                />
               </Checkbox>
             </FilterElement>
             {/* End of Filter Element */}
 
             <FilterElement>
               <Checkbox onChange={onChange}>
-                <Text content="Couples" as="span" {...ratingLabelStyle} />
+                <Text
+                  content="Couples"
+                  as="span"
+                  {...ratingLabelStyle}
+                />
               </Checkbox>
             </FilterElement>
             {/* End of Filter Element */}
 
             <FilterElement>
               <Checkbox onChange={onChange}>
-                <Text content="Solo" as="span" {...ratingLabelStyle} />
+                <Text
+                  content="Solo"
+                  as="span"
+                  {...ratingLabelStyle}
+                />
               </Checkbox>
             </FilterElement>
             {/* End of Filter Element */}
 
             <FilterElement>
               <Checkbox onChange={onChange}>
-                <Text content="Business" as="span" {...ratingLabelStyle} />
+                <Text
+                  content="Business"
+                  as="span"
+                  {...ratingLabelStyle}
+                />
               </Checkbox>
             </FilterElement>
             {/* End of Filter Element */}
@@ -208,28 +268,44 @@ const Review = props => {
             <Heading content="Time Of Year" {...filterHeadingStyle} />
             <FilterElement>
               <Checkbox onChange={onChange}>
-                <Text content="Jan-Mar" as="span" {...ratingLabelStyle} />
+                <Text
+                  content="Jan-Mar"
+                  as="span"
+                  {...ratingLabelStyle}
+                />
               </Checkbox>
             </FilterElement>
             {/* End of Filter Element */}
 
             <FilterElement>
               <Checkbox onChange={onChange}>
-                <Text content="Apr-Jun" as="span" {...ratingLabelStyle} />
+                <Text
+                  content="Apr-Jun"
+                  as="span"
+                  {...ratingLabelStyle}
+                />
               </Checkbox>
             </FilterElement>
             {/* End of Filter Element */}
 
             <FilterElement>
               <Checkbox onChange={onChange}>
-                <Text content="Jul-Sep" as="span" {...ratingLabelStyle} />
+                <Text
+                  content="Jul-Sep"
+                  as="span"
+                  {...ratingLabelStyle}
+                />
               </Checkbox>
             </FilterElement>
             {/* End of Filter Element */}
 
             <FilterElement>
               <Checkbox onChange={onChange}>
-                <Text content="Oct-Dec" as="span" {...ratingLabelStyle} />
+                <Text
+                  content="Oct-Dec"
+                  as="span"
+                  {...ratingLabelStyle}
+                />
               </Checkbox>
             </FilterElement>
             {/* End of Filter Element */}
@@ -239,21 +315,33 @@ const Review = props => {
             <Heading content="Languages" {...filterHeadingStyle} />
             <FilterElement>
               <Checkbox onChange={onChange}>
-                <Text content="All Languages" as="span" {...ratingLabelStyle} />
+                <Text
+                  content="All Languages"
+                  as="span"
+                  {...ratingLabelStyle}
+                />
               </Checkbox>
             </FilterElement>
             {/* End of Filter Element */}
 
             <FilterElement>
               <Checkbox onChange={onChange}>
-                <Text content="English" as="span" {...ratingLabelStyle} />
+                <Text
+                  content="English"
+                  as="span"
+                  {...ratingLabelStyle}
+                />
               </Checkbox>
             </FilterElement>
             {/* End of Filter Element */}
 
             <FilterElement>
               <Checkbox onChange={onChange}>
-                <Text content="Spanish" as="span" {...ratingLabelStyle} />
+                <Text
+                  content="Spanish"
+                  as="span"
+                  {...ratingLabelStyle}
+                />
               </Checkbox>
             </FilterElement>
             {/* End of Filter Element */}
@@ -267,7 +355,9 @@ const Review = props => {
               visible={state.languageModal}
               onCancel={cancelLanguageModal}
               footer={null}
-              maskStyle={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }}
+              maskStyle={{
+                backgroundColor: 'rgba(255, 255, 255, 0.8)',
+              }}
               wrapClassName="language_modal"
             >
               <Heading content="Languages" {...filterHeadingStyle} />
@@ -284,7 +374,11 @@ const Review = props => {
 
               <FilterElement>
                 <Checkbox onChange={onChange}>
-                  <Text content="English" as="span" {...ratingLabelStyle} />
+                  <Text
+                    content="English"
+                    as="span"
+                    {...ratingLabelStyle}
+                  />
                 </Checkbox>
               </FilterElement>
               {/* End of Filter Element */}
@@ -313,35 +407,55 @@ const Review = props => {
 
               <FilterElement>
                 <Checkbox onChange={onChange}>
-                  <Text content="Spanish" as="span" {...ratingLabelStyle} />
+                  <Text
+                    content="Spanish"
+                    as="span"
+                    {...ratingLabelStyle}
+                  />
                 </Checkbox>
               </FilterElement>
               {/* End of Filter Element */}
 
               <FilterElement>
                 <Checkbox onChange={onChange}>
-                  <Text content="German" as="span" {...ratingLabelStyle} />
+                  <Text
+                    content="German"
+                    as="span"
+                    {...ratingLabelStyle}
+                  />
                 </Checkbox>
               </FilterElement>
               {/* End of Filter Element */}
 
               <FilterElement>
                 <Checkbox onChange={onChange}>
-                  <Text content="Italian" as="span" {...ratingLabelStyle} />
+                  <Text
+                    content="Italian"
+                    as="span"
+                    {...ratingLabelStyle}
+                  />
                 </Checkbox>
               </FilterElement>
               {/* End of Filter Element */}
 
               <FilterElement>
                 <Checkbox onChange={onChange}>
-                  <Text content="French" as="span" {...ratingLabelStyle} />
+                  <Text
+                    content="French"
+                    as="span"
+                    {...ratingLabelStyle}
+                  />
                 </Checkbox>
               </FilterElement>
               {/* End of Filter Element */}
 
               <FilterElement>
                 <Checkbox onChange={onChange}>
-                  <Text content="Russian" as="span" {...ratingLabelStyle} />
+                  <Text
+                    content="Russian"
+                    as="span"
+                    {...ratingLabelStyle}
+                  />
                 </Checkbox>
               </FilterElement>
               {/* End of Filter Element */}

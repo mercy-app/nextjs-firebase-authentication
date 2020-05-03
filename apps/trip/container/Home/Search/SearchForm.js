@@ -1,13 +1,17 @@
 import React, { useState, useContext } from 'react';
 import Router, { withRouter } from 'next/router';
 import isEmpty from 'lodash/isEmpty';
-import { FaMapMarkerAlt, FaRegCalendar, FaUserFriends } from 'react-icons/fa';
-import MapAutoComplete from 'components/Map/MapAutoComplete';
-import Button from 'components/UI/Antd/Button/Button';
-import InputIncDec from 'components/UI/InputIncDec/InputIncDec';
-import DateRangePickerBox from 'components/UI/DatePicker/ReactDates';
-import { MapDataHelper } from 'components/Map/MapLocationBox';
-import ViewWithPopup from 'components/UI/ViewWithPopup/ViewWithPopup';
+import {
+  FaMapMarkerAlt,
+  FaRegCalendar,
+  FaUserFriends,
+} from 'react-icons/fa';
+import MapAutoComplete from '@tripApp/components/Map/MapAutoComplete';
+import Button from '@tripApp/components/UI/Antd/Button/Button';
+import InputIncDec from '@tripApp/components/UI/InputIncDec/InputIncDec';
+import DateRangePickerBox from '@tripApp/components/UI/DatePicker/ReactDates';
+import { MapDataHelper } from '@tripApp/components/Map/MapLocationBox';
+import ViewWithPopup from '@tripApp/components/UI/ViewWithPopup/ViewWithPopup';
 import {
   FormWrapper,
   ComponentWrapper,
@@ -35,21 +39,21 @@ const SearchForm = () => {
     guest: 0,
   });
 
-  const updatevalueFunc = event => {
+  const updatevalueFunc = (event) => {
     const { searchedPlaceAPIData } = event;
     if (!isEmpty(searchedPlaceAPIData)) {
       setMapValue(searchedPlaceAPIData);
     }
   };
 
-  const handleIncrement = type => {
+  const handleIncrement = (type) => {
     setRoomGuest({
       ...roomGuest,
       [type]: roomGuest[type] + 1,
     });
   };
 
-  const handleDecrement = type => {
+  const handleDecrement = (type) => {
     if (roomGuest[type] <= 0) {
       return false;
     }
@@ -76,7 +80,9 @@ const SearchForm = () => {
     mapData &&
       mapData.map((singleMapData, i) => {
         return tempLocation.push({
-          formattedAddress: singleMapData ? singleMapData.formattedAddress : '',
+          formattedAddress: singleMapData
+            ? singleMapData.formattedAddress
+            : '',
           lat: singleMapData ? singleMapData.lat.toFixed(3) : null,
           lng: singleMapData ? singleMapData.lng.toFixed(3) : null,
         });
@@ -103,7 +109,11 @@ const SearchForm = () => {
     };
 
     for (const key in query) {
-      if (query[key] === '' || query[key] === null || query[key] === 0) {
+      if (
+        query[key] === '' ||
+        query[key] === null ||
+        query[key] === 0
+      ) {
         delete query[key];
       }
     }
@@ -138,7 +148,9 @@ const SearchForm = () => {
     <FormWrapper>
       <ComponentWrapper>
         <FaMapMarkerAlt className="map-marker" />
-        <MapAutoComplete updatevalue={value => updatevalueFunc(value)} />
+        <MapAutoComplete
+          updatevalue={(value) => updatevalueFunc(value)}
+        />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           version="1.1"
@@ -161,7 +173,9 @@ const SearchForm = () => {
           item={calendarItem}
           startDateId="startDateId-id-home"
           endDateId="endDateId-id-home"
-          updateSearchData={setDateValue => setSearchDate(setDateValue)}
+          updateSearchData={(setDateValue) =>
+            setSearchDate(setDateValue)
+          }
           showClearDates={true}
           small={true}
           numberOfMonths={1}
@@ -176,9 +190,13 @@ const SearchForm = () => {
           className="room_guest"
           view={
             <Button type="default">
-              <span>Room {roomGuest.room > 0 && `: ${roomGuest.room}`}</span>
+              <span>
+                Room {roomGuest.room > 0 && `: ${roomGuest.room}`}
+              </span>
               <span>-</span>
-              <span>Guest{roomGuest.guest > 0 && `: ${roomGuest.guest}`}</span>
+              <span>
+                Guest{roomGuest.guest > 0 && `: ${roomGuest.guest}`}
+              </span>
             </Button>
           }
           popup={
@@ -189,7 +207,7 @@ const SearchForm = () => {
                   id="room"
                   increment={() => handleIncrement('room')}
                   decrement={() => handleDecrement('room')}
-                  onChange={e => handleIncDecOnChnage(e, 'room')}
+                  onChange={(e) => handleIncDecOnChnage(e, 'room')}
                   value={roomGuest.room}
                 />
               </ItemWrapper>
@@ -199,7 +217,7 @@ const SearchForm = () => {
                   id="guest"
                   increment={() => handleIncrement('guest')}
                   decrement={() => handleDecrement('guest')}
-                  onChange={e => handleIncDecOnChnage(e, 'guest')}
+                  onChange={(e) => handleIncDecOnChnage(e, 'guest')}
                   value={roomGuest.guest}
                 />
               </ItemWrapper>

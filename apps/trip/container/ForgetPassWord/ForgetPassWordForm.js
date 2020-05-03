@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
-import RenderForgetPassWordForm from 'components/ForgetPassWord/RenderForgetPassWordForm';
+import RenderForgetPassWordForm from '@tripApp/components/ForgetPassWord/RenderForgetPassWordForm';
 import * as Yup from 'yup';
 
 const initialValues = {
@@ -15,7 +15,7 @@ const getForgetPassWordValidationSchema = () => {
   });
 };
 
-const handleSubmit = formProps => {
+const handleSubmit = (formProps) => {
   const { email } = formProps;
   alert(`\nSelected Client Email: ${email} `);
 };

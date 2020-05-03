@@ -1,11 +1,11 @@
 import React from 'react';
 import { Field, Form } from 'formik';
-import { AntInput } from 'components/UI/Antd/AntdInputWithFormik';
-import Row from 'components/UI/Antd/Grid/Row';
-import Col from 'components/UI/Antd/Grid/Col';
-import Button from 'components/UI/Antd/Button/Button';
+import { AntInput } from '@tripApp/components/UI/Antd/AntdInputWithFormik';
+import Row from '@tripApp/components/UI/Antd/Grid/Row';
+import Col from '@tripApp/components/UI/Antd/Grid/Col';
+import Button from '@tripApp/components/UI/Antd/Button/Button';
 
-const RenderChangePassWordForm = props => {
+const RenderChangePassWordForm = (props) => {
   const { values, submitCount, handleSubmit } = props;
   return (
     <Form onSubmit={handleSubmit}>
@@ -48,7 +48,11 @@ const RenderChangePassWordForm = props => {
         </Col>
       </Row>
       <div className="submit-container">
-        <Button className="signin-btn" type="primary" htmlType="submit">
+        <Button
+          className="signin-btn"
+          type="primary"
+          htmlType="submit"
+        >
           Sent Email
         </Button>
       </div>

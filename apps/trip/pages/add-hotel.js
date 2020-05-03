@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { Field } from 'formik';
 import PropTypes from 'prop-types';
-import FormStepper from 'components/UI/Steppers/FormStepper';
-import { AntInput, AntTextArea } from 'components/UI/Antd/AntdInputWithFormik';
-import InputIncDec from 'components/UI/InputIncDec/InputIncDec';
-import Row from 'components/UI/Antd/Grid/Row';
-import Col from 'components/UI/Antd/Grid/Col';
-import Heading from 'components/UI/Heading/Heading';
-import Text from 'components/UI/Text/Text';
+import FormStepper from '@tripApp/components/UI/Steppers/FormStepper';
+import {
+  AntInput,
+  AntTextArea,
+} from '@tripApp/components/UI/Antd/AntdInputWithFormik';
+import InputIncDec from '@tripApp/components/UI/InputIncDec/InputIncDec';
+import Row from '@tripApp/components/UI/Antd/Grid/Row';
+import Col from '@tripApp/components/UI/Antd/Grid/Col';
+import Heading from '@tripApp/components/UI/Heading/Heading';
+import Text from '@tripApp/components/UI/Text/Text';
 
 import {
   PorpertyType,
@@ -15,10 +18,10 @@ import {
   Pool,
   AirCondition,
   ExtraBed,
-} from 'components/Listing/RenderAmenitiesForm';
+} from '@tripApp/components/Listing/RenderAmenitiesForm';
 
-import { PhotoUploadComponent } from 'components/Listing/RenderUploadPhotosForm';
-import { FormMapComponent } from 'components/Listing/RenderLocationInputForm';
+import { PhotoUploadComponent } from '@tripApp/components/Listing/RenderUploadPhotosForm';
+import { FormMapComponent } from '@tripApp/components/Listing/RenderLocationInputForm';
 
 import StepperWrapper, {
   UploaderWrapper,
@@ -27,10 +30,11 @@ import StepperWrapper, {
   HeaderSection,
   Title,
   Description,
-} from 'components/Listing/AddListing.style';
+} from '@tripApp/components/Listing/AddListing.style';
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-const required = value => (value ? undefined : 'Required');
+const sleep = (ms) =>
+  new Promise((resolve) => setTimeout(resolve, ms));
+const required = (value) => (value ? undefined : 'Required');
 
 const formValue = {
   hotelName: '',
@@ -68,7 +72,7 @@ const QuantityInput = ({ field, form }) => {
     form.setFieldValue(field.name, --currentValue);
   };
 
-  const handleOnChange = e => {
+  const handleOnChange = (e) => {
     setState(e.target.value);
     form.setFieldValue(field.name, e.target.value);
   };
@@ -226,13 +230,17 @@ const RenderCreateOrUpdateForm = ({ fieldLabel }) => {
                 Step 4: Hotel Amenities <span> (optional)</span>
               </Title>
               <Description>
-                Add your hotel amenities , it can help travelers to choose their
-                perfect hotel. Thanks.
+                Add your hotel amenities , it can help travelers to
+                choose their perfect hotel. Thanks.
               </Description>
             </HeaderSection>
             <Row gutter={30}>
               <Col md={8}>
-                <Text as="h3" {...fieldLabel} content="Wifi Availability" />
+                <Text
+                  as="h3"
+                  {...fieldLabel}
+                  content="Wifi Availability"
+                />
                 <Field
                   name="wifiAvailability"
                   component={PorpertyType}
@@ -241,7 +249,11 @@ const RenderCreateOrUpdateForm = ({ fieldLabel }) => {
               </Col>
 
               <Col md={8}>
-                <Text as="h3" {...fieldLabel} content="Parking Availability" />
+                <Text
+                  as="h3"
+                  {...fieldLabel}
+                  content="Parking Availability"
+                />
                 <Field
                   name="parking"
                   component={Parking}
@@ -250,7 +262,11 @@ const RenderCreateOrUpdateForm = ({ fieldLabel }) => {
               </Col>
 
               <Col md={8}>
-                <Text as="h3" {...fieldLabel} content="Pool Availability" />
+                <Text
+                  as="h3"
+                  {...fieldLabel}
+                  content="Pool Availability"
+                />
                 <Field
                   name="poolAvailability"
                   component={Pool}
@@ -259,7 +275,11 @@ const RenderCreateOrUpdateForm = ({ fieldLabel }) => {
               </Col>
 
               <Col md={8}>
-                <Text as="h3" {...fieldLabel} content="Air-Conditioner" />
+                <Text
+                  as="h3"
+                  {...fieldLabel}
+                  content="Air-Conditioner"
+                />
                 <Field
                   name="airCondition"
                   component={AirCondition}

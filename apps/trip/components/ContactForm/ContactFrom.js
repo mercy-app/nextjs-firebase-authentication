@@ -4,11 +4,11 @@ import {
   AntInput,
   AntTextArea,
   AntCheckbox,
-} from 'components/UI/Antd/AntdInputWithFormik';
-import Button from 'components/UI/Antd/Button/Button';
-import Row from 'components/UI/Antd/Grid/Row';
-import Col from 'components/UI/Antd/Grid/Col';
-import HtmlLabel from 'components/UI/HtmlLabel/HtmlLabel';
+} from '@tripApp/components/UI/Antd/AntdInputWithFormik';
+import Button from '@tripApp/components/UI/Antd/Button/Button';
+import Row from '@tripApp/components/UI/Antd/Grid/Row';
+import Col from '@tripApp/components/UI/Antd/Grid/Col';
+import HtmlLabel from '@tripApp/components/UI/HtmlLabel/HtmlLabel';
 import FormWrapper, { FieldWrapper } from './ContactForm.style';
 
 const ContactForm = ({ values, submitCount, handleSubmit }) => (

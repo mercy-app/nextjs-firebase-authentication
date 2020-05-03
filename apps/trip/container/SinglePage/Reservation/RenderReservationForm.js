@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Button from 'components/UI/Antd/Button/Button';
-import HtmlLabel from 'components/UI/HtmlLabel/HtmlLabel';
-import DatePickerRange from 'components/UI/DatePicker/ReactDates';
-import ViewWithPopup from 'components/UI/ViewWithPopup/ViewWithPopup';
-import InputIncDec from 'components/UI/InputIncDec/InputIncDec';
+import Button from '@tripApp/components/UI/Antd/Button/Button';
+import HtmlLabel from '@tripApp/components/UI/HtmlLabel/HtmlLabel';
+import DatePickerRange from '@tripApp/components/UI/DatePicker/ReactDates';
+import ViewWithPopup from '@tripApp/components/UI/ViewWithPopup/ViewWithPopup';
+import InputIncDec from '@tripApp/components/UI/InputIncDec/InputIncDec';
 import ReservationFormWrapper, {
   FormActionArea,
   FieldWrapper,
@@ -21,14 +21,14 @@ const RenderReservationForm = () => {
   });
 
   // handle room guest increment decrement
-  const handleIncrement = type => {
+  const handleIncrement = (type) => {
     setFormState({
       ...formState,
       [type]: formState[type] + 1,
     });
   };
 
-  const handleDecrement = type => {
+  const handleDecrement = (type) => {
     if (formState[type] <= 0) {
       return false;
     }
@@ -48,7 +48,7 @@ const RenderReservationForm = () => {
   };
 
   // handle date data on update
-  const updateSearchDataFunc = value => {
+  const updateSearchDataFunc = (value) => {
     setFormState({
       ...formState,
       startDate: value.setStartDate,
@@ -57,7 +57,7 @@ const RenderReservationForm = () => {
   };
 
   // handleSubmit data
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     alert(
       `Start Date: ${formState.startDate}\nEnd Date: ${formState.endDate}\nRooms: ${formState.room}\nGuests: ${formState.guest}`
@@ -65,7 +65,10 @@ const RenderReservationForm = () => {
   };
 
   return (
-    <ReservationFormWrapper className="form-container" onSubmit={handleSubmit}>
+    <ReservationFormWrapper
+      className="form-container"
+      onSubmit={handleSubmit}
+    >
       <FieldWrapper>
         <HtmlLabel htmlFor="dates" content="Dates" />
         <DatePickerRange
@@ -73,7 +76,7 @@ const RenderReservationForm = () => {
           endDateId="checkout-id"
           startDatePlaceholderText="Check In"
           endDatePlaceholderText="Check Out"
-          updateSearchData={value => updateSearchDataFunc(value)}
+          updateSearchData={(value) => updateSearchDataFunc(value)}
           numberOfMonths={1}
           small
         />
@@ -83,12 +86,18 @@ const RenderReservationForm = () => {
         <ViewWithPopup
           key={200}
           noView={true}
-          className={formState.room || formState.guest ? 'activated' : ''}
+          className={
+            formState.room || formState.guest ? 'activated' : ''
+          }
           view={
             <Button type="default">
-              <span>Room {formState.room > 0 && `: ${formState.room}`}</span>
+              <span>
+                Room {formState.room > 0 && `: ${formState.room}`}
+              </span>
               <span>-</span>
-              <span>Guest{formState.guest > 0 && `: ${formState.guest}`}</span>
+              <span>
+                Guest{formState.guest > 0 && `: ${formState.guest}`}
+              </span>
             </Button>
           }
           popup={
@@ -99,7 +108,7 @@ const RenderReservationForm = () => {
                   id="room"
                   increment={() => handleIncrement('room')}
                   decrement={() => handleDecrement('room')}
-                  onChange={e => handleIncDecOnChnage(e, 'room')}
+                  onChange={(e) => handleIncDecOnChnage(e, 'room')}
                   value={formState.room}
                 />
               </ItemWrapper>
@@ -110,7 +119,7 @@ const RenderReservationForm = () => {
                   id="guest"
                   increment={() => handleIncrement('guest')}
                   decrement={() => handleDecrement('guest')}
-                  onChange={e => handleIncDecOnChnage(e, 'guest')}
+                  onChange={(e) => handleIncDecOnChnage(e, 'guest')}
                   value={formState.guest}
                 />
               </ItemWrapper>

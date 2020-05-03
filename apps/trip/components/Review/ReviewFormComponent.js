@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import Radio from 'components/UI/Antd/Radio/Radio';
-import DragAndDropUploader from 'components/UI/ImageUploader/DragAndDropUploader';
-import Checkbox from 'components/UI/Antd/Checkbox/Checkbox';
-import Text from 'components/UI/Text/Text';
+import Radio from '@tripApp/components/UI/Antd/Radio/Radio';
+import DragAndDropUploader from '@tripApp/components/UI/ImageUploader/DragAndDropUploader';
+import Checkbox from '@tripApp/components/UI/Antd/Checkbox/Checkbox';
+import Text from '@tripApp/components/UI/Text/Text';
 
 export const RadioGroupComp = ({ field, form, ...props }) => {
   const { dataOptions } = props;
 
-  const onChangeValue = checkedValue => {
+  const onChangeValue = (checkedValue) => {
     form.setFieldValue(field.name, checkedValue.target.value);
   };
 
@@ -31,7 +31,7 @@ export const RadioGroupComp = ({ field, form, ...props }) => {
 };
 
 export const PhotoUploadComponent = ({ field, form, ...props }) => {
-  const onChange = value => {
+  const onChange = (value) => {
     form.setFieldValue(field.name, value);
   };
 

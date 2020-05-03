@@ -1,39 +1,46 @@
 import React, { useEffect, useState, Fragment } from 'react';
-import { getPaginatedItems } from 'library/helpers/pagination';
+import { getPaginatedItems } from '@tripApp/library/helpers/pagination';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
-import { getUrlToState } from 'library/helpers/url_handler';
-import { useLocation } from 'library/hooks/useLocation';
+import { getUrlToState } from '@tripApp/library/helpers/url_handler';
+import { useLocation } from '@tripApp/library/hooks/useLocation';
 
 export const ApiContext = React.createContext();
 
 function sleep(time) {
-  return new Promise(resolve => setTimeout(resolve, time));
+  return new Promise((resolve) => setTimeout(resolve, time));
 }
 
-const Superfetch = async (url, method = 'GET', headers = {}, body = {}) => {
+const Superfetch = async (
+  url,
+  method = 'GET',
+  headers = {},
+  body = {}
+) => {
   NProgress.start();
   await sleep(2000); // demo purpose only
   let options = {
     method,
     headers: {
-      'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      'Content-type':
+        'application/x-www-form-urlencoded; charset=UTF-8',
     },
   };
-  if (method === 'POST' || method === 'PUT') options = { ...options, body };
+  if (method === 'POST' || method === 'PUT')
+    options = { ...options, body };
 
   // authentication
   // we will had custom headers here.
 
   return fetch(url, options)
-    .then(res => {
+    .then((res) => {
       NProgress.done();
       return Promise.resolve(res.json());
     })
-    .catch(error => Promise.reject(error));
+    .catch((error) => Promise.reject(error));
 };
 
-const ApiProvider = props => {
+const ApiProvider = (props) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   const [error, setError] = useState(false);

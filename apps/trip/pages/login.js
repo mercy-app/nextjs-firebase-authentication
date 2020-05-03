@@ -1,22 +1,22 @@
 import { useState } from 'react';
-import Row from 'components/UI/Antd/Grid/Row';
-import Col from 'components/UI/Antd/Grid/Col';
-import Divider from 'components/UI/Antd/Divider/Divider';
-import Button from 'components/UI/Antd/Button/Button';
-import Logo from 'components/UI/Logo/Logo';
-import SignInForm from 'container/SignIn/SignInForm';
-import ActiveLink from 'library/helpers/activeLink';
-import { REGISTRATION_PAGE } from 'settings/constant';
+import Row from '@tripApp/components/UI/Antd/Grid/Row';
+import Col from '@tripApp/components/UI/Antd/Grid/Col';
+import Divider from '@tripApp/components/UI/Antd/Divider/Divider';
+import Button from '@tripApp/components/UI/Antd/Button/Button';
+import Logo from '@tripApp/components/UI/Logo/Logo';
+import SignInForm from '@tripApp/container/SignIn/SignInForm';
+import ActiveLink from '@tripApp/library/helpers/activeLink';
+import { REGISTRATION_PAGE } from '@tripApp/settings/constant';
 import SignInWrapper, {
   Title,
   TitleInfo,
   Text,
   SignInFormWrapper,
   SignInBannerWrapper,
-} from 'container/SignIn/SignIn.style';
+} from '@tripApp/container/SignIn/SignIn.style';
 // demo image
-import signInImage from 'assets/images/login-page-bg.jpg';
-import tripFinder from 'assets/images/logo-alt.svg';
+import signInImage from '@tripApp/assets/images/login-page-bg.jpg';
+import tripFinder from '@tripApp/assets/images/logo-alt.svg';
 
 export default function SignInPage() {
   const [state, setState] = useState({
@@ -57,7 +57,12 @@ export default function SignInPage() {
   return (
     <SignInWrapper>
       <SignInFormWrapper>
-        <Logo withLink linkTo="/" src={tripFinder} title="TripFinder." />
+        <Logo
+          withLink
+          linkTo="/"
+          src={tripFinder}
+          title="TripFinder."
+        />
         <Title>Welcome Back</Title>
         <TitleInfo>Please log into your account</TitleInfo>
         <SignInForm />
@@ -116,7 +121,9 @@ export default function SignInPage() {
         </Row>
         <Text>
           Don't have an account? &nbsp;
-          <ActiveLink href={`${REGISTRATION_PAGE}`}>Registration</ActiveLink>
+          <ActiveLink href={`${REGISTRATION_PAGE}`}>
+            Registration
+          </ActiveLink>
         </Text>
       </SignInFormWrapper>
 

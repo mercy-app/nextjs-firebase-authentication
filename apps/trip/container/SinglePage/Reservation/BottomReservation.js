@@ -1,10 +1,10 @@
 import React, { useState, Fragment } from 'react';
 import { IoIosClose } from 'react-icons/io';
-import Rating from 'components/UI/Rating/Rating';
-import Button from 'components/UI/Antd/Button/Button';
-import Modal from 'components/UI/Antd/Modal/Modal';
-import StickyBooking from 'components/StickyBooking/StickyBooking';
-import LogoImage from 'assets/images/logo-alt.svg';
+import Rating from '@tripApp/components/UI/Rating/Rating';
+import Button from '@tripApp/components/UI/Antd/Button/Button';
+import Modal from '@tripApp/components/UI/Antd/Modal/Modal';
+import StickyBooking from '@tripApp/components/StickyBooking/StickyBooking';
+import LogoImage from '@tripApp/assets/images/logo-alt.svg';
 import Reservation from './Reservation';
 
 const BottomReservation = ({ title, price, rating, ratingCount }) => {
@@ -28,7 +28,11 @@ const BottomReservation = ({ title, price, rating, ratingCount }) => {
         title={title}
         price={price}
         rating={
-          <Rating rating={rating} ratingCount={ratingCount} type="bulk" />
+          <Rating
+            rating={rating}
+            ratingCount={ratingCount}
+            type="bulk"
+          />
         }
         action={
           <Button type="primary" onClick={toggleModal}>

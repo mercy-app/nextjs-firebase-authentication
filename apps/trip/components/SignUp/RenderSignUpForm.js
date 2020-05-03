@@ -1,8 +1,11 @@
 import React from 'react';
 import { Field, Form } from 'formik';
 import { MdLockOpen } from 'react-icons/md';
-import { AntInput, AntSwitch } from 'components/UI/Antd/AntdInputWithFormik';
-import Button from 'components/UI/Antd/Button/Button';
+import {
+  AntInput,
+  AntSwitch,
+} from '@tripApp/components/UI/Antd/AntdInputWithFormik';
+import Button from '@tripApp/components/UI/Antd/Button/Button';
 
 import FormWrapper, {
   FieldWrapper,
@@ -10,7 +13,7 @@ import FormWrapper, {
   Label,
 } from './SignUpFormStyle';
 
-const RenderSignUpForm = props => {
+const RenderSignUpForm = (props) => {
   const { values, submitCount, handleSubmit } = props;
   return (
     <FormWrapper>

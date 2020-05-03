@@ -1,9 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-import Heading from 'components/UI/Heading/Heading';
-import { FaWifi, FaCarAlt, FaSwimmer, FaAirFreshener } from 'react-icons/fa';
-import IconCard from 'components/IconCard/IconCard';
+import Heading from '@tripApp/components/UI/Heading/Heading';
+import {
+  FaWifi,
+  FaCarAlt,
+  FaSwimmer,
+  FaAirFreshener,
+} from 'react-icons/fa';
+import IconCard from '@tripApp/components/IconCard/IconCard';
 import AmenitiesWrapper, { AmenitiesArea } from './Amenities.style';
 import { TextButton } from '../SinglePageView.style';
 import { Element } from 'react-scroll';

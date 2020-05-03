@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { compose, withProps } from 'recompose';
 import { withScriptjs } from 'react-google-maps';
 import StandaloneSearchBox from 'react-google-maps/lib/components/places/StandaloneSearchBox';
-import Input from 'components/UI/Antd/Input/Input';
+import Input from '@tripApp/components/UI/Antd/Input/Input';
 
 const SearchInput = compose(
   withProps({
@@ -11,13 +11,13 @@ const SearchInput = compose(
     containerElement: <div style={{ height: `400px` }} />,
   }),
   withScriptjs
-)(props => {
+)((props) => {
   const { getinputvalue } = props;
   const [locationInput, setLocationInput] = useState({
     searchedLocation: '',
     searchedPlaceAPIData: [],
   });
-  const handleOnChange = event => {
+  const handleOnChange = (event) => {
     if (event.which === '13') {
       event.preventDefault();
       event.stopPropagation();
@@ -30,16 +30,18 @@ const SearchInput = compose(
   const onPlacesChanged = () => {
     const places = refs.current.getPlaces();
     setLocationInput({
-      searchedLocation: places && places[0] && places[0].formatted_address,
+      searchedLocation:
+        places && places[0] && places[0].formatted_address,
       searchedPlaceAPIData: places ? places : [],
     });
     getinputvalue({
-      searchedLocation: places && places[0] && places[0].formatted_address,
+      searchedLocation:
+        places && places[0] && places[0].formatted_address,
       searchedPlaceAPIData: places ? places : [],
     });
   };
 
-  const handleOnPressEnter = event => {
+  const handleOnPressEnter = (event) => {
     if (event.which === '13') {
       event.preventDefault();
       event.stopPropagation();
@@ -50,7 +52,10 @@ const SearchInput = compose(
 
   return (
     <div className="map_autocomplete">
-      <StandaloneSearchBox ref={refs} onPlacesChanged={onPlacesChanged}>
+      <StandaloneSearchBox
+        ref={refs}
+        onPlacesChanged={onPlacesChanged}
+      >
         <Input
           type="text"
           defaultValue=""
@@ -65,7 +70,7 @@ const SearchInput = compose(
   );
 });
 
-const MapAutoComplete = props => {
+const MapAutoComplete = (props) => {
   const { updatevalue } = props;
   return <SearchInput getinputvalue={updatevalue} />;
 };

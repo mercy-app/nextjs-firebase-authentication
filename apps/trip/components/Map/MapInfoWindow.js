@@ -1,9 +1,9 @@
 import React from 'react';
 import { InfoWindow } from 'react-google-maps';
-import Rating from 'components/UI/Rating/Rating';
+import Rating from '@tripApp/components/UI/Rating/Rating';
 import GridCard from '../GridCard/GridCard';
 
-const HotelInfoWindow = props => {
+const HotelInfoWindow = (props) => {
   const { postData } = props;
 
   const id = postData && postData.id;
@@ -22,7 +22,11 @@ const HotelInfoWindow = props => {
         title={title}
         price={`$${price}/Night - Free Cancellation`}
         rating={
-          <Rating rating={rating} ratingCount={ratingCount} type="bulk" />
+          <Rating
+            rating={rating}
+            ratingCount={ratingCount}
+            type="bulk"
+          />
         }
       >
         <img src={thumbUrl} alt={title} />

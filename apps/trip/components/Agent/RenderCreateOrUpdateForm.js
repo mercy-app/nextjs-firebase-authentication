@@ -5,10 +5,10 @@ import {
   AntInput,
   AntSelect,
   AntTextArea,
-} from 'components/UI/Antd/AntdInputWithFormik';
-import Row from 'components/UI/Antd/Grid/Row';
-import Col from 'components/UI/Antd/Grid/Col';
-import Button from 'components/UI/Antd/Button/Button';
+} from '@tripApp/components/UI/Antd/AntdInputWithFormik';
+import Row from '@tripApp/components/UI/Antd/Grid/Row';
+import Col from '@tripApp/components/UI/Antd/Grid/Col';
+import Button from '@tripApp/components/UI/Antd/Button/Button';
 
 export default function RenderCreateOrUpdateForm({
   handleSubmit,

@@ -4,11 +4,11 @@ import { withRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import Sticky from 'react-stickynode';
 import { IoIosClose } from 'react-icons/io';
-import Logo from 'components/UI/Logo/Logo';
-import Text from 'components/UI/Text/Text';
-import Button from 'components/UI/Antd/Button/Button';
-import Drawer from 'components/UI/Antd/Drawer/Drawer';
-import Navbar from 'components/Navbar/Navbar';
+import Logo from '@tripApp/components/UI/Logo/Logo';
+import Text from '@tripApp/components/UI/Text/Text';
+import Button from '@tripApp/components/UI/Antd/Button/Button';
+import Drawer from '@tripApp/components/UI/Antd/Drawer/Drawer';
+import Navbar from '@tripApp/components/Navbar/Navbar';
 import { LayoutContext } from '../../../context/LayoutProvider';
 import { AGENT_PROFILE_PAGE } from '../../../settings/constant';
 import HeaderWrapper, {
@@ -20,7 +20,7 @@ import HeaderWrapper, {
   LogoArea,
 } from './Header.style';
 // dummy images
-import tripFinder from 'assets/images/logo-alt.svg';
+import tripFinder from '@tripApp/assets/images/logo-alt.svg';
 
 const LogoIcon = () => (
   <svg width="25" height="27.984" viewBox="0 0 25 27.984">
@@ -44,10 +44,11 @@ const Header = ({ router, user, isLoggedIn }) => {
   const [{ searchVisibility }] = useContext(LayoutContext);
   const [state, setState] = useState(false);
   const sidebarHandler = () => {
-    setState(state => !state);
+    setState((state) => !state);
   };
 
-  const headerType = router.pathname === '/' ? 'transparent' : 'default';
+  const headerType =
+    router.pathname === '/' ? 'transparent' : 'default';
   const AvatarImg =
     'http://s3.amazonaws.com/redqteam.com/isomorphic-reloaded-image/profilepic.png';
 
@@ -58,14 +59,21 @@ const Header = ({ router, user, isLoggedIn }) => {
           logo={
             <>
               {headerType === 'transparent' && <LogoIcon />}
-              <Logo withLink linkTo="/" src={tripFinder} title="TripFinder." />
+              <Logo
+                withLink
+                linkTo="/"
+                src={tripFinder}
+                title="TripFinder."
+              />
             </>
           }
           navMenu={<MainMenu />}
           authMenu={<AuthMenu />}
           isLogin={isLoggedIn}
           avatar={<Logo src={AvatarImg} />}
-          profileMenu={<ProfileMenu avatar={<Logo src={AvatarImg} />} />}
+          profileMenu={
+            <ProfileMenu avatar={<Logo src={AvatarImg} />} />
+          }
           headerType={headerType}
           searchComponent={<NavbarSearch />}
           location={router}
@@ -75,7 +83,12 @@ const Header = ({ router, user, isLoggedIn }) => {
           <LogoArea>
             <>
               {headerType === 'transparent' && <LogoIcon />}
-              <Logo withLink linkTo="/" src={tripFinder} title="TripFinder." />
+              <Logo
+                withLink
+                linkTo="/"
+                src={tripFinder}
+                title="TripFinder."
+              />
             </>
             <NavbarSearch />
           </LogoArea>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Icon from 'components/UI/Antd/Icon/Icon';
+import Icon from '@tripApp/components/UI/Antd/Icon/Icon';
 import PricingItems from '../container/Pricing/PricingItems';
 import PricingWrapper, {
   PricingHeader,
@@ -287,8 +287,8 @@ export default function Pricing() {
       <PricingHeader>
         <Title>Select Your Pricing Plan</Title>
         <Description>
-          Simple Transparent pricing for everyone, whether you are local hotel
-          owner or an agent.
+          Simple Transparent pricing for everyone, whether you are
+          local hotel owner or an agent.
         </Description>
         <ButtonGroup>
           <Button

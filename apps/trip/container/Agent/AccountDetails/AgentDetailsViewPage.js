@@ -2,14 +2,14 @@ import React, { useState, Fragment } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
-import Menu from 'components/UI/Antd/Menu/Menu';
-import Popover from 'components/UI/Antd/Popover/Popover';
-import Container from 'components/UI/Container/Container';
-import Image from 'components/UI/Image/Image';
-import Heading from 'components/UI/Heading/Heading';
-import Text from 'components/UI/Text/Text';
-import { ProfilePicLoader } from 'components/UI/ContentLoader/ContentLoader';
-import Loader from 'components/Loader/Loader';
+import Menu from '@tripApp/components/UI/Antd/Menu/Menu';
+import Popover from '@tripApp/components/UI/Antd/Popover/Popover';
+import Container from '@tripApp/components/UI/Container/Container';
+import Image from '@tripApp/components/UI/Image/Image';
+import Heading from '@tripApp/components/UI/Heading/Heading';
+import Text from '@tripApp/components/UI/Text/Text';
+import { ProfilePicLoader } from '@tripApp/components/UI/ContentLoader/ContentLoader';
+import Loader from '@tripApp/components/Loader/Loader';
 import { ADD_HOTEL_PAGE } from '../../../settings/constant';
 import AgentDetailsPage, {
   BannerSection,
@@ -27,11 +27,13 @@ import {
   IoIosAdd,
 } from 'react-icons/io';
 
-const AgentFavItemLists = dynamic(() => import('./AgentFavItemLists'));
+const AgentFavItemLists = dynamic(() =>
+  import('./AgentFavItemLists')
+);
 const AgentContact = dynamic(() => import('./AgentContact'));
 const AgentItemLists = dynamic(() => import('./AgentItemLists'));
 
-const ProfileNavigation = props => {
+const ProfileNavigation = (props) => {
   const [component, setComponent] = useState('allListing');
   const { className, isLoggedIn } = props;
 
@@ -49,7 +51,9 @@ const ProfileNavigation = props => {
           </Menu.Item>
           <Menu.Item key="1">
             <a
-              className={component === 'favouriteListing' ? 'active' : ''}
+              className={
+                component === 'favouriteListing' ? 'active' : ''
+              }
               onClick={() => setComponent('favouriteListing')}
             >
               Favourites
@@ -75,14 +79,16 @@ const ProfileNavigation = props => {
       </NavigationArea>
       <Container fluid={true}>
         {component === 'allListing' && <AgentItemLists {...props} />}
-        {component === 'favouriteListing' && <AgentFavItemLists {...props} />}
+        {component === 'favouriteListing' && (
+          <AgentFavItemLists {...props} />
+        )}
         {component === 'contact' && <AgentContact {...props} />}
       </Container>
     </>
   );
 };
 
-const AgentProfileInfo = props => {
+const AgentProfileInfo = (props) => {
   const { processedData, loading } = props;
   if (isEmpty(processedData) || loading) return <Loader />;
   const {

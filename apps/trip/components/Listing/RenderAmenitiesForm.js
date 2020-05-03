@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Radio from 'components/UI/Antd/Radio/Radio';
+import Radio from '@tripApp/components/UI/Antd/Radio/Radio';
 
 /*
  *
@@ -20,7 +20,7 @@ export const PorpertyType = ({ field, form, ...props }) => {
     <Radio.Group
       options={getPropertyType.options}
       value={wifiAvailability}
-      onChange={e => {
+      onChange={(e) => {
         setWifiAvailability(e.target.value);
         form.setFieldValue(field.name, e.target.value);
       }}
@@ -37,7 +37,10 @@ export const PorpertyType = ({ field, form, ...props }) => {
 export const Parking = ({ field, form, ...props }) => {
   const getParkingType = {
     identifier: 'parking',
-    options: [{ label: 'Yes', value: 'yes' }, { label: 'No', value: 'no' }],
+    options: [
+      { label: 'Yes', value: 'yes' },
+      { label: 'No', value: 'no' },
+    ],
   };
   const [parking, setParking] = useState('');
 
@@ -45,7 +48,7 @@ export const Parking = ({ field, form, ...props }) => {
     <Radio.Group
       options={getParkingType.options}
       value={parking}
-      onChange={e => {
+      onChange={(e) => {
         setParking(e.target.value);
         form.setFieldValue(field.name, e.target.value);
       }}
@@ -62,14 +65,17 @@ export const Parking = ({ field, form, ...props }) => {
 export const Pool = ({ field, form, ...props }) => {
   const getPool = {
     identifier: 'pool',
-    options: [{ label: 'Yes', value: 'yes' }, { label: 'No', value: 'no' }],
+    options: [
+      { label: 'Yes', value: 'yes' },
+      { label: 'No', value: 'no' },
+    ],
   };
   const [pool, setPool] = useState('');
   return (
     <Radio.Group
       value={pool}
       options={getPool.options}
-      onChange={e => {
+      onChange={(e) => {
         setPool(e.target.value);
         form.setFieldValue(field.name, e.target.value);
       }}
@@ -86,14 +92,17 @@ export const Pool = ({ field, form, ...props }) => {
 export const AirCondition = ({ field, form, ...props }) => {
   const getAirCondition = {
     identifier: 'airCondition',
-    options: [{ label: 'Yes', value: 'yes' }, { label: 'No', value: 'no' }],
+    options: [
+      { label: 'Yes', value: 'yes' },
+      { label: 'No', value: 'no' },
+    ],
   };
   const [airCondition, setAirCondition] = useState('');
   return (
     <Radio.Group
       value={airCondition}
       options={getAirCondition.options}
-      onChange={e => {
+      onChange={(e) => {
         setAirCondition(e.target.value);
         form.setFieldValue(field.name, e.target.value);
       }}
@@ -110,14 +119,17 @@ export const AirCondition = ({ field, form, ...props }) => {
 export const ExtraBed = ({ field, form, ...props }) => {
   const getExtraBed = {
     identifier: 'extraBed',
-    options: [{ label: 'Yes', value: 'yes' }, { label: 'No', value: 'no' }],
+    options: [
+      { label: 'Yes', value: 'yes' },
+      { label: 'No', value: 'no' },
+    ],
   };
   const [extraBed, setExtraBed] = useState('');
   return (
     <Radio.Group
       value={extraBed}
       options={getExtraBed.options}
-      onChange={e => {
+      onChange={(e) => {
         setExtraBed(e.target.value);
         form.setFieldValue(field.name, e.target.value);
       }}

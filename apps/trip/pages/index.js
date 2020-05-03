@@ -1,20 +1,23 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import Container from 'components/UI/Container/Container';
-import Heading from 'components/UI/Heading/Heading';
-import SectionTitle from 'components/SectionTitle/SectionTitle';
-import SearchArea from 'container/Home/Search/Search';
-import LocationGrid from 'container/Home/Location/Location';
-import SectionGrid from 'components/SectionGrid/SectionGrid';
-import GetAPIData from 'library/helpers/get_api_data';
-import { getDeviceType } from 'library/helpers/get_devide_type';
-import { LISTING_POSTS_PAGE, SINGLE_POST_PAGE } from 'settings/constant';
+import Container from '@tripApp/components/UI/Container/Container';
+import Heading from '@tripApp/components/UI/Heading/Heading';
+import SectionTitle from '@tripApp/components/SectionTitle/SectionTitle';
+import SearchArea from '@tripApp/container/Home/Search/Search';
+import LocationGrid from '@tripApp/container/Home/Location/Location';
+import SectionGrid from '@tripApp/components/SectionGrid/SectionGrid';
+import GetAPIData from '@tripApp/library/helpers/get_api_data';
+import { getDeviceType } from '@tripApp/library/helpers/get_devide_type';
+import {
+  LISTING_POSTS_PAGE,
+  SINGLE_POST_PAGE,
+} from '@tripApp/settings/constant';
 import {
   HOME_PAGE_SECTIONS_ITEM_LIMIT_FOR_MOBILE_DEVICE,
   HOME_PAGE_SECTIONS_ITEM_LIMIT_FOR_TABLET_DEVICE,
   HOME_PAGE_SECTIONS_ITEM_LIMIT_FOR_DESKTOP_DEVICE,
   HOME_PAGE_SECTIONS_COLUMNS_RESPONSIVE_WIDTH,
-} from 'settings/config';
+} from '@tripApp/settings/config';
 export default function HomePage({
   deviceType,
   locationData,

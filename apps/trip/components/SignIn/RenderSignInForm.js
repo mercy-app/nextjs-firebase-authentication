@@ -2,8 +2,11 @@ import React from 'react';
 import { Field, Form } from 'formik';
 import Link from 'next/link';
 import { MdLockOpen } from 'react-icons/md';
-import { AntInput, AntSwitch } from 'components/UI/Antd/AntdInputWithFormik';
-import Button from 'components/UI/Antd/Button/Button';
+import {
+  AntInput,
+  AntSwitch,
+} from '@tripApp/components/UI/Antd/AntdInputWithFormik';
+import Button from '@tripApp/components/UI/Antd/Button/Button';
 
 import FormWrapper, {
   FieldWrapper,
@@ -11,10 +14,15 @@ import FormWrapper, {
   Label,
 } from './SiginFormStyle';
 
-const RenderBasicInfoForm = props => {
+const RenderBasicInfoForm = (props) => {
   console.log(props, 'formprops');
 
-  const { values, submitCount, handleSubmit, forgetPasswordLink } = props;
+  const {
+    values,
+    submitCount,
+    handleSubmit,
+    forgetPasswordLink,
+  } = props;
   return (
     <FormWrapper>
       <Form onSubmit={handleSubmit}>

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import Row from 'components/UI/Antd/Grid/Row';
-import Col from 'components/UI/Antd/Grid/Col';
-import Divider from 'components/UI/Antd/Divider/Divider';
-import Button from 'components/UI/Antd/Button/Button';
-import Logo from 'components/UI/Logo/Logo';
+import Row from '@tripApp/components/UI/Antd/Grid/Row';
+import Col from '@tripApp/components/UI/Antd/Grid/Col';
+import Divider from '@tripApp/components/UI/Antd/Divider/Divider';
+import Button from '@tripApp/components/UI/Antd/Button/Button';
+import Logo from '@tripApp/components/UI/Logo/Logo';
 import SignUpForm from '../container/SignUp/SignUpForm';
 import { LOGIN_PAGE } from '../settings/constant';
 import SignUpWrapper, {
@@ -15,8 +15,8 @@ import SignUpWrapper, {
   SignUpBannerWrapper,
 } from '../container/SignUp/SignUp.style';
 // demo image
-import signInImage from 'assets/images/login-page-bg.jpg';
-import tripFinder from 'assets/images/logo-alt.svg';
+import signInImage from '@tripApp/assets/images/login-page-bg.jpg';
+import tripFinder from '@tripApp/assets/images/logo-alt.svg';
 
 export default function SignUp() {
   const [state, setState] = useState({
@@ -57,7 +57,12 @@ export default function SignUp() {
   return (
     <SignUpWrapper>
       <SignUpFormWrapper>
-        <Logo withLink linkTo="/" src={tripFinder} title="TripFinder." />
+        <Logo
+          withLink
+          linkTo="/"
+          src={tripFinder}
+          title="TripFinder."
+        />
         <Title>Welcome to TripFinder.</Title>
         <TitleInfo>Please register for your account</TitleInfo>
         <SignUpForm />

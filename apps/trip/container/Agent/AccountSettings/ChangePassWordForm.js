@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Formik } from 'formik';
-import RenderChangePassWordForm from 'components/ChangePassWord/RenderChangePassWordForm';
+import RenderChangePassWordForm from '@tripApp/components/ChangePassWord/RenderChangePassWordForm';
 import * as Yup from 'yup';
 import { FormTitle } from './AccountSettings.style';
 
@@ -21,12 +21,15 @@ const getChangePassWordValidationSchema = () => {
       .max(20, 'Too Long!')
       .required('New Password is required!'),
     confrimNewPassWord: Yup.string()
-      .oneOf([Yup.ref('newPassWord'), null], 'Passwords are not the same!')
+      .oneOf(
+        [Yup.ref('newPassWord'), null],
+        'Passwords are not the same!'
+      )
       .required('Password confirmation is required'),
   });
 };
 
-const handleSubmit = formProps => {
+const handleSubmit = (formProps) => {
   const { password, newPassWord, confrimNewPassWord } = formProps;
   alert(
     `\nSelected Client password: ${password} \nSelected Client New Password: ${newPassWord} \nSelected Client Confirmed Password: ${confrimNewPassWord} `

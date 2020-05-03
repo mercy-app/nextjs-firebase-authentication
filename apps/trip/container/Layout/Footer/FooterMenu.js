@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Menu from 'components/UI/Antd/Menu/Menu';
+import Menu from '@tripApp/components/UI/Antd/Menu/Menu';
 
 import {
   HOME_PAGE,

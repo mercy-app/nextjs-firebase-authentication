@@ -1,7 +1,7 @@
 import React from 'react';
-import PriceCard from 'components/PriceCard/PriceCard';
+import PriceCard from '@tripApp/components/PriceCard/PriceCard';
 export default function PricingItems({ plans }) {
-  return plans.map(plan => (
+  return plans.map((plan) => (
     <PriceCard
       className="price_card"
       data={plan}

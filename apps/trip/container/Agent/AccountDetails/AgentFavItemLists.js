@@ -1,6 +1,6 @@
 import React from 'react';
-import SectionGrid from 'components/SectionGrid/SectionGrid';
-import { PostPlaceholder } from 'components/UI/ContentLoader/ContentLoader';
+import SectionGrid from '@tripApp/components/SectionGrid/SectionGrid';
+import { PostPlaceholder } from '@tripApp/components/UI/ContentLoader/ContentLoader';
 import { SINGLE_POST_PAGE } from '../../../settings/constant';
 
 const FAVOURITE_POST_LIMIT = 6;

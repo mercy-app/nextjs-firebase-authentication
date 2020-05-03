@@ -215,6 +215,8 @@ export type Mutation = {
   passwordForgot: Scalars['Boolean'];
   passwordChange: Scalars['Boolean'];
   emailChange: Scalars['Boolean'];
+  updateAddress: User;
+  updateContact: User;
   paypalCreateOrder: PaypalOrderId;
   paypalApproveOrder: Scalars['Boolean'];
   stripeCreateOrder: StripeId;
@@ -267,6 +269,21 @@ export type MutationPasswordChangeArgs = {
 
 export type MutationEmailChangeArgs = {
   email: Scalars['String'];
+};
+
+
+export type MutationUpdateAddressArgs = {
+  info: Scalars['String'];
+  json: Scalars['String'];
+  type: Scalars['String'];
+  id: Scalars['String'];
+};
+
+
+export type MutationUpdateContactArgs = {
+  number: Scalars['String'];
+  type: Scalars['String'];
+  id: Scalars['String'];
 };
 
 

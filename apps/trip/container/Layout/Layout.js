@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'next/router';
-import LayoutWrapper from 'components/UI/Antd/Layout/Layout';
+import LayoutWrapper from '@tripApp/components/UI/Antd/Layout/Layout';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import LayoutProvider from '../../context/LayoutProvider';
@@ -43,9 +43,14 @@ const Layout = ({ children, router, user, isLoggedIn }) => {
             router.pathname === FORGET_PASSWORD_PAGE ||
             router.pathname === PRIVACY_PAGE ||
             router.pathname ===
-              `${AGENT_ACCOUNT_SETTINGS_PAGE + AGENT_IMAGE_EDIT_PAGE}` ||
+              `${
+                AGENT_ACCOUNT_SETTINGS_PAGE + AGENT_IMAGE_EDIT_PAGE
+              }` ||
             router.pathname ===
-              `${AGENT_ACCOUNT_SETTINGS_PAGE + AGENT_PASSWORD_CHANGE_PAGE}` ||
+              `${
+                AGENT_ACCOUNT_SETTINGS_PAGE +
+                AGENT_PASSWORD_CHANGE_PAGE
+              }` ||
             router.pathname === AGENT_ACCOUNT_SETTINGS_PAGE ? (
               <div style={{ height: '33px' }} />
             ) : (

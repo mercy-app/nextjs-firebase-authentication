@@ -55,6 +55,12 @@ const nextConfig = {
     S3_ACCESS_KEY_ID: process.env.S3_ACCESS_KEY_ID,
     S3_SECRET_ACCESS_KEY: process.env.S3_SECRET_ACCESS_KEY,
     S3_BUCKET: process.env.S3_BUCKET,
+
+    // TEMP ENVs
+    SERVER_API: process.env.SERVER_API,
+    GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
+    REACT_APP_GOOGLE_MAP_API_KEY:
+      process.env.REACT_APP_GOOGLE_MAP_API_KEY,
   },
   webpack: (config, { isServer }) => {
     // TIP: this is required for css related files

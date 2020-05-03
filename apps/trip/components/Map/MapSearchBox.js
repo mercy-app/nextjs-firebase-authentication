@@ -7,7 +7,7 @@ import {
   Marker,
 } from 'react-google-maps';
 import { compose, withProps } from 'recompose';
-import Input from 'components/UI/Antd/Input/Input';
+import Input from '@tripApp/components/UI/Antd/Input/Input';
 import MakerImage from './hotelMapMarker.png';
 const {
   SearchBox,
@@ -22,10 +22,12 @@ const MapWithSearchBox = compose(
   }),
   withScriptjs,
   withGoogleMap
-)(props => {
+)((props) => {
   const [dragNDropData, setDragNDropData] = useState([]);
   const { updatevalue } = props;
-  const [locationInput, setLocationInput] = useState({ searchedLocation: '' });
+  const [locationInput, setLocationInput] = useState({
+    searchedLocation: '',
+  });
   const [locationDetails, setLocationDetails] = useState({
     center: {
       lat: 40.7128,
@@ -46,17 +48,21 @@ const MapWithSearchBox = compose(
   const onPlacesChanged = () => {
     const places = SearchBoxRef.current.getPlaces();
     const bounds = new window.google.maps.LatLngBounds();
-    places.forEach(place => {
+    places.forEach((place) => {
       if (place.geometry.viewport) {
         bounds.union(place.geometry.viewport);
       } else {
         bounds.extend(place.geometry.location);
       }
     });
-    const nextMarkers = places.map(place => ({
+    const nextMarkers = places.map((place) => ({
       position: place.geometry.location,
     }));
-    const nextCenter = _.get(nextMarkers, '0.position', locationDetails.center);
+    const nextCenter = _.get(
+      nextMarkers,
+      '0.position',
+      locationDetails.center
+    );
 
     setLocationDetails({
       places,
@@ -64,12 +70,13 @@ const MapWithSearchBox = compose(
       markers: nextMarkers,
     });
     setLocationInput({
-      searchedLocation: places && places[0] && places[0].formatted_address,
+      searchedLocation:
+        places && places[0] && places[0].formatted_address,
     });
     updatevalue(places);
   };
 
-  const handleOnChange = event => {
+  const handleOnChange = (event) => {
     event.stopPropagation();
     if (event.which === '13') {
       event.preventDefault();
@@ -77,7 +84,7 @@ const MapWithSearchBox = compose(
     setLocationInput({ searchedLocation: event.target.value });
   };
 
-  const handleOnPressEnter = event => {
+  const handleOnPressEnter = (event) => {
     event.stopPropagation();
     if (event.which === '13') {
       event.preventDefault();
@@ -85,7 +92,7 @@ const MapWithSearchBox = compose(
     setLocationInput({ searchedLocation: event.target.value });
   };
 
-  const onDragEndFunc = marker => {
+  const onDragEndFunc = (marker) => {
     let tempLocArray = [];
     var geocoder = new window.google.maps.Geocoder();
     const latlng = {
@@ -98,11 +105,12 @@ const MapWithSearchBox = compose(
       center: latlng,
     });
 
-    geocoder.geocode({ latLng: latlng }, function(results, status) {
+    geocoder.geocode({ latLng: latlng }, function (results, status) {
       console.log(results, 'results');
       if (results[0] && results[0].formatted_address) {
         setLocationInput({
-          searchedLocation: results[0] && results[0].formatted_address,
+          searchedLocation:
+            results[0] && results[0].formatted_address,
         });
         const location = {
           place_id: results[0].place_id,
@@ -126,7 +134,9 @@ const MapWithSearchBox = compose(
       >
         <SearchBox
           ref={SearchBoxRef}
-          controlPosition={window.google.maps.ControlPosition.TOP_LEFT}
+          controlPosition={
+            window.google.maps.ControlPosition.TOP_LEFT
+          }
           onPlacesChanged={onPlacesChanged}
         >
           <Input
@@ -146,7 +156,9 @@ const MapWithSearchBox = compose(
               textOverflow: `ellipses`,
             }}
             defaultValue=""
-            value={locationInput ? locationInput.searchedLocation : ''}
+            value={
+              locationInput ? locationInput.searchedLocation : ''
+            }
             onChange={handleOnChange}
             onPressEnter={handleOnPressEnter}
           />
@@ -158,7 +170,7 @@ const MapWithSearchBox = compose(
               key={index}
               position={marker.position}
               // draggable
-              onDragEnd={marker => onDragEndFunc(marker)}
+              onDragEnd={(marker) => onDragEndFunc(marker)}
             />
           );
         })}

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Formik } from 'formik';
 import Router from 'next/router';
 import * as Yup from 'yup';
-import RenderSignUpForm from 'components/SignUp/RenderSignUpForm';
+import RenderSignUpForm from '@tripApp/components/SignUp/RenderSignUpForm';
 import { AuthContext } from '../../context/AuthProvider';
 
 const initialValues = {
@@ -28,13 +28,16 @@ const getRegisterValidationSchema = () => {
       .max(20, 'Too Long!')
       .required('Password is required!'),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref('password'), null], 'Passwords are not the same!')
+      .oneOf(
+        [Yup.ref('password'), null],
+        'Passwords are not the same!'
+      )
       .required('Password confirmation is required'),
     termsAndConditions: Yup.bool()
       .test(
         'consent',
         'You have to agree with our Terms and Conditions!',
-        value => value === true
+        (value) => value === true
       )
       .required('You have to agree with our Terms and Conditions!'),
   });
@@ -43,7 +46,7 @@ const getRegisterValidationSchema = () => {
 export default () => {
   const { signUp, loggedIn } = useContext(AuthContext);
   if (loggedIn) return Router.push('/');
-  const handleSubmit = formProps => {
+  const handleSubmit = (formProps) => {
     signUp(formProps);
   };
   return (

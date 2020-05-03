@@ -1,12 +1,12 @@
 import App from 'next/app';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import { ThemeProvider } from 'styled-components';
-import theme from 'themes/default.theme';
-import GlobalStyles from 'assets/style/Global.style';
-import Layout from 'container/Layout/Layout';
-import AuthProvider from 'context/AuthProvider';
-import { SearchProvider } from 'context/SearchProvider';
-import { withData } from 'library/helpers/restriction';
+import theme from '@tripApp/themes/default.theme';
+import GlobalStyles from '@tripApp/assets/style/Global.style';
+import Layout from '@tripApp/container/Layout/Layout';
+import AuthProvider from '@tripApp/context/AuthProvider';
+import { SearchProvider } from '@tripApp/context/SearchProvider';
+import { withData } from '@tripApp/library/helpers/restriction';
 
 export default class CustomApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -21,7 +21,13 @@ export default class CustomApp extends App {
   }
 
   render() {
-    const { Component, pageProps, query, user, isLoggedIn } = this.props;
+    const {
+      Component,
+      pageProps,
+      query,
+      user,
+      isLoggedIn,
+    } = this.props;
 
     return (
       <AuthProvider>

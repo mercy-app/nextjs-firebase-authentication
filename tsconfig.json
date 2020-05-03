@@ -35,12 +35,15 @@
       "@validation/*": ["./src/validation/*"],
       "@constants/*": ["./src/constants/*"],
       "@context/*": ["./src/context/*"],
+      "@styled/*": ["./src/styled/*"],
+      "@theme/*": ["./src/theme/*"],
       "@queries/*": ["./src/queries/*"],
       "@data/*": ["./src/data/*"],
       "@typeDefs/*": ["./src/types/*"],
       "@generated/*": ["./src/generated/*"],
       "@prismaTypes/*": ["./prisma/generated/type-graphql/*"],
       "@shopApp/*": ["./apps/shop/*"],
+      "@tripApp/*": ["./apps/trip/*"],
       "@adminApp/*": ["./apps/admin/*"]
     }
   },

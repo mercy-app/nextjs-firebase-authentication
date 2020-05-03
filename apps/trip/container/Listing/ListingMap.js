@@ -1,10 +1,10 @@
 import React from 'react';
 import isEmpty from 'lodash/isEmpty';
-import Map, { MapDataProcessing } from 'components/Map/Map';
-import Loader from 'components/Loader/Loader';
+import Map, { MapDataProcessing } from '@tripApp/components/Map/Map';
+import Loader from '@tripApp/components/Loader/Loader';
 import { FixedMap } from './Listing.style';
 
-const ListingMap = props => {
+const ListingMap = (props) => {
   const { mapData, loading } = props;
   return (
     <FixedMap>

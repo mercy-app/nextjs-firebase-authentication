@@ -1,14 +1,14 @@
 import React, { useState, useContext, useReducer } from 'react';
 import moment from 'moment';
 import { createBrowserHistory } from 'history';
-import ViewWithPopup from 'components/UI/ViewWithPopup/ViewWithPopup';
-import Slider from 'components/UI/Antd/Slider/Slider';
-import Button from 'components/UI/Antd/Button/Button';
-import Checkbox from 'components/UI/Antd/Checkbox/Checkbox';
-import InputIncDec from 'components/UI/InputIncDec/InputIncDec';
-import DateRangePickerBox from 'components/UI/DatePicker/ReactDates';
-import { SearchContext } from 'context/SearchProvider';
-import { setStateToUrl } from 'library/helpers/url_handler';
+import ViewWithPopup from '@tripApp/components/UI/ViewWithPopup/ViewWithPopup';
+import Slider from '@tripApp/components/UI/Antd/Slider/Slider';
+import Button from '@tripApp/components/UI/Antd/Button/Button';
+import Checkbox from '@tripApp/components/UI/Antd/Checkbox/Checkbox';
+import InputIncDec from '@tripApp/components/UI/InputIncDec/InputIncDec';
+import DateRangePickerBox from '@tripApp/components/UI/DatePicker/ReactDates';
+import { SearchContext } from '@tripApp/context/SearchProvider';
+import { setStateToUrl } from '@tripApp/library/helpers/url_handler';
 import {
   priceInit,
   calenderItem,
@@ -55,7 +55,7 @@ function serchReducer(state, action) {
   }
 }
 
-const CategorySearchNext = props => {
+const CategorySearchNext = (props) => {
   const { state, dispatch } = useContext(SearchContext);
   const initialState = {
     amenities: state.amenities || [],
@@ -71,7 +71,10 @@ const CategorySearchNext = props => {
   };
 
   // current component state with dispatching to reducer
-  const [current, dispatchCurrent] = useReducer(serchReducer, initialState);
+  const [current, dispatchCurrent] = useReducer(
+    serchReducer,
+    initialState
+  );
   // Room guest state
   const [countRoom, setRoom] = useState(current.room);
   const [countGuest, setGuest] = useState(current.guest);
@@ -177,15 +180,19 @@ const CategorySearchNext = props => {
 
   const dateRangeActivateClass =
     current &&
-    current.setStartDate !== undefined && current.setEndDate !== undefined &&
-    current.setStartDate !== null && current.setEndDate !== null
+    current.setStartDate !== undefined &&
+    current.setEndDate !== undefined &&
+    current.setStartDate !== null &&
+    current.setEndDate !== null
       ? 'activated'
       : '';
 
   const priceRangeActivateClass =
     current &&
-    current.minPrice !== undefined && current.maxPrice !== undefined &&
-    current.minPrice === 0 && current.maxPrice === 100
+    current.minPrice !== undefined &&
+    current.maxPrice !== undefined &&
+    current.minPrice === 0 &&
+    current.maxPrice === 100
       ? ''
       : 'activated';
 
@@ -194,15 +201,27 @@ const CategorySearchNext = props => {
   let amenities = [];
   let property = [];
 
-  if (current && current.amenities && typeof current.amenities === 'string') {
+  if (
+    current &&
+    current.amenities &&
+    typeof current.amenities === 'string'
+  ) {
     amenities = current.amenities.split(',');
     amenitiesLength = amenities.length;
-  } else if (current && current.amenities && current.amenities.length) {
+  } else if (
+    current &&
+    current.amenities &&
+    current.amenities.length
+  ) {
     amenities = current.amenities;
     amenitiesLength = amenities.length;
   }
 
-  if (current && current.property && typeof current.property === 'string') {
+  if (
+    current &&
+    current.property &&
+    typeof current.property === 'string'
+  ) {
     property = current.property.split(',');
     propertyLength = property.length;
   } else if (current && current.property && current.property.length) {
@@ -226,7 +245,7 @@ const CategorySearchNext = props => {
           <Checkbox.Group
             options={getAmenities.options}
             defaultValue={amenities}
-            onChange={value => onChange(value, 'amenities')}
+            onChange={(value) => onChange(value, 'amenities')}
           />
         }
       />
@@ -245,7 +264,7 @@ const CategorySearchNext = props => {
           <Checkbox.Group
             options={getPropertyType.options}
             defaultValue={property}
-            onChange={value => onChange(value, 'property')}
+            onChange={(value) => onChange(value, 'property')}
           />
         }
       />
@@ -260,13 +279,19 @@ const CategorySearchNext = props => {
             startDateId="startDate-id-category"
             endDateId="endDate-id-category"
             startDate={
-              current.setStartDate ? moment(current.setStartDate) : null
+              current.setStartDate
+                ? moment(current.setStartDate)
+                : null
             }
-            endDate={current.setEndDate ? moment(current.setEndDate) : null}
+            endDate={
+              current.setEndDate ? moment(current.setEndDate) : null
+            }
             numberOfMonths={1}
             small={true}
             item={calenderItem}
-            updateSearchData={value => onChange(value, 'date_range')}
+            updateSearchData={(value) =>
+              onChange(value, 'date_range')
+            }
           />
         }
       />
@@ -289,7 +314,7 @@ const CategorySearchNext = props => {
             min={0}
             max={100}
             defaultValue={[current.minPrice, current.maxPrice]}
-            onAfterChange={value => onChange(value, 'price')}
+            onAfterChange={(value) => onChange(value, 'price')}
           />
         }
       />
@@ -310,11 +335,15 @@ const CategorySearchNext = props => {
               <strong>Room</strong>
               <InputIncDec
                 id="room"
-                increment={() => setRoom(countRoom => countRoom + 1)}
-                decrement={() =>
-                  setRoom(countRoom => countRoom > 0 && countRoom - 1)
+                increment={() =>
+                  setRoom((countRoom) => countRoom + 1)
                 }
-                onChange={e => setRoom(e.target.value)}
+                decrement={() =>
+                  setRoom(
+                    (countRoom) => countRoom > 0 && countRoom - 1
+                  )
+                }
+                onChange={(e) => setRoom(e.target.value)}
                 value={countRoom}
               />
             </ItemWrapper>
@@ -323,18 +352,25 @@ const CategorySearchNext = props => {
               <strong>Guest</strong>
               <InputIncDec
                 id="guest"
-                increment={() => setGuest(countGuest => countGuest + 1)}
-                decrement={() =>
-                  setGuest(countGuest => countGuest > 0 && countGuest - 1)
+                increment={() =>
+                  setGuest((countGuest) => countGuest + 1)
                 }
-                onChange={e => setGuest(e.target.value)}
+                decrement={() =>
+                  setGuest(
+                    (countGuest) => countGuest > 0 && countGuest - 1
+                  )
+                }
+                onChange={(e) => setGuest(e.target.value)}
                 value={countGuest}
               />
             </ItemWrapper>
 
             <ActionWrapper>
               {countRoom || countGuest ? (
-                <Button type="default" onClick={handleRoomGuestCancel}>
+                <Button
+                  type="default"
+                  onClick={handleRoomGuestCancel}
+                >
                   Cancel
                 </Button>
               ) : (

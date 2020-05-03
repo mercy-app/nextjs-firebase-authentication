@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import Router, { withRouter } from 'next/router';
 import isEmpty from 'lodash/isEmpty';
 import { FiSearch } from 'react-icons/fi';
-import MapAutoComplete from 'components/Map/MapAutoComplete';
-import { MapDataHelper } from 'components/Map/MapLocationBox';
+import MapAutoComplete from '@tripApp/components/Map/MapAutoComplete';
+import { MapDataHelper } from '@tripApp/components/Map/MapLocationBox';
 import { NavbarSearchWrapper } from './Header.style';
-import { SearchContext } from 'context/SearchProvider';
-import { setStateToUrl } from 'library/helpers/url_handler';
+import { SearchContext } from '@tripApp/context/SearchProvider';
+import { setStateToUrl } from '@tripApp/library/helpers/url_handler';
 
 const NavbarSearch = () => {
   const { state, dispatch } = useContext(SearchContext);
@@ -23,17 +23,21 @@ const NavbarSearch = () => {
     guest: parseInt(state.guest) || 0,
   };
 
-  const updatevalueFunc = value => {
+  const updatevalueFunc = (value) => {
     const { searchedPlaceAPIData } = value;
     let tempLocation = [];
     const mapData = !isEmpty(searchedPlaceAPIData)
       ? MapDataHelper(searchedPlaceAPIData)
       : [];
     if (!isEmpty(mapData) && mapData.length !== 0) {
-      mapData.forEach(singleMapData =>
+      mapData.forEach((singleMapData) =>
         tempLocation.push({
-          location_lat: singleMapData ? singleMapData.lat.toFixed(3) : null,
-          location_lng: singleMapData ? singleMapData.lng.toFixed(3) : null,
+          location_lat: singleMapData
+            ? singleMapData.lat.toFixed(3)
+            : null,
+          location_lng: singleMapData
+            ? singleMapData.lng.toFixed(3)
+            : null,
         })
       );
     }
@@ -61,7 +65,9 @@ const NavbarSearch = () => {
 
   return (
     <NavbarSearchWrapper className="navbar_search">
-      <MapAutoComplete updatevalue={value => updatevalueFunc(value)} />
+      <MapAutoComplete
+        updatevalue={(value) => updatevalueFunc(value)}
+      />
       <FiSearch />
     </NavbarSearchWrapper>
   );

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Field, Form } from 'formik';
 import { MdLockOpen } from 'react-icons/md';
-import { AntInput } from 'components/UI/Antd/AntdInputWithFormik';
-import Button from 'components/UI/Antd/Button/Button';
+import { AntInput } from '@tripApp/components/UI/Antd/AntdInputWithFormik';
+import Button from '@tripApp/components/UI/Antd/Button/Button';
 
 import FormWrapper from './RenderForgetPassWordForm.style';
 
-const RenderForgetPassWordForm = props => {
+const RenderForgetPassWordForm = (props) => {
   const { values, submitCount, handleSubmit } = props;
   return (
     <FormWrapper>

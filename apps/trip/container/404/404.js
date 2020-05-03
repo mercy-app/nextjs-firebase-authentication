@@ -1,11 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'components/UI/Image/Image';
-import Heading from 'components/UI/Heading/Heading';
+import Image from '@tripApp/components/UI/Image/Image';
+import Heading from '@tripApp/components/UI/Heading/Heading';
 import NotFoundWrapper, { ContentWrapper } from './404.style';
-import Image404 from 'assets/images/404@2x.png';
+import Image404 from '@tripApp/assets/images/404@2x.png';
 
-const ErrorPage = props => {
+const ErrorPage = (props) => {
   const { errorCode } = props;
   let content = 'An unexpected error has occurred';
   if (errorCode === 400) {

@@ -1,7 +1,7 @@
 import React from 'react';
-import Card from 'components/UI/Antd/Card/Card';
+import Card from '@tripApp/components/UI/Antd/Card/Card';
 
-export const MapDataHelper = infoValue => {
+export const MapDataHelper = (infoValue) => {
   const tempMapObj = {};
   const tempMapArray = [];
 
@@ -72,7 +72,7 @@ export const MapDataHelper = infoValue => {
   return tempMapArray;
 };
 
-const MapLocationBox = props => {
+const MapLocationBox = (props) => {
   const { infoValue } = props;
   const tempMapArray = MapDataHelper(infoValue);
 

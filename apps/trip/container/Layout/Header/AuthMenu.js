@@ -1,8 +1,11 @@
 import React from 'react';
-import Menu from 'components/UI/Antd/Menu/Menu';
-import ActiveLink from 'library/helpers/activeLink';
+import Menu from '@tripApp/components/UI/Antd/Menu/Menu';
+import ActiveLink from '@tripApp/library/helpers/activeLink';
 
-import { LOGIN_PAGE, REGISTRATION_PAGE } from 'settings/constant';
+import {
+  LOGIN_PAGE,
+  REGISTRATION_PAGE,
+} from '@tripApp/settings/constant';
 
 const AuthMenu = ({ className }) => {
   return (

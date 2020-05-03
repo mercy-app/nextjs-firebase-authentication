@@ -1,10 +1,12 @@
 import React, { Fragment, useState, useContext } from 'react';
-import Container from 'components/UI/Container/Container';
-import Heading from 'components/UI/Heading/Heading';
-import RadioGroup from 'components/UI/RadioGroup/RadioGroup';
-import StatisticsComponent from 'components/UI/Statistics/Statistics';
+import Container from '@tripApp/components/UI/Container/Container';
+import Heading from '@tripApp/components/UI/Heading/Heading';
+import RadioGroup from '@tripApp/components/UI/RadioGroup/RadioGroup';
+import StatisticsComponent from '@tripApp/components/UI/Statistics/Statistics';
 
-import ApiProvider, { ApiContext } from '../../../context/ApiProvider';
+import ApiProvider, {
+  ApiContext,
+} from '../../../context/ApiProvider';
 
 import StatWrapper, {
   HeaderSection,
@@ -46,7 +48,7 @@ const DataProcessor = (statData, dataScope) => {
   }
 
   tempData = statData
-    ? statData.filter(item => {
+    ? statData.filter((item) => {
         return item.type === tempDataScope;
       })
     : [];
@@ -69,7 +71,7 @@ const HotelStatRender = () => {
   const statData = data && data.data ? data.data : [];
   graphData = DataProcessor(statData, dataScope);
 
-  const handleChange = value => {
+  const handleChange = (value) => {
     switch (value) {
       case 'yearly':
         setDataScope({
@@ -118,7 +120,9 @@ const HotelStatRender = () => {
             <h3>
               Total view ({dataScope.countTime} {dataScope.timeFrame})
             </h3>
-            <span>The total amount of time spent checking your hotel </span>
+            <span>
+              The total amount of time spent checking your hotel{' '}
+            </span>
           </ContentWrapper>
 
           <ChartWrapper>

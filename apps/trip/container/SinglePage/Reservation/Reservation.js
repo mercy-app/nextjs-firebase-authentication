@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-import Card from 'components/UI/Card/Card';
-import Heading from 'components/UI/Heading/Heading';
-import Text from 'components/UI/Text/Text';
+import Card from '@tripApp/components/UI/Card/Card';
+import Heading from '@tripApp/components/UI/Heading/Heading';
+import Text from '@tripApp/components/UI/Text/Text';
 import RenderReservationForm from './RenderReservationForm';
 
 const CardHeader = ({ priceStyle, pricePeriodStyle, linkStyle }) => {
@@ -12,7 +12,8 @@ const CardHeader = ({ priceStyle, pricePeriodStyle, linkStyle }) => {
       <Heading
         content={
           <Fragment>
-            $162 <Text as="span" content="/ night" {...pricePeriodStyle} />
+            $162{' '}
+            <Text as="span" content="/ night" {...pricePeriodStyle} />
           </Fragment>
         }
         {...priceStyle}

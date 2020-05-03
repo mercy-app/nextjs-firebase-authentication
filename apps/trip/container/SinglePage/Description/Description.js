@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Element } from 'react-scroll';
-import Rating from 'components/UI/Rating/Rating';
-import Heading from 'components/UI/Heading/Heading';
-import Text from 'components/UI/Text/Text';
-import Button from 'components/UI/Antd/Button/Button';
+import Rating from '@tripApp/components/UI/Rating/Rating';
+import Heading from '@tripApp/components/UI/Heading/Heading';
+import Text from '@tripApp/components/UI/Text/Text';
+import Button from '@tripApp/components/UI/Antd/Button/Button';
 import DescriptionWrapper from './Description.style';
 import { RatingMeta, TextButton } from '../SinglePageView.style';
 
@@ -22,10 +22,17 @@ const Description = ({
   return (
     <Element name="overview" className="overview">
       <DescriptionWrapper>
-        <Text content={location.formattedAddress} {...locationMetaStyle} />
+        <Text
+          content={location.formattedAddress}
+          {...locationMetaStyle}
+        />
         <Heading as="h2" content={title} {...titleStyle} />
         <RatingMeta>
-          <Rating rating={rating} ratingCount={ratingCount} type="bulk" />
+          <Rating
+            rating={rating}
+            ratingCount={ratingCount}
+            type="bulk"
+          />
         </RatingMeta>
         <Text content={content} {...contentStyle} />
         <TextButton>

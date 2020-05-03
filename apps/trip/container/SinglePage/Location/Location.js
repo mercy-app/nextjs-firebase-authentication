@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Heading from 'components/UI/Heading/Heading';
-import Text from 'components/UI/Text/Text';
+import Heading from '@tripApp/components/UI/Heading/Heading';
+import Text from '@tripApp/components/UI/Text/Text';
 import LocationWrapper from './Location.style';
-import Map, { MapDataProcessing } from 'components/Map/Map';
+import Map, { MapDataProcessing } from '@tripApp/components/Map/Map';
 import { Element } from 'react-scroll';
 
 const Location = ({
@@ -33,7 +33,10 @@ const Location = ({
           {...contentStyle}
           {...boldContentStyle}
         />
-        <Text content="26 mins by car without traffic" {...contentStyle} />
+        <Text
+          content="26 mins by car without traffic"
+          {...contentStyle}
+        />
         <Map>
           <MapDataProcessing location={location} multiple={false} />
         </Map>

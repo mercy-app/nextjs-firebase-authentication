@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 import moment from 'moment';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import RenderCreateOrUpdateForm from 'components/Agent/RenderCreateOrUpdateForm';
-import { dateFormat } from 'library/helpers/validators/fieldFormats';
+import RenderCreateOrUpdateForm from '@tripApp/components/Agent/RenderCreateOrUpdateForm';
+import { dateFormat } from '@tripApp/library/helpers/validators/fieldFormats';
 import { FormTitle } from './AccountSettings.style';
 
 const initialValues = {
@@ -47,7 +47,7 @@ const profileBuildValidationSchema = () => {
   });
 };
 
-const handleSubmit = formProps => {
+const handleSubmit = (formProps) => {
   const {
     firstName,
     lastName,

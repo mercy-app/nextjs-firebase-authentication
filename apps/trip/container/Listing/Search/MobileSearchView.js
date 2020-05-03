@@ -2,15 +2,15 @@ import React, { useState, useContext, useReducer } from 'react';
 import moment from 'moment';
 import { createBrowserHistory } from 'history';
 import Router from 'next/router';
-import Heading from 'components/UI/Heading/Heading';
-import Slider from 'components/UI/Antd/Slider/Slider';
-import Drawer from 'components/UI/Antd/Drawer/Drawer';
-import Button from 'components/UI/Antd/Button/Button';
-import Checkbox from 'components/UI/Antd/Checkbox/Checkbox';
-import InputIncDec from 'components/UI/InputIncDec/InputIncDec';
-import DateRangePicker from 'components/UI/DatePicker/ReactDates';
-import { setStateToUrl } from 'library/helpers/url_handler';
-import { SearchContext } from 'context/SearchProvider';
+import Heading from '@tripApp/components/UI/Heading/Heading';
+import Slider from '@tripApp/components/UI/Antd/Slider/Slider';
+import Drawer from '@tripApp/components/UI/Antd/Drawer/Drawer';
+import Button from '@tripApp/components/UI/Antd/Button/Button';
+import Checkbox from '@tripApp/components/UI/Antd/Checkbox/Checkbox';
+import InputIncDec from '@tripApp/components/UI/InputIncDec/InputIncDec';
+import DateRangePicker from '@tripApp/components/UI/DatePicker/ReactDates';
+import { setStateToUrl } from '@tripApp/library/helpers/url_handler';
+import { SearchContext } from '@tripApp/context/SearchProvider';
 import { IoIosArrowDown } from 'react-icons/io';
 import {
   Accordion,
@@ -72,7 +72,7 @@ function serchReducer(state, action) {
   }
 }
 
-const FilterDrawer = props => {
+const FilterDrawer = (props) => {
   const { state, dispatch } = useContext(SearchContext);
   const initialState = {
     amenities: state.amenities || [],
@@ -86,7 +86,10 @@ const FilterDrawer = props => {
     room: parseInt(state.room) || 0,
     guest: parseInt(state.guest) || 0,
   };
-  const [current, dispatchCurrent] = useReducer(serchReducer, initialState);
+  const [current, dispatchCurrent] = useReducer(
+    serchReducer,
+    initialState
+  );
   // state for drawer
   const [toggle, setToggle] = useState(false);
   // Room guest state
@@ -215,7 +218,10 @@ const FilterDrawer = props => {
 
   return (
     <FilterArea>
-      <Button className={toggle ? 'active' : ''} onClick={handleToggleDrawer}>
+      <Button
+        className={toggle ? 'active' : ''}
+        onClick={handleToggleDrawer}
+      >
         More filters
       </Button>
       <Drawer
@@ -242,7 +248,7 @@ const FilterDrawer = props => {
                 <Checkbox.Group
                   options={getAmenities.options}
                   value={current.amenities}
-                  onChange={value => onChange(value, 'amenities')}
+                  onChange={(value) => onChange(value, 'amenities')}
                 />
               </AccordionItemPanel>
             </AccordionItem>
@@ -260,7 +266,7 @@ const FilterDrawer = props => {
                 <Checkbox.Group
                   options={getPropertyType.options}
                   value={current.property}
-                  onChange={value => onChange(value, 'property')}
+                  onChange={(value) => onChange(value, 'property')}
                 />
               </AccordionItemPanel>
             </AccordionItem>
@@ -281,7 +287,7 @@ const FilterDrawer = props => {
                   min={0}
                   max={100}
                   defaultValue={[current.minPrice, current.maxPrice]}
-                  onAfterChange={value => onChange(value, 'price')}
+                  onAfterChange={(value) => onChange(value, 'price')}
                 />
               </AccordionItemPanel>
             </AccordionItem>
@@ -300,15 +306,21 @@ const FilterDrawer = props => {
                   startDateId="startDate-id-mobile"
                   endDateId="endDate-id-mobile"
                   startDate={
-                    current.setStartDate ? moment(current.setStartDate) : null
+                    current.setStartDate
+                      ? moment(current.setStartDate)
+                      : null
                   }
                   endDate={
-                    current.setEndDate ? moment(current.setEndDate) : null
+                    current.setEndDate
+                      ? moment(current.setEndDate)
+                      : null
                   }
                   numberOfMonths={1}
                   small={true}
                   item={calenderItem}
-                  updateSearchData={value => onChange(value, 'date_range')}
+                  updateSearchData={(value) =>
+                    onChange(value, 'date_range')
+                  }
                 />
               </AccordionItemPanel>
             </AccordionItem>
@@ -329,13 +341,17 @@ const FilterDrawer = props => {
                     <InputIncDec
                       id="room"
                       increment={() => {
-                        setRoom(countRoom => countRoom + 1);
+                        setRoom((countRoom) => countRoom + 1);
                         onChange(countRoom + 1, 'room');
                       }}
                       decrement={() => {
-                        setRoom(countRoom => countRoom > 0 && countRoom - 1);
+                        setRoom(
+                          (countRoom) =>
+                            countRoom > 0 && countRoom - 1
+                        );
                         onChange(
-                          countRoom => countRoom > 0 && countRoom - 1,
+                          (countRoom) =>
+                            countRoom > 0 && countRoom - 1,
                           'room'
                         );
                       }}
@@ -348,15 +364,17 @@ const FilterDrawer = props => {
                     <InputIncDec
                       id="guest"
                       increment={() => {
-                        setGuest(countGuest => countGuest + 1);
+                        setGuest((countGuest) => countGuest + 1);
                         onChange(countGuest + 1, 'guest');
                       }}
                       decrement={() => {
                         setGuest(
-                          countGuest => countGuest > 0 && countGuest - 1
+                          (countGuest) =>
+                            countGuest > 0 && countGuest - 1
                         );
                         onChange(
-                          countGuest => countGuest > 0 && countGuest - 1,
+                          (countGuest) =>
+                            countGuest > 0 && countGuest - 1,
                           'guest'
                         );
                       }}

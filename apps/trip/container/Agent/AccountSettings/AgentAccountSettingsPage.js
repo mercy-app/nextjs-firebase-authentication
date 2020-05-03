@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
-import ActiveLink from 'library/helpers/activeLink';
-import Row from 'components/UI/Antd/Grid/Row';
-import Col from 'components/UI/Antd/Grid/Col';
-import Menu from 'components/UI/Antd/Menu/Menu';
-import Avatar from 'components/UI/Antd/Avatar/Avatar';
-import Container from 'components/UI/Container/Container.style';
-import { AGENT_PROFILE_PAGE } from 'settings/constant';
+import ActiveLink from '@tripApp/library/helpers/activeLink';
+import Row from '@tripApp/components/UI/Antd/Grid/Row';
+import Col from '@tripApp/components/UI/Antd/Grid/Col';
+import Menu from '@tripApp/components/UI/Antd/Menu/Menu';
+import Avatar from '@tripApp/components/UI/Antd/Avatar/Avatar';
+import Container from '@tripApp/components/UI/Container/Container.style';
+import { AGENT_PROFILE_PAGE } from '@tripApp/settings/constant';
 import AccountSettingWrapper, {
   AccountSidebar,
   AgentAvatar,
@@ -58,17 +58,29 @@ export default function AgentAccountSettingsPage(props) {
                     mode="inline"
                   >
                     <Menu.Item key="1">
-                      <a onClick={() => setCurrentRoute('edit-profile')}>
+                      <a
+                        onClick={() =>
+                          setCurrentRoute('edit-profile')
+                        }
+                      >
                         Edit Profile
                       </a>
                     </Menu.Item>
                     <Menu.Item key="2">
-                      <a onClick={() => setCurrentRoute('change-photo')}>
+                      <a
+                        onClick={() =>
+                          setCurrentRoute('change-photo')
+                        }
+                      >
                         Change Photos
                       </a>
                     </Menu.Item>
                     <Menu.Item key="3">
-                      <a onClick={() => setCurrentRoute('change-password')}>
+                      <a
+                        onClick={() =>
+                          setCurrentRoute('change-password')
+                        }
+                      >
                         Change Password
                       </a>
                     </Menu.Item>
@@ -89,7 +101,11 @@ export default function AgentAccountSettingsPage(props) {
               ) : (
                 ''
               )}
-              {currentRoute === 'change-password' ? <ChangePassWord /> : ''}
+              {currentRoute === 'change-password' ? (
+                <ChangePassWord />
+              ) : (
+                ''
+              )}
             </FromWrapper>
           </Col>
         </Row>

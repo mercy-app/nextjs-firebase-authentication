@@ -1,8 +1,11 @@
 import React from 'react';
-import ImageUploader from 'components/UI/ImageUploader/ImageUploader';
-import Button from 'components/UI/Antd/Button/Button';
-import Heading from 'components/UI/Heading/Heading';
-import { AgentPictureUploader, FormTitle } from './AccountSettings.style';
+import ImageUploader from '@tripApp/components/UI/ImageUploader/ImageUploader';
+import Button from '@tripApp/components/UI/Antd/Button/Button';
+import Heading from '@tripApp/components/UI/Heading/Heading';
+import {
+  AgentPictureUploader,
+  FormTitle,
+} from './AccountSettings.style';
 
 export default function AgentPictureChangeForm() {
   return (

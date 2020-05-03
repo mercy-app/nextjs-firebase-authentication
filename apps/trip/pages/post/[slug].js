@@ -2,27 +2,33 @@ import { useState } from 'react';
 import Head from 'next/head';
 import isEmpty from 'lodash/isEmpty';
 import Sticky from 'react-stickynode';
-import Row from 'components/UI/Antd/Grid/Row';
-import Col from 'components/UI/Antd/Grid/Col';
-import Modal from 'components/UI/Antd/Modal/Modal';
-import Button from 'components/UI/Antd/Button/Button';
-import Container from 'components/UI/Container/Container';
-import Loader from 'components/Loader/Loader';
-import { getDeviceType } from 'library/helpers/get_devide_type';
-import GetAPIData, { ProcessAPIData } from 'library/helpers/get_api_data';
+import Row from '@tripApp/components/UI/Antd/Grid/Row';
+import Col from '@tripApp/components/UI/Antd/Grid/Col';
+import Modal from '@tripApp/components/UI/Antd/Modal/Modal';
+import Button from '@tripApp/components/UI/Antd/Button/Button';
+import Container from '@tripApp/components/UI/Container/Container';
+import Loader from '@tripApp/components/Loader/Loader';
+import { getDeviceType } from '@tripApp/library/helpers/get_devide_type';
+import GetAPIData, {
+  ProcessAPIData,
+} from '@tripApp/library/helpers/get_api_data';
 
-import Description from 'container/SinglePage/Description/Description';
-import Amenities from 'container/SinglePage/Amenities/Amenities';
-import Location from 'container/SinglePage/Location/Location';
-import Review from 'container/SinglePage/Review/Review';
-import Reservation from 'container/SinglePage/Reservation/Reservation';
-import BottomReservation from 'container/SinglePage/Reservation/BottomReservation';
-import TopBar from 'container/SinglePage/TopBar/TopBar';
+import Description from '@tripApp/container/SinglePage/Description/Description';
+import Amenities from '@tripApp/container/SinglePage/Amenities/Amenities';
+import Location from '@tripApp/container/SinglePage/Location/Location';
+import Review from '@tripApp/container/SinglePage/Review/Review';
+import Reservation from '@tripApp/container/SinglePage/Reservation/Reservation';
+import BottomReservation from '@tripApp/container/SinglePage/Reservation/BottomReservation';
+import TopBar from '@tripApp/container/SinglePage/TopBar/TopBar';
 import SinglePageWrapper, {
   PostImage,
-} from 'container/SinglePage/SinglePageView.style';
-import PostImageGallery from 'container/SinglePage/ImageGallery/ImageGallery';
-export default function SinglePostPage({ processedData, deviceType, query }) {
+} from '@tripApp/container/SinglePage/SinglePageView.style';
+import PostImageGallery from '@tripApp/container/SinglePage/ImageGallery/ImageGallery';
+export default function SinglePostPage({
+  processedData,
+  deviceType,
+  query,
+}) {
   const [isModalShowing, setIsModalShowing] = useState(false);
   if (isEmpty(processedData)) return <Loader />;
   const {
@@ -38,15 +44,8 @@ export default function SinglePostPage({ processedData, deviceType, query }) {
     author,
   } = processedData[0];
   const headerTitle =
-    query.slug
-      .split('-')
-      .join(' ')
-      .charAt(0)
-      .toUpperCase() +
-    query.slug
-      .split('-')
-      .join(' ')
-      .slice(1);
+    query.slug.split('-').join(' ').charAt(0).toUpperCase() +
+    query.slug.split('-').join(' ').slice(1);
 
   return (
     <>
@@ -79,7 +78,11 @@ export default function SinglePostPage({ processedData, deviceType, query }) {
                 onClick={() => setIsModalShowing(false)}
                 className="image_gallery_close"
               >
-                <svg width="16.004" height="16" viewBox="0 0 16.004 16">
+                <svg
+                  width="16.004"
+                  height="16"
+                  viewBox="0 0 16.004 16"
+                >
                   <path
                     id="_ionicons_svg_ios-close_2_"
                     d="M170.4,168.55l5.716-5.716a1.339,1.339,0,1,0-1.894-1.894l-5.716,5.716-5.716-5.716a1.339,1.339,0,1,0-1.894,1.894l5.716,5.716-5.716,5.716a1.339,1.339,0,0,0,1.894,1.894l5.716-5.716,5.716,5.716a1.339,1.339,0,0,0,1.894-1.894Z"
@@ -95,7 +98,11 @@ export default function SinglePostPage({ processedData, deviceType, query }) {
         <TopBar title={title} author={author} media={gallery} />
 
         <Container>
-          <Row gutter={30} id="reviewSection" style={{ marginTop: 30 }}>
+          <Row
+            gutter={30}
+            id="reviewSection"
+            style={{ marginTop: 30 }}
+          >
             <Col xl={16}>
               <Description
                 content={content}

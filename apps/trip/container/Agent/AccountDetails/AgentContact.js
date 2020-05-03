@@ -1,13 +1,16 @@
 import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import Row from 'components/UI/Antd/Grid/Row';
-import Col from 'components/UI/Antd/Grid/Col';
-import Heading from 'components/UI/Heading/Heading';
-import Text from 'components/UI/Text/Text';
-import Loader from 'components/Loader/Loader';
-import ContactForm from 'components/ContactForm/ContactFrom';
-import { AgentContactWrapper, ContactDetails } from './AgentDetails.style';
+import Row from '@tripApp/components/UI/Antd/Grid/Row';
+import Col from '@tripApp/components/UI/Antd/Grid/Col';
+import Heading from '@tripApp/components/UI/Heading/Heading';
+import Text from '@tripApp/components/UI/Text/Text';
+import Loader from '@tripApp/components/Loader/Loader';
+import ContactForm from '@tripApp/components/ContactForm/ContactFrom';
+import {
+  AgentContactWrapper,
+  ContactDetails,
+} from './AgentDetails.style';
 import isEmpty from 'lodash/isEmpty';
 
 const initialValues = {
@@ -27,12 +30,12 @@ const getContactFormValidation = () => {
   });
 };
 
-const AgentContact = props => {
+const AgentContact = (props) => {
   const { processedData, loadMoreData, loading } = props;
   if (isEmpty(processedData) || loading) return <Loader />;
   const { agent_location, cell_number, email } = processedData[0];
 
-  const handleSubmit = formProps => {
+  const handleSubmit = (formProps) => {
     const email = formProps ? formProps.email : '';
     const message = formProps ? formProps.message : '';
     const contact = formProps ? formProps.contact : '';

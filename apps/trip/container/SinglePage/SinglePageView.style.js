@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
-import singlePostBgImg from 'assets/images/single-post-bg.jpg';
+import singlePostBgImg from '@tripApp/assets/images/single-post-bg.jpg';
 
 const SinglePageWrapper = styled.div`
   padding-bottom: 56px;
@@ -104,7 +104,8 @@ export const TobBarWrapper = styled.div`
             &.active {
               font-weight: 700;
               color: ${themeGet('primary.0', '#008489')};
-              border-bottom: 3px solid ${themeGet('primary.0', '#008489')};
+              border-bottom: 3px solid
+                ${themeGet('primary.0', '#008489')};
             }
           }
         }

@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { FiExternalLink } from 'react-icons/fi';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import Rating from 'components/UI/Rating/Rating';
-import Favourite from 'components/UI/Favorite/Favorite';
+import Rating from '@tripApp/components/UI/Rating/Rating';
+import Favourite from '@tripApp/components/UI/Favorite/Favorite';
 
 import GridCard from '../GridCard/GridCard';
 
@@ -49,7 +49,7 @@ export default function ProductCard({
     <GridCard
       favorite={
         <Favourite
-          onClick={event => {
+          onClick={(event) => {
             console.log(event);
           }}
         />
@@ -57,9 +57,19 @@ export default function ProductCard({
       location={location.formattedAddress}
       title={title}
       price={`$${price}/Night - Free Cancellation`}
-      rating={<Rating rating={rating} ratingCount={ratingCount} type="bulk" />}
+      rating={
+        <Rating
+          rating={rating}
+          ratingCount={ratingCount}
+          type="bulk"
+        />
+      }
       viewDetailsBtn={
-        <Link href={`${link}/[slug]`} as={`${link}/${slug}`} prefetch={false}>
+        <Link
+          href={`${link}/[slug]`}
+          as={`${link}/${slug}`}
+          prefetch={false}
+        >
           <a>
             <FiExternalLink /> View Details
           </a>

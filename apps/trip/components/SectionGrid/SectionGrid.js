@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Text from 'components/UI/Text/Text';
-import Box from 'components/UI/Box/Box';
-import Button from 'components/UI/Antd/Button/Button';
+import Text from '@tripApp/components/UI/Text/Text';
+import Box from '@tripApp/components/UI/Box/Box';
+import Button from '@tripApp/components/UI/Antd/Button/Button';
 import ProductCard from '../ProductCard/ProductCard';
 const LoadMore = ({
   handleLoadMore,
@@ -52,7 +52,7 @@ export default function SectionGrid({
     <>
       <Box className="grid_wrapper" {...rowStyle}>
         {data && data.length
-          ? data.map(item => {
+          ? data.map((item) => {
               return (
                 <Box
                   className="grid_column"
@@ -73,7 +73,11 @@ export default function SectionGrid({
               key={i}
               {...columnStyle}
             >
-              {placeholder ? placeholder : <Text content="Loading ..." />}
+              {placeholder ? (
+                placeholder
+              ) : (
+                <Text content="Loading ..." />
+              )}
             </Box>
           ))}
       </Box>
@@ -89,7 +93,9 @@ export default function SectionGrid({
         />
       )}
       {paginationComponent && (
-        <Box className="pagination_wrapper">{paginationComponent}</Box>
+        <Box className="pagination_wrapper">
+          {paginationComponent}
+        </Box>
       )}
     </>
   );

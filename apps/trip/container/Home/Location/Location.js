@@ -2,11 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import Container from 'components/UI/Container/Container';
-import Heading from 'components/UI/Heading/Heading';
-import SectionTitle from 'components/SectionTitle/SectionTitle';
-import Loader from 'components/Loader/Loader';
-import ImageCard from 'components/ImageCard/ImageCard';
+import Container from '@tripApp/components/UI/Container/Container';
+import Heading from '@tripApp/components/UI/Heading/Heading';
+import SectionTitle from '@tripApp/components/SectionTitle/SectionTitle';
+import Loader from '@tripApp/components/Loader/Loader';
+import ImageCard from '@tripApp/components/ImageCard/ImageCard';
 import { LISTING_POSTS_PAGE } from '../../../settings/constant';
 import LocationWrapper, { CarouselSection } from './Location.style';
 

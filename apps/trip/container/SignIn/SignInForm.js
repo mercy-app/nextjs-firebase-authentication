@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Formik } from 'formik';
 import Router from 'next/router';
-import RenderSignInForm from 'components/SignIn/RenderSignInForm';
+import RenderSignInForm from '@tripApp/components/SignIn/RenderSignInForm';
 import * as Yup from 'yup';
 import { AuthContext } from '../../context/AuthProvider';
 import { FORGET_PASSWORD_PAGE } from '../../settings/constant';
@@ -26,14 +26,14 @@ const getLoginValidationSchema = () => {
 export default () => {
   const { signIn, loggedIn } = useContext(AuthContext);
   if (loggedIn) Router.push(`/`);
-  const handleSubmit = formProps => {
+  const handleSubmit = (formProps) => {
     signIn(formProps);
   };
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}
-      render={props => (
+      render={(props) => (
         <RenderSignInForm
           {...props}
           forgetPasswordLink={FORGET_PASSWORD_PAGE}

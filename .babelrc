@@ -21,10 +21,13 @@
           "@context": "./src/context",
           "@prismaTypes": "./prisma/generated/type-graphql",
           "@queries": "./src/queries",
+          "@theme": "./src/theme",
+          "@styled": "./src/styled",
           "@data": "./src/data",
           "@typeDefs": "./src/types",
           "@generated": "./src/generated",
           "@shopApp": "./apps/shop",
+          "@tripApp": "./apps/trip",
           "@adminApp": "./apps/admin"
         }
       }

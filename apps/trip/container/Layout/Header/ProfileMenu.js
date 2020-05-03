@@ -1,13 +1,13 @@
 import React, { useContext, useState, useRef } from 'react';
-import Menu from 'components/UI/Antd/Menu/Menu';
-import useOnClickOutside from 'library/hooks/useOnClickOutside';
-import ActiveLink from 'library/helpers/activeLink';
-import { AuthContext } from 'context/AuthProvider';
+import Menu from '@tripApp/components/UI/Antd/Menu/Menu';
+import useOnClickOutside from '@tripApp/library/hooks/useOnClickOutside';
+import ActiveLink from '@tripApp/library/helpers/activeLink';
+import { AuthContext } from '@tripApp/context/AuthProvider';
 import {
   AGENT_PROFILE_PAGE,
   AGENT_ACCOUNT_SETTINGS_PAGE,
   ADD_HOTEL_PAGE,
-} from 'settings/constant';
+} from '@tripApp/settings/constant';
 
 const ProfileMenu = ({ avatar }) => {
   const { logOut } = useContext(AuthContext);
@@ -32,7 +32,9 @@ const ProfileMenu = ({ avatar }) => {
 
       <Menu className={`dropdown-menu ${state ? 'active' : 'hide'}`}>
         <Menu.Item onClick={closeDropdown} key="0">
-          <ActiveLink href={AGENT_PROFILE_PAGE}>View Profile</ActiveLink>
+          <ActiveLink href={AGENT_PROFILE_PAGE}>
+            View Profile
+          </ActiveLink>
         </Menu.Item>
         <Menu.Item onClick={closeDropdown} key="1">
           <ActiveLink href={ADD_HOTEL_PAGE}>Add Hotel</ActiveLink>

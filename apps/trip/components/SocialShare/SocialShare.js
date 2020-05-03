@@ -11,9 +11,9 @@ import {
   FaPinterest,
   FaLinkedinIn,
 } from 'react-icons/fa';
-import Popover from 'components/UI/Antd/Popover/Popover';
+import Popover from '@tripApp/components/UI/Antd/Popover/Popover';
 
-export const FaceBookShare = props => {
+export const FaceBookShare = (props) => {
   const { title, shareURL } = props;
   return (
     <Popover content="Facebook">
@@ -26,7 +26,7 @@ export const FaceBookShare = props => {
   );
 };
 
-export const TwitterShare = props => {
+export const TwitterShare = (props) => {
   const { shareURL, title, author } = props;
   return (
     <Popover content="Twitter">
@@ -39,7 +39,7 @@ export const TwitterShare = props => {
   );
 };
 
-export const LinkedInShare = props => {
+export const LinkedInShare = (props) => {
   const { shareURL, title } = props;
   return (
     <Popover content="Twitter">
@@ -57,7 +57,7 @@ export const LinkedInShare = props => {
   );
 };
 
-export const PinterestShare = props => {
+export const PinterestShare = (props) => {
   const { shareURL, title, media } = props;
   const mediaForPinterest = media ? media[0].url : [];
   return (

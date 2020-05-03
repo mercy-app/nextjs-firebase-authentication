@@ -1,14 +1,14 @@
 import React from 'react';
 import { withRouter } from 'next/router';
-import Menu from 'components/UI/Antd/Menu/Menu';
-import ActiveLink from 'library/helpers/activeLink';
+import Menu from '@tripApp/components/UI/Antd/Menu/Menu';
+import ActiveLink from '@tripApp/library/helpers/activeLink';
 
 import {
   HOME_PAGE,
   LISTING_POSTS_PAGE,
   AGENT_PROFILE_PAGE,
   PRICING_PLAN_PAGE,
-} from 'settings/constant';
+} from '@tripApp/settings/constant';
 
 const MainMenu = ({ className, router }) => {
   return (
@@ -23,7 +23,9 @@ const MainMenu = ({ className, router }) => {
       </Menu.Item>
       <Menu.Item key="1">
         <ActiveLink
-          className={router.pathname === LISTING_POSTS_PAGE ? 'active' : ''}
+          className={
+            router.pathname === LISTING_POSTS_PAGE ? 'active' : ''
+          }
           href={`${LISTING_POSTS_PAGE}`}
         >
           Listing
@@ -31,7 +33,9 @@ const MainMenu = ({ className, router }) => {
       </Menu.Item>
       <Menu.Item key="2">
         <ActiveLink
-          className={router.pathname === AGENT_PROFILE_PAGE ? 'active' : ''}
+          className={
+            router.pathname === AGENT_PROFILE_PAGE ? 'active' : ''
+          }
           href={`${AGENT_PROFILE_PAGE}`}
         >
           Agent
@@ -39,7 +43,9 @@ const MainMenu = ({ className, router }) => {
       </Menu.Item>
       <Menu.Item key="3">
         <ActiveLink
-          className={router.pathname === PRICING_PLAN_PAGE ? 'active' : ''}
+          className={
+            router.pathname === PRICING_PLAN_PAGE ? 'active' : ''
+          }
           href={`${PRICING_PLAN_PAGE}`}
         >
           Pricing

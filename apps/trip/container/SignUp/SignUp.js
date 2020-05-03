@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Row from 'components/UI/Antd/Grid/Row';
-import Col from 'components/UI/Antd/Grid/Col';
-import Divider from 'components/UI/Antd/Divider/Divider';
-import Button from 'components/UI/Antd/Button/Button';
-import Logo from 'components/UI/Logo/LogoNextJs';
+import Row from '@tripApp/components/UI/Antd/Grid/Row';
+import Col from '@tripApp/components/UI/Antd/Grid/Col';
+import Divider from '@tripApp/components/UI/Antd/Divider/Divider';
+import Button from '@tripApp/components/UI/Antd/Button/Button';
+import Logo from '@tripApp/components/UI/Logo/LogoNextJs';
 import SignUpForm from './SignUpForm';
-import signUpImage from 'assets/images/login-page-bg.jpg';
-import DemoLogo from 'assets/images/logo-with-text.svg';
+import signUpImage from '@tripApp/assets/images/login-page-bg.jpg';
+import DemoLogo from '@tripApp/assets/images/logo-with-text.svg';
 import SignUpWrapper, {
   Title,
   TitleInfo,

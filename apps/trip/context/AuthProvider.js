@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import Cookies from 'js-cookie';
-import { TOKEN_COOKIE, USER_COOKIE } from 'library/helpers/session';
-import redirect from 'library/helpers/redirect';
+import {
+  TOKEN_COOKIE,
+  USER_COOKIE,
+} from '@tripApp/library/helpers/session';
+import redirect from '@tripApp/library/helpers/redirect';
 
 export const AuthContext = React.createContext();
 
@@ -34,7 +37,7 @@ const addItem = (key, value = '') => {
   if (key) Cookies.set(key, value, { expires: 7 });
 };
 
-const clearItem = key => {
+const clearItem = (key) => {
   /**
    *  Using the local storage code....
    */
@@ -61,13 +64,13 @@ const isValidToken = () => {
   return false;
 };
 
-const AuthProvider = props => {
+const AuthProvider = (props) => {
   const [loggedIn, setLoggedIn] = useState(isValidToken());
   // const [loggedOut, setLoggedOut] = useState(true);
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
 
-  const signIn = params => {
+  const signIn = (params) => {
     /**
      * Make post request here to authenticate with fetch
      * if returns true then change the state
@@ -79,7 +82,7 @@ const AuthProvider = props => {
     addItem(USER_COOKIE, fakeUserData);
     setLoggedIn(true);
   };
-  const signUp = params => {
+  const signUp = (params) => {
     console.log(params, 'sign up form Props');
     setUser(fakeUserData);
     setToken(fakeToken);
@@ -100,10 +103,10 @@ const AuthProvider = props => {
     setLoggedIn(true);
   };
 
-  const forgetPass = params => {
+  const forgetPass = (params) => {
     console.log(params, 'forget password form Props');
   };
-  const changePass = params => {
+  const changePass = (params) => {
     console.log(params, 'change password form Props');
   };
 
