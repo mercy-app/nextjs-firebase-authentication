@@ -77,7 +77,7 @@ const nextConfig = {
 
     // Less with Antd
     if (isServer) {
-      const antStyles = /antd\/.*?\/style.*?/;
+      const antStyles = /antd\/.*?\/style\/css.*?/;
       const origExternals = [...config.externals];
       config.externals = [
         (context, request, callback) => {
